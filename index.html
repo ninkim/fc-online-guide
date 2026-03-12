@@ -1131,6 +1131,84 @@ tbody tr:last-child td { border-bottom: none; }
 .spec-item .spec-label { color: var(--text-dim); }
 .spec-item .spec-value { color: var(--accent); font-weight: 600; }
 
+/* Player Showcase */
+.player-card-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.showcase-nav {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.showcase-nav:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.showcase-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 2rem;
+}
+
+.showcase-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.showcase-dot.active {
+  background: var(--accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.card-player-img {
+  width: 120px;
+  height: 120px;
+  margin: 0.5rem auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(0,0,0,0.3);
+  border: 2px solid rgba(255, 215, 64, 0.3);
+}
+
+.card-player-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.card-season-img {
+  height: 20px;
+  margin-bottom: 0.3rem;
+}
+
+.card-season-img img {
+  height: 100%;
+}
+
 /* Event Link Cards */
 .event-links {
   display: flex;
@@ -1204,7 +1282,7 @@ tbody tr:last-child td { border-bottom: none; }
     <ul class="nav-links" id="navLinks">
       <li><a href="#start">시작하기</a></li>
       <li><a href="#bp">BP 모으기</a></li>
-      <li><a href="#card">선수카드</a></li>
+      <li><a href="#card">선수팩</a></li>
       <li><a href="#play">플레이</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="메뉴">
@@ -1510,47 +1588,42 @@ tbody tr:last-child td { border-bottom: none; }
     </div>
   </section>
 
-  <!-- Section 4: 선수 카드 정보 보는 법 -->
+  <!-- Section 3: 선수팩 정보 보는 법 -->
   <section class="section" id="card">
     <div class="section-number">03</div>
-    <h2>선수 카드 정보 보는 법</h2>
-    <p class="section-desc">포지션, 오버롤, 강화단계, 클래스 — 선수 카드에 담긴 핵심 정보를 읽는 방법을 배워보세요.</p>
+    <h2>선수팩 정보 보는 법</h2>
+    <p class="section-desc">포지션, 오버롤, 강화단계, 클래스 — 선수팩에서 획득한 선수의 핵심 정보를 읽는 방법을 배워보세요.</p>
 
-    <div class="player-card-demo">
-      <div class="card-inner">
-        <div class="card-class">LEGEND &mdash; 25 TOTY</div>
-        <div class="card-overall">96</div>
-        <div class="card-name">손흥민</div>
-        <div class="card-position">LW</div>
-        <div class="card-stats">
-          <div class="card-stat">
-            <div class="card-stat-label">속도</div>
-            <div class="card-stat-value">95</div>
+    <div class="player-card-showcase" id="playerShowcase">
+      <button class="showcase-nav showcase-prev" id="prevPlayer" aria-label="이전 선수">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div class="player-card-demo" id="playerCard">
+        <div class="card-inner">
+          <div class="card-season-img" id="cardSeasonImg"></div>
+          <div class="card-class" id="cardClass">Loading...</div>
+          <div class="card-player-img" id="cardPlayerImg"></div>
+          <div class="card-overall" id="cardOvr">--</div>
+          <div class="card-name" id="cardName">불러오는 중...</div>
+          <div class="card-position" id="cardPos">--</div>
+          <div class="card-stats" id="cardStats">
+            <div class="card-stat"><div class="card-stat-label">속도</div><div class="card-stat-value">--</div></div>
+            <div class="card-stat"><div class="card-stat-label">슈팅</div><div class="card-stat-value">--</div></div>
+            <div class="card-stat"><div class="card-stat-label">패스</div><div class="card-stat-value">--</div></div>
+            <div class="card-stat"><div class="card-stat-label">드리블</div><div class="card-stat-value">--</div></div>
+            <div class="card-stat"><div class="card-stat-label">수비</div><div class="card-stat-value">--</div></div>
+            <div class="card-stat"><div class="card-stat-label">체력</div><div class="card-stat-value">--</div></div>
           </div>
-          <div class="card-stat">
-            <div class="card-stat-label">슈팅</div>
-            <div class="card-stat-value">93</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">패스</div>
-            <div class="card-stat-value">88</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">드리블</div>
-            <div class="card-stat-value">94</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">수비</div>
-            <div class="card-stat-value">52</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">체력</div>
-            <div class="card-stat-value">78</div>
-          </div>
+          <div class="card-enhance" id="cardEnhance">강화 단계: <span>+1강</span></div>
         </div>
-        <div class="card-enhance">강화 단계: <span>+5강 (OVR +7)</span></div>
       </div>
+
+      <button class="showcase-nav showcase-next" id="nextPlayer" aria-label="다음 선수">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
+    <div class="showcase-dots" id="showcaseDots"></div>
 
     <div class="card-grid">
       <div class="card">
@@ -1812,7 +1885,6 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
-// Close mobile menu on link click
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
@@ -1821,29 +1893,97 @@ navLinks.querySelectorAll('a').forEach(link => {
 const sections = document.querySelectorAll('.section');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
 sections.forEach(s => observer.observe(s));
 
 // Active nav link tracking
 const navAnchors = document.querySelectorAll('.nav-links a');
 const sectionEls = document.querySelectorAll('.section');
-
 window.addEventListener('scroll', () => {
   let current = '';
   sectionEls.forEach(sec => {
-    const top = sec.offsetTop - 100;
-    if (window.scrollY >= top) current = sec.id;
+    if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
   });
   navAnchors.forEach(a => {
     a.classList.remove('active');
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
 });
+
+// --- Player Card Showcase (FC Online API) ---
+const PLAYERS = [
+  { spid: 840200104, name: '손흥민', pos: 'LW', ovr: 96, season: 840, stats: [95,93,88,94,52,78] },
+  { spid: 825231747, name: '이강인', pos: 'CAM', ovr: 90, season: 825, stats: [82,85,90,92,38,76] },
+  { spid: 845231432, name: '김민재', pos: 'CB', ovr: 93, season: 845, stats: [78,42,62,58,93,85] },
+  { spid: 828158023, name: '메시', pos: 'RW', ovr: 97, season: 828, stats: [88,95,96,98,40,72] },
+  { spid: 839020801, name: '호날두', pos: 'ST', ovr: 96, season: 839, stats: [92,96,82,90,45,84] },
+  { spid: 836231866, name: '음바페', pos: 'ST', ovr: 95, season: 836, stats: [97,93,82,94,42,80] },
+];
+
+const SEASON_MAP = {};
+let currentIdx = 0;
+
+async function loadSeasons() {
+  try {
+    const res = await fetch('https://open.api.nexon.com/static/fconline/meta/seasonid.json');
+    const data = await res.json();
+    data.forEach(s => { SEASON_MAP[s.seasonId] = s; });
+  } catch(e) { console.warn('Season meta load failed', e); }
+}
+
+function renderCard(idx) {
+  const p = PLAYERS[idx];
+  const season = SEASON_MAP[p.season];
+  const labels = ['속도','슈팅','패스','드리블','수비','체력'];
+  const imgUrl = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${p.spid}.png`;
+
+  document.getElementById('cardClass').textContent = season ? season.className.split(' (')[0] : '';
+  document.getElementById('cardOvr').textContent = p.ovr;
+  document.getElementById('cardName').textContent = p.name;
+  document.getElementById('cardPos').textContent = p.pos;
+
+  const seasonImgEl = document.getElementById('cardSeasonImg');
+  if (season && season.seasonImg) {
+    seasonImgEl.innerHTML = `<img src="${season.seasonImg}" alt="${season.className}">`;
+  }
+
+  const playerImgEl = document.getElementById('cardPlayerImg');
+  playerImgEl.innerHTML = `<img src="${imgUrl}" alt="${p.name}" onerror="this.style.display='none'">`;
+
+  const statsEl = document.getElementById('cardStats');
+  statsEl.innerHTML = labels.map((l, i) =>
+    `<div class="card-stat"><div class="card-stat-label">${l}</div><div class="card-stat-value">${p.stats[i]}</div></div>`
+  ).join('');
+
+  const dots = document.querySelectorAll('.showcase-dot');
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+}
+
+function initShowcase() {
+  const dotsEl = document.getElementById('showcaseDots');
+  dotsEl.innerHTML = PLAYERS.map((_, i) =>
+    `<div class="showcase-dot ${i === 0 ? 'active' : ''}" data-idx="${i}"></div>`
+  ).join('');
+
+  dotsEl.querySelectorAll('.showcase-dot').forEach(dot => {
+    dot.addEventListener('click', () => { currentIdx = +dot.dataset.idx; renderCard(currentIdx); });
+  });
+
+  document.getElementById('prevPlayer').addEventListener('click', () => {
+    currentIdx = (currentIdx - 1 + PLAYERS.length) % PLAYERS.length;
+    renderCard(currentIdx);
+  });
+  document.getElementById('nextPlayer').addEventListener('click', () => {
+    currentIdx = (currentIdx + 1) % PLAYERS.length;
+    renderCard(currentIdx);
+  });
+
+  renderCard(0);
+}
+
+loadSeasons().then(initShowcase);
 </script>
 
 </body>
