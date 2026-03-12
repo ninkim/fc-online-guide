@@ -1209,6 +1209,46 @@ tbody tr:last-child td { border-bottom: none; }
   height: 100%;
 }
 
+.card-meta {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 0.6rem 0;
+  font-size: 0.72rem;
+}
+
+.card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-dim);
+}
+
+.card-meta-item .meta-label { opacity: 0.6; }
+.card-meta-item .meta-value { color: #fff; font-weight: 600; }
+
+.card-dc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 0.8rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.card-dc-link:hover {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: var(--accent);
+}
+
 /* Event Link Cards */
 .event-links {
   display: flex;
@@ -1615,7 +1655,12 @@ tbody tr:last-child td { border-bottom: none; }
             <div class="card-stat"><div class="card-stat-label">수비</div><div class="card-stat-value">--</div></div>
             <div class="card-stat"><div class="card-stat-label">체력</div><div class="card-stat-value">--</div></div>
           </div>
+          <div class="card-meta" id="cardMeta"></div>
           <div class="card-enhance" id="cardEnhance">강화 단계: <span>+1강</span></div>
+          <a class="card-dc-link" id="cardDcLink" href="#" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            데이터센터에서 상세 보기
+          </a>
         </div>
       </div>
 
@@ -1914,12 +1959,24 @@ window.addEventListener('scroll', () => {
 
 // --- Player Card Showcase (FC Online API) ---
 const PLAYERS = [
-  { spid: 840200104, name: '손흥민', pos: 'LW', ovr: 96, season: 840, stats: [95,93,88,94,52,78] },
-  { spid: 825231747, name: '이강인', pos: 'CAM', ovr: 90, season: 825, stats: [82,85,90,92,38,76] },
-  { spid: 845231432, name: '김민재', pos: 'CB', ovr: 93, season: 845, stats: [78,42,62,58,93,85] },
-  { spid: 828158023, name: '메시', pos: 'RW', ovr: 97, season: 828, stats: [88,95,96,98,40,72] },
-  { spid: 839020801, name: '호날두', pos: 'ST', ovr: 96, season: 839, stats: [92,96,82,90,45,84] },
-  { spid: 836231866, name: '음바페', pos: 'ST', ovr: 95, season: 836, stats: [97,93,82,94,42,80] },
+  { spid: 831200104, name: '손흥민', pos: 'LW', ovr: 96, season: 831, stats: [95,93,88,94,52,78],
+    club: 'LA FC', nation: '대한민국', foot: '양발', height: 183, weight: 78,
+    dcUrl: 'https://fconline.nexon.com/DataCenter/PlayerInfo?spid=831200104&n1Strong=1' },
+  { spid: 825231747, name: '이강인', pos: 'CAM', ovr: 90, season: 825, stats: [82,85,90,92,38,76],
+    club: '파리 생제르맹', nation: '대한민국', foot: '왼발', height: 174, weight: 63,
+    dcUrl: 'https://fconline.nexon.com/DataCenter/PlayerInfo?spid=825231747&n1Strong=1' },
+  { spid: 845231432, name: '김민재', pos: 'CB', ovr: 93, season: 845, stats: [78,42,62,58,93,85],
+    club: 'FC 바이에른 뮌헨', nation: '대한민국', foot: '오른발', height: 190, weight: 88,
+    dcUrl: 'https://fconline.nexon.com/DataCenter/PlayerInfo?spid=845231432&n1Strong=1' },
+  { spid: 828158023, name: '메시', pos: 'RW', ovr: 97, season: 828, stats: [88,95,96,98,40,72],
+    club: '인테르 마이애미', nation: '아르헨티나', foot: '왼발', height: 170, weight: 72,
+    dcUrl: 'https://fconline.nexon.com/DataCenter/PlayerInfo?spid=828158023&n1Strong=1' },
+  { spid: 839020801, name: '호날두', pos: 'ST', ovr: 96, season: 839, stats: [92,96,82,90,45,84],
+    club: '알 나스르', nation: '포르투갈', foot: '오른발', height: 187, weight: 83,
+    dcUrl: 'https://fconline.nexon.com/DataCenter/PlayerInfo?spid=839020801&n1Strong=1' },
+  { spid: 836231866, name: '음바페', pos: 'ST', ovr: 95, season: 836, stats: [97,93,82,94,42,80],
+    club: '레알 마드리드', nation: '프랑스', foot: '오른발', height: 178, weight: 73,
+    dcUrl: 'https://fconline.nexon.com/DataCenter/PlayerInfo?spid=836231866&n1Strong=1' },
 ];
 
 const SEASON_MAP = {};
@@ -1956,6 +2013,18 @@ function renderCard(idx) {
   statsEl.innerHTML = labels.map((l, i) =>
     `<div class="card-stat"><div class="card-stat-label">${l}</div><div class="card-stat-value">${p.stats[i]}</div></div>`
   ).join('');
+
+  const metaEl = document.getElementById('cardMeta');
+  metaEl.innerHTML = [
+    p.club ? `<span class="card-meta-item"><span class="meta-label">소속</span><span class="meta-value">${p.club}</span></span>` : '',
+    p.nation ? `<span class="card-meta-item"><span class="meta-label">국적</span><span class="meta-value">${p.nation}</span></span>` : '',
+    p.foot ? `<span class="card-meta-item"><span class="meta-label">발</span><span class="meta-value">${p.foot}</span></span>` : '',
+    p.height ? `<span class="card-meta-item"><span class="meta-value">${p.height}cm / ${p.weight}kg</span></span>` : '',
+  ].filter(Boolean).join('');
+
+  const dcLink = document.getElementById('cardDcLink');
+  if (p.dcUrl) { dcLink.href = p.dcUrl; dcLink.style.display = 'inline-flex'; }
+  else { dcLink.style.display = 'none'; }
 
   const dots = document.querySelectorAll('.showcase-dot');
   dots.forEach((d, i) => d.classList.toggle('active', i === idx));
