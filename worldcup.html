@@ -109,18 +109,18 @@ button{font-family:inherit;cursor:pointer;}
 /* Event Banners */
 .banner-section{margin:3rem 0;}
 .banner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.banner-card{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit;}
+.banner-card{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit;position:relative;}
 .banner-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
-.banner-card-img{aspect-ratio:9/14;background:linear-gradient(160deg,#1a0a2e,#0f1a30);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.banner-card-img .ev-icon{font-size:3rem;opacity:0.9;}
+.banner-card .ev-tag{position:absolute;top:10px;left:10px;z-index:2;display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:50px;font-size:0.65rem;font-weight:700;}
+.banner-card .ev-tag.red{background:rgba(229,36,59,0.9);color:#fff;}
+.banner-card .ev-tag.green{background:rgba(0,200,117,0.85);color:#fff;}
+.banner-card-img{aspect-ratio:9/7;background:linear-gradient(160deg,#1a0a2e,#0f1a30);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.banner-card-img .ev-icon{font-size:2.2rem;opacity:0.9;}
 .banner-card-img .ev-deco{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 20v20L30 55 5 40V20z' fill='none' stroke='%23ffffff' stroke-opacity='0.04' stroke-width='0.5'/%3E%3C/svg%3E");}
-.banner-card-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:6px;}
-.banner-card-body .ev-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:50px;font-size:0.65rem;font-weight:700;width:fit-content;}
-.banner-card-body .ev-tag.red{background:rgba(229,36,59,0.15);color:var(--accent2);border:1px solid rgba(229,36,59,0.25);}
-.banner-card-body .ev-tag.green{background:rgba(0,200,117,0.1);color:var(--green);border:1px solid rgba(0,200,117,0.2);}
-.banner-card-body .ev-title{font-size:0.85rem;font-weight:700;line-height:1.4;}
-.banner-card-body .ev-period{font-size:0.7rem;color:var(--text-dim);}
-.banner-card-body .ev-go{font-size:0.72rem;color:var(--accent);font-weight:600;margin-top:auto;padding-top:6px;}
+.banner-card-body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:4px;}
+.banner-card-body .ev-title{font-size:0.82rem;font-weight:700;line-height:1.4;}
+.banner-card-body .ev-period{font-size:0.68rem;color:var(--text-dim);}
+.banner-card-body .ev-go{font-size:0.72rem;color:var(--accent);font-weight:600;margin-top:auto;padding-top:4px;}
 @media(max-width:768px){.banner-grid{grid-template-columns:1fr;max-width:320px;margin:0 auto;}}
 
 /* Mini Game */
@@ -140,14 +140,17 @@ button{font-family:inherit;cursor:pointer;}
 
 /* Friend Recommendation */
 .friend-section{margin:3rem 0;padding-bottom:4rem;}
-.friend-register{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;}
-.friend-register h4{font-size:0.95rem;font-weight:700;margin-bottom:1rem;}
-.register-form{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;}
-.register-form input{flex:1;min-width:180px;padding:10px 16px;background:var(--primary);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:0.85rem;outline:none;transition:border-color 0.2s;}
-.register-form input:focus{border-color:var(--accent);}
-.register-form input::placeholder{color:var(--text-dim);}
+.friend-register{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:2rem;}
+.friend-register h4{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem;}
+.friend-register .register-desc{font-size:0.8rem;color:var(--text-dim);margin-bottom:1rem;}
+.register-row{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
+.my-club-name{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--primary);border:1px solid rgba(0,120,255,0.3);border-radius:10px;font-size:0.9rem;font-weight:600;color:#fff;}
+.my-club-name .club-icon{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;}
 .register-btn{padding:10px 24px;background:var(--accent);color:#fff;font-weight:600;font-size:0.85rem;border:none;border-radius:10px;transition:all 0.2s;white-space:nowrap;}
 .register-btn:hover{background:#0060d0;}
+.friend-list-header{margin-bottom:1rem;}
+.friend-list-header h4{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem;}
+.friend-list-header p{font-size:0.8rem;color:var(--text-dim);}
 .keyword-select{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0;}
 .keyword-chip{padding:6px 14px;border-radius:50px;font-size:0.75rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;}
 .keyword-chip:hover,.keyword-chip.selected{border-color:var(--accent);color:var(--accent);background:rgba(0,120,255,0.08);}
@@ -407,20 +410,29 @@ button{font-family:inherit;cursor:pointer;}
 
     <div class="friend-register">
       <h4>내 구단주명 등록하기</h4>
-      <div class="register-form">
-        <input type="text" id="clubNameInput" placeholder="구단주명을 입력하세요" maxlength="20">
-        <div class="keyword-select" id="keywordSelect">
-          <button class="keyword-chip" data-keyword="10대 구단주">10대 구단주</button>
-          <button class="keyword-chip" data-keyword="직장인 구단주">직장인 구단주</button>
-          <button class="keyword-chip" data-keyword="뉴비">뉴비</button>
-          <button class="keyword-chip" data-keyword="고수">고수</button>
-          <button class="keyword-chip" data-keyword="수비형">수비형</button>
-          <button class="keyword-chip" data-keyword="공격형">공격형</button>
-          <button class="keyword-chip" data-keyword="감독모드">감독모드</button>
-          <button class="keyword-chip" data-keyword="월드컵 팬">월드컵 팬</button>
+      <p class="register-desc">다른 구단주님들이 친구 추가 할 수 있도록, 구단주명을 등록해보세요!</p>
+      <div class="register-row">
+        <div class="my-club-name">
+          <span class="club-icon">김엪</span>
+          김엪온
         </div>
       </div>
+      <div class="keyword-select" id="keywordSelect" style="margin-bottom:1rem;">
+        <button class="keyword-chip" data-keyword="10대 구단주">10대 구단주</button>
+        <button class="keyword-chip" data-keyword="직장인 구단주">직장인 구단주</button>
+        <button class="keyword-chip" data-keyword="뉴비">뉴비</button>
+        <button class="keyword-chip" data-keyword="고수">고수</button>
+        <button class="keyword-chip" data-keyword="수비형">수비형</button>
+        <button class="keyword-chip" data-keyword="공격형">공격형</button>
+        <button class="keyword-chip" data-keyword="감독모드">감독모드</button>
+        <button class="keyword-chip" data-keyword="월드컵 팬">월드컵 팬</button>
+      </div>
       <button class="register-btn" id="registerBtn">등록하기</button>
+    </div>
+
+    <div class="friend-list-header">
+      <h4>친구 추가를 기다리는 구단주님들이에요</h4>
+      <p>함께 FC 온라인을 플레이해보세요</p>
     </div>
 
     <div class="tag-filters" id="tagFilters">
@@ -555,12 +567,10 @@ document.querySelectorAll('.keyword-chip').forEach(chip => {
 });
 
 document.getElementById('registerBtn').addEventListener('click', () => {
-  const name = document.getElementById('clubNameInput').value.trim();
-  if (!name) { alert('구단주명을 입력해주세요!'); return; }
+  const name = '김엪온';
   const selectedKeywords = [...document.querySelectorAll('.keyword-chip.selected')].map(c => c.dataset.keyword);
   if (selectedKeywords.length === 0) { alert('키워드를 1개 이상 선택해주세요!'); return; }
   allFriends.unshift({ name, tags: selectedKeywords });
-  document.getElementById('clubNameInput').value = '';
   document.querySelectorAll('.keyword-chip').forEach(c => c.classList.remove('selected'));
   currentFilter = 'all';
   document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
