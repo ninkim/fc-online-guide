@@ -65,7 +65,7 @@ button{font-family:inherit;cursor:pointer;}
 .match-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin;}
 .match-scroll::-webkit-scrollbar{height:4px;}
 .match-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
-.match-card{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:200px;transition:border-color 0.2s;}
+.match-card{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:200px;transition:border-color 0.2s;display:flex;flex-direction:column;gap:8px;}
 .match-card:hover{border-color:var(--accent);}
 .match-card.live{border-color:var(--accent2);position:relative;}
 .match-card.live::after{content:'LIVE';position:absolute;top:8px;right:8px;font-size:0.6rem;font-weight:700;color:#fff;background:var(--accent2);padding:2px 6px;border-radius:4px;animation:pulse 1.5s infinite;}
@@ -73,7 +73,9 @@ button{font-family:inherit;cursor:pointer;}
 .match-date{font-size:0.7rem;color:var(--text-dim);margin-bottom:6px;}
 .match-teams{display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:600;}
 .match-teams .vs{color:var(--text-dim);font-size:0.7rem;font-weight:400;}
-.match-time{font-size:0.7rem;color:var(--gold);margin-top:4px;}
+.match-time{font-size:0.7rem;color:var(--gold);}
+.match-predict{padding:6px 14px;background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;font-size:0.7rem;font-weight:600;border:none;border-radius:50px;transition:all 0.2s;align-self:flex-start;margin-top:auto;}
+.match-predict:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,120,255,0.35);}
 .match-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:12px;}
 .predict-btn{padding:8px 20px;background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;font-size:0.8rem;font-weight:600;border:none;border-radius:50px;transition:all 0.2s;white-space:nowrap;}
 .predict-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,120,255,0.35);}
@@ -82,9 +84,8 @@ button{font-family:inherit;cursor:pointer;}
 .squad-section{background:linear-gradient(135deg,rgba(229,36,59,0.08),rgba(0,120,255,0.06));border:1px solid rgba(229,36,59,0.15);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
 .squad-section h3{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;line-height:1.5;margin-bottom:1.5rem;color:#fff;}
 .squad-section h3 em{font-style:normal;color:var(--gold);}
-.squad-img-wrap{position:relative;max-width:600px;margin:0 auto 2rem;border-radius:16px;overflow:hidden;background:var(--surface);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
-.squad-img-wrap .placeholder{color:var(--text-dim);font-size:0.9rem;display:flex;flex-direction:column;align-items:center;gap:10px;}
-.squad-img-wrap .placeholder svg{width:48px;height:48px;opacity:0.3;}
+.squad-img-wrap{position:relative;max-width:700px;margin:0 auto 2rem;border-radius:16px;overflow:hidden;background:var(--surface);}
+.squad-img-wrap img{width:100%;height:auto;display:block;}
 .squad-receive-btn{padding:14px 40px;background:linear-gradient(135deg,var(--accent2),#c41830);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;box-shadow:0 4px 20px rgba(229,36,59,0.3);}
 .squad-receive-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 30px rgba(229,36,59,0.45);}
 
@@ -105,14 +106,22 @@ button{font-family:inherit;cursor:pointer;}
 .short-card .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);opacity:0;transition:opacity 0.2s;pointer-events:none;}
 .short-card:hover .play-overlay{opacity:1;}
 
-/* Banner */
+/* Event Banners */
 .banner-section{margin:3rem 0;}
-.event-banner{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1a0a2e,#0f1a30,#1a0a2e);border:1px solid var(--border);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
-.event-banner .banner-text h3{font-size:1.3rem;font-weight:800;margin-bottom:0.4rem;}
-.event-banner .banner-text p{color:var(--text-dim);font-size:0.85rem;}
-.event-banner .banner-tag{display:inline-block;padding:4px 12px;border-radius:50px;font-size:0.7rem;font-weight:700;background:var(--accent2);color:#fff;margin-bottom:10px;}
-.event-banner .banner-btn{padding:12px 28px;background:#fff;color:var(--primary);font-weight:700;font-size:0.85rem;border:none;border-radius:50px;transition:all 0.2s;white-space:nowrap;}
-.event-banner .banner-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,255,255,0.2);}
+.banner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.banner-card{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit;}
+.banner-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+.banner-card-img{aspect-ratio:9/14;background:linear-gradient(160deg,#1a0a2e,#0f1a30);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.banner-card-img .ev-icon{font-size:3rem;opacity:0.9;}
+.banner-card-img .ev-deco{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 20v20L30 55 5 40V20z' fill='none' stroke='%23ffffff' stroke-opacity='0.04' stroke-width='0.5'/%3E%3C/svg%3E");}
+.banner-card-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.banner-card-body .ev-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:50px;font-size:0.65rem;font-weight:700;width:fit-content;}
+.banner-card-body .ev-tag.red{background:rgba(229,36,59,0.15);color:var(--accent2);border:1px solid rgba(229,36,59,0.25);}
+.banner-card-body .ev-tag.green{background:rgba(0,200,117,0.1);color:var(--green);border:1px solid rgba(0,200,117,0.2);}
+.banner-card-body .ev-title{font-size:0.85rem;font-weight:700;line-height:1.4;}
+.banner-card-body .ev-period{font-size:0.7rem;color:var(--text-dim);}
+.banner-card-body .ev-go{font-size:0.72rem;color:var(--accent);font-weight:600;margin-top:auto;padding-top:6px;}
+@media(max-width:768px){.banner-grid{grid-template-columns:1fr;max-width:320px;margin:0 auto;}}
 
 /* Mini Game */
 .minigame-section{margin:3rem 0;text-align:center;}
@@ -224,41 +233,49 @@ button{font-family:inherit;cursor:pointer;}
         <div class="match-date">6월 11일 (수) · 조별리그 A조</div>
         <div class="match-teams">🇺🇸 미국 <span class="vs">VS</span> 🇧🇷 브라질</div>
         <div class="match-time">23:00 KST · 메트라이프 스타디움</div>
+        <button class="match-predict" onclick="alert('미국 vs 브라질 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 12일 (목) · 조별리그 B조</div>
         <div class="match-teams">🇰🇷 대한민국 <span class="vs">VS</span> 🇫🇷 프랑스</div>
         <div class="match-time">04:00 KST · 소파이 스타디움</div>
+        <button class="match-predict" onclick="alert('대한민국 vs 프랑스 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 12일 (목) · 조별리그 C조</div>
         <div class="match-teams">🇩🇪 독일 <span class="vs">VS</span> 🇦🇷 아르헨티나</div>
         <div class="match-time">07:00 KST · AT&T 스타디움</div>
+        <button class="match-predict" onclick="alert('독일 vs 아르헨티나 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 13일 (금) · 조별리그 A조</div>
         <div class="match-teams">🇬🇧 잉글랜드 <span class="vs">VS</span> 🇪🇸 스페인</div>
         <div class="match-time">02:00 KST · 메르세데스-벤츠 스타디움</div>
+        <button class="match-predict" onclick="alert('잉글랜드 vs 스페인 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 13일 (금) · 조별리그 D조</div>
         <div class="match-teams">🇯🇵 일본 <span class="vs">VS</span> 🇳🇱 네덜란드</div>
         <div class="match-time">05:00 KST · 링컨 파이낸셜 필드</div>
+        <button class="match-predict" onclick="alert('일본 vs 네덜란드 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 14일 (토) · 조별리그 B조</div>
         <div class="match-teams">🇵🇹 포르투갈 <span class="vs">VS</span> 🇲🇽 멕시코</div>
         <div class="match-time">10:00 KST · 로즈 볼</div>
+        <button class="match-predict" onclick="alert('포르투갈 vs 멕시코 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 15일 (일) · 조별리그 C조</div>
         <div class="match-teams">🇮🇹 이탈리아 <span class="vs">VS</span> 🇺🇾 우루과이</div>
         <div class="match-time">07:00 KST · 하드록 스타디움</div>
+        <button class="match-predict" onclick="alert('이탈리아 vs 우루과이 승부예측!')">⚡ 승부예측</button>
       </div>
       <div class="match-card">
         <div class="match-date">6월 16일 (월) · 조별리그 D조</div>
         <div class="match-teams">🇧🇪 벨기에 <span class="vs">VS</span> 🇭🇷 크로아티아</div>
         <div class="match-time">04:00 KST · 시티 파크</div>
+        <button class="match-predict" onclick="alert('벨기에 vs 크로아티아 승부예측!')">⚡ 승부예측</button>
       </div>
     </div>
   </div>
@@ -267,36 +284,7 @@ button{font-family:inherit;cursor:pointer;}
   <div class="squad-section section" id="squad">
     <h3>신규 · 복귀 구단주님!<br><em>월드컵 국대 스쿼드</em>로<br>FC 온라인을 다시 즐겨보세요!</h3>
     <div class="squad-img-wrap">
-      <div class="placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="3" width="20" height="18" rx="3"/>
-          <circle cx="8" cy="10" r="2"/>
-          <path d="M22 21l-6-6-4 4-3-3-7 7"/>
-        </svg>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:80%;max-width:400px;margin-top:12px;">
-          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
-            <div style="font-size:0.6rem;color:var(--text-dim);">GK</div>
-            <div style="font-size:0.75rem;font-weight:700;">조현우</div>
-            <div style="font-size:0.6rem;color:var(--gold);">OVR 108</div>
-          </div>
-          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
-            <div style="font-size:0.6rem;color:var(--text-dim);">CB</div>
-            <div style="font-size:0.75rem;font-weight:700;">김민재</div>
-            <div style="font-size:0.6rem;color:var(--gold);">OVR 118</div>
-          </div>
-          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
-            <div style="font-size:0.6rem;color:var(--text-dim);">CM</div>
-            <div style="font-size:0.75rem;font-weight:700;">이강인</div>
-            <div style="font-size:0.6rem;color:var(--gold);">OVR 114</div>
-          </div>
-          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
-            <div style="font-size:0.6rem;color:var(--text-dim);">LW</div>
-            <div style="font-size:0.75rem;font-weight:700;">손흥민</div>
-            <div style="font-size:0.6rem;color:var(--gold);">OVR 126</div>
-          </div>
-        </div>
-        <span style="font-size:0.75rem;margin-top:6px;">26WC 대한민국 국대 스쿼드</span>
-      </div>
+      <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드 — 4-1-2-3 포메이션, 총급여 254/275, 평균 OVR 132">
     </div>
     <button class="squad-receive-btn" onclick="alert('스쿼드가 지급되었습니다! 게임에서 확인하세요.')">🎁 월드컵 국대 스쿼드 받기</button>
   </div>
@@ -316,8 +304,7 @@ button{font-family:inherit;cursor:pointer;}
   <!-- YouTube Shorts -->
   <div class="section" id="shorts">
     <div class="section-label">Featured Shorts</div>
-    <div class="section-title">🎬 FC 온라인 플레이 영상</div>
-    <div class="section-desc">월드컵 시즌, 이렇게 플레이하세요!</div>
+    <div class="section-title">🎬 요즘 FC 온라인? 이렇게 플레이하세요!</div>
     <div class="shorts-grid">
       <div class="short-card">
         <iframe src="https://www.youtube.com/embed/2hzP7JJAkjs" title="FC Online Short 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
@@ -334,15 +321,63 @@ button{font-family:inherit;cursor:pointer;}
     </div>
   </div>
 
-  <!-- Web Event Banner -->
+  <!-- Web Event Banners -->
   <div class="banner-section section">
-    <div class="event-banner">
-      <div class="banner-text">
-        <div class="banner-tag">EVENT</div>
-        <h3>월드컵 기념 웹이벤트 진행 중!</h3>
-        <p>매일 출석체크하고 26WC 선수팩 & 대량 BP를 획득하세요. 6.11 ~ 7.19</p>
-      </div>
-      <button class="banner-btn" onclick="alert('웹이벤트 페이지로 이동합니다!')">이벤트 참여하기 →</button>
+    <div class="section-label">Web Events</div>
+    <div class="section-title">FC 온라인 웹이벤트 참여하세요!</div>
+    <div class="section-desc">신규 · 복귀 구단주님 추천 이벤트를 확인해보세요.</div>
+    <div class="banner-grid">
+      <a class="banner-card" href="https://events.fconline.nexon.com/260312/play?utm_source=pc&utm_medium=evGnbSub&utm_campaign=260312_play" target="_blank">
+        <div class="banner-card-img" style="background:linear-gradient(160deg,#1a0520,#22103a);">
+          <div class="ev-deco"></div>
+          <div style="text-align:center;position:relative;z-index:1;padding:1.5rem;">
+            <div class="ev-icon">📅</div>
+            <div style="font-size:0.95rem;font-weight:800;margin-top:12px;color:#fff;">출석 + 플레이<br>5판 이벤트</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:8px;">매일 출석 & 플레이하고<br>포인트로 보상 교환!</div>
+            <div style="margin-top:16px;padding:6px 16px;background:var(--accent2);border-radius:50px;font-size:0.7rem;font-weight:700;display:inline-block;">부스팅 위크 2배</div>
+          </div>
+        </div>
+        <div class="banner-card-body">
+          <div class="ev-tag red">🔥 신규/복귀 추천</div>
+          <div class="ev-title">출석 + 플레이 5판 이벤트</div>
+          <div class="ev-period">2026.3.12 ~ 4.29</div>
+          <div class="ev-go">이벤트 참여하기 →</div>
+        </div>
+      </a>
+      <a class="banner-card" href="https://events.fconline.nexon.com/251204/Zlatan?utm_source=pc&utm_medium=evGnbSub&utm_campaign=251204_Zlatan" target="_blank">
+        <div class="banner-card-img" style="background:linear-gradient(160deg,#1a1005,#2a1a08);">
+          <div class="ev-deco"></div>
+          <div style="text-align:center;position:relative;z-index:1;padding:1.5rem;">
+            <div class="ev-icon">🦁</div>
+            <div style="font-size:0.95rem;font-weight:800;margin-top:12px;color:#fff;">I am Zlatan</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:8px;">전시관 미션을 클리어하고<br>즐라탄 보상을 획득하세요!</div>
+            <div style="margin-top:16px;padding:6px 16px;background:var(--gold);color:#000;border-radius:50px;font-size:0.7rem;font-weight:700;display:inline-block;">미션 클리어 보상</div>
+          </div>
+        </div>
+        <div class="banner-card-body">
+          <div class="ev-tag red">🔥 신규/복귀 추천</div>
+          <div class="ev-title">I am Zlatan 이벤트</div>
+          <div class="ev-period">~ 2026.3.11 종료</div>
+          <div class="ev-go">이벤트 참여하기 →</div>
+        </div>
+      </a>
+      <a class="banner-card" href="https://events.fconline.nexon.com/playerloan?utm_source=pc&utm_medium=evGnbSub&utm_campaign=250925_playerloan" target="_blank">
+        <div class="banner-card-img" style="background:linear-gradient(160deg,#051a10,#082a1a);">
+          <div class="ev-deco"></div>
+          <div style="text-align:center;position:relative;z-index:1;padding:1.5rem;">
+            <div class="ev-icon">🏟️</div>
+            <div style="font-size:0.95rem;font-weight:800;margin-top:12px;color:#fff;">신규/복귀<br>용병 마켓</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:8px;">영구 임대 선수 +<br>PC방 90시간 보상!</div>
+            <div style="margin-top:16px;padding:6px 16px;background:var(--green);color:#000;border-radius:50px;font-size:0.7rem;font-weight:700;display:inline-block;">영구 임대 선수</div>
+          </div>
+        </div>
+        <div class="banner-card-body">
+          <div class="ev-tag green">✨ 신규/복귀 전용</div>
+          <div class="ev-title">용병 마켓 — 영구 임대 선수</div>
+          <div class="ev-period">~ 2026.4.22</div>
+          <div class="ev-go">이벤트 참여하기 →</div>
+        </div>
+      </a>
     </div>
   </div>
 

@@ -702,6 +702,20 @@ tbody tr:last-child td { border-bottom: none; }
   background: rgba(0,120,255,0.15);
   color: #5eaaff;
 }
+.combo-faces {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+.combo-face {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--border);
+  background: var(--surface2);
+}
 .combo-players {
   display: flex;
   flex-wrap: wrap;
@@ -748,15 +762,22 @@ tbody tr:last-child td { border-bottom: none; }
   box-shadow: var(--glow);
   border-color: var(--gold);
 }
+.pp-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.3rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
 .pp-rank {
   font-size: 0.65rem;
   font-weight: 700;
   color: var(--text-dim);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   letter-spacing: 1px;
 }
 .pp-ovr {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 900;
   line-height: 1;
   margin-bottom: 0.2rem;
@@ -1791,6 +1812,13 @@ tbody tr:last-child td { border-bottom: none; }
           <div class="combo-name">프랑스 올금 스쿼드</div>
           <div class="combo-formation">4-2-3-1</div>
         </div>
+        <div class="combo-faces">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831231747.png" alt="음바페">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831194765.png" alt="그리즈만">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p234001397.png" alt="지단">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831215914.png" alt="칸테">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p101214587.png" alt="데샹">
+        </div>
         <div class="combo-players">
           <span class="combo-player">25TOTY 음바페</span>
           <span class="combo-player">25TY 그리즈만</span>
@@ -1808,6 +1836,13 @@ tbody tr:last-child td { border-bottom: none; }
           <div class="combo-name">뮌헨 하이브리드</div>
           <div class="combo-formation">4-2-2-2</div>
         </div>
+        <div class="combo-faces">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831189596.png" alt="뮐러">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p856222492.png" alt="사네">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831212622.png" alt="킴미히">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p234168473.png" alt="베켄바워">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p101167495.png" alt="노이어">
+        </div>
         <div class="combo-players">
           <span class="combo-player">25TY 뮐러</span>
           <span class="combo-player">25UCL 사네</span>
@@ -1824,6 +1859,13 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="combo-header">
           <div class="combo-name">스페인 가성비 스쿼드</div>
           <div class="combo-formation">4-2-3-1</div>
+        </div>
+        <div class="combo-faces">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831251854.png" alt="페드리">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p289264240.png" alt="가비">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p832277643.png" alt="야말">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p825231866.png" alt="로드리">
+          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831239231.png" alt="쿠쿠렐라">
         </div>
         <div class="combo-players">
           <span class="combo-player">25TY 페드리</span>
@@ -1845,6 +1887,7 @@ tbody tr:last-child td { border-bottom: none; }
     </h3>
     <div class="popular-player-grid">
       <div class="popular-player-card">
+        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p831200104.png" alt="손흥민">
         <div class="pp-rank">#1</div>
         <div class="pp-ovr tier-gold">126</div>
         <div class="pp-name">손흥민</div>
@@ -1852,6 +1895,7 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="pp-pos">LW</div>
       </div>
       <div class="popular-player-card">
+        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p831231747.png" alt="음바페">
         <div class="pp-rank">#2</div>
         <div class="pp-ovr tier-gold">128</div>
         <div class="pp-name">음바페</div>
@@ -1859,6 +1903,7 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="pp-pos">ST</div>
       </div>
       <div class="popular-player-card">
+        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p234001397.png" alt="지단">
         <div class="pp-rank">#3</div>
         <div class="pp-ovr tier-purple">125</div>
         <div class="pp-name">지단</div>
@@ -1866,6 +1911,7 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="pp-pos">CAM</div>
       </div>
       <div class="popular-player-card">
+        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p831215914.png" alt="칸테">
         <div class="pp-rank">#4</div>
         <div class="pp-ovr tier-blue">124</div>
         <div class="pp-name">칸테</div>
@@ -1873,6 +1919,7 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="pp-pos">CDM</div>
       </div>
       <div class="popular-player-card">
+        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p832277643.png" alt="야말">
         <div class="pp-rank">#5</div>
         <div class="pp-ovr tier-blue">123</div>
         <div class="pp-name">야말</div>
@@ -1880,6 +1927,7 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="pp-pos">RW</div>
       </div>
       <div class="popular-player-card">
+        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p234168473.png" alt="베켄바워">
         <div class="pp-rank">#6</div>
         <div class="pp-ovr tier-purple">126</div>
         <div class="pp-name">베켄바워</div>
