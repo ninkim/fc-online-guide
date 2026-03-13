@@ -81,7 +81,7 @@ button{font-family:inherit;cursor:pointer;}
 .predict-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,120,255,0.35);}
 
 /* Squad Section */
-.squad-section{background:linear-gradient(135deg,rgba(229,36,59,0.08),rgba(0,120,255,0.06));border:1px solid rgba(229,36,59,0.15);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
+.squad-section{background:linear-gradient(135deg,rgba(229,36,59,0.08),rgba(0,120,255,0.06));border:1px solid rgba(229,36,59,0.15);border-radius:20px;padding:3rem 2rem;text-align:center;margin:1rem 0 3rem;}
 .squad-section h3{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;line-height:1.5;margin-bottom:1.5rem;color:#fff;}
 .squad-section h3 em{font-style:normal;color:var(--gold);}
 .squad-img-wrap{position:relative;max-width:700px;margin:0 auto 2rem;border-radius:16px;overflow:hidden;background:var(--surface);}
@@ -166,6 +166,8 @@ button{font-family:inherit;cursor:pointer;}
 .friend-info .friend-name{font-size:0.85rem;font-weight:600;}
 .friend-info .friend-tags{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap;}
 .friend-info .friend-tag{font-size:0.65rem;padding:2px 8px;border-radius:50px;background:rgba(255,255,255,0.06);color:var(--text-dim);}
+.friend-card.is-me{border-color:var(--accent);background:rgba(0,120,255,0.06);}
+.me-badge{font-size:0.7rem;font-weight:700;color:var(--accent);margin-left:4px;}
 
 .pagination{display:flex;justify-content:center;gap:6px;}
 .page-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-dim);font-size:0.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;}
@@ -340,7 +342,7 @@ button{font-family:inherit;cursor:pointer;}
   </div>
 
   <!-- Squad Giveaway -->
-  <div class="squad-section section" id="squad">
+  <div class="squad-section section" id="squad" style="padding-top:1.5rem;">
     <h3>신규 · 복귀 구단주님!<br><em>월드컵 국대 스쿼드</em>로<br>FC 온라인을 다시 즐겨보세요!</h3>
     <div class="squad-img-wrap">
       <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드 — 4-1-2-3 포메이션, 총급여 254/275, 평균 OVR 132">
@@ -377,7 +379,7 @@ button{font-family:inherit;cursor:pointer;}
   </div>
 
   <!-- FC Online Start CTA -->
-  <div class="section" style="padding-top:0;">
+  <div class="section" style="padding-top:0;padding-bottom:0;margin-bottom:0;">
     <a class="cta-big red" href="#" onclick="alert('FC 온라인을 시작합니다!')" style="width:100%;max-width:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       FC 온라인 바로 시작하기
@@ -385,10 +387,10 @@ button{font-family:inherit;cursor:pointer;}
   </div>
 
   <!-- Mini Web Game -->
-  <div class="minigame-section section" id="minigame">
+  <div class="minigame-section section" id="minigame" style="padding-top:1.5rem;">
     <div class="minigame-card">
       <div class="section-label">Mini Game</div>
-      <h3>⚽ 프리킥 챌린지</h3>
+      <h3>게임 시작 전, 프리킥 챌린지로 손 한번 풀어볼까요?</h3>
       <p>골대를 향해 프리킥을 차세요! 최고 기록으로 26WC 선수팩을 획득하세요.</p>
       <div class="minigame-img">
         <div class="goal-scene">
@@ -525,10 +527,10 @@ function renderFriends() {
 
   const list = document.getElementById('friendList');
   list.innerHTML = pageItems.map(f => `
-    <div class="friend-card">
+    <div class="friend-card${f.isMe ? ' is-me' : ''}">
       <div class="friend-avatar">${getInitials(f.name)}</div>
       <div class="friend-info">
-        <div class="friend-name">${f.name}</div>
+        <div class="friend-name">${f.name}${f.isMe ? ' <span class="me-badge">[나]</span>' : ''}</div>
         <div class="friend-tags">
           ${f.tags.map(t => `<span class="friend-tag">${t}</span>`).join('')}
         </div>
@@ -570,7 +572,7 @@ document.getElementById('registerBtn').addEventListener('click', () => {
   const name = '김엪온';
   const selectedKeywords = [...document.querySelectorAll('.keyword-chip.selected')].map(c => c.dataset.keyword);
   if (selectedKeywords.length === 0) { alert('키워드를 1개 이상 선택해주세요!'); return; }
-  allFriends.unshift({ name, tags: selectedKeywords });
+  allFriends.unshift({ name, tags: selectedKeywords, isMe: true });
   document.querySelectorAll('.keyword-chip').forEach(c => c.classList.remove('selected'));
   currentFilter = 'all';
   document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
