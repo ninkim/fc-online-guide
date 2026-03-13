@@ -1041,6 +1041,35 @@ tbody tr:last-child td { border-bottom: none; }
   border-color: var(--accent);
 }
 
+.btn-game-start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff6b00, #ff3d00);
+  color: #fff;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 12px rgba(255, 61, 0, 0.35);
+}
+.btn-game-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 61, 0, 0.5);
+  background: linear-gradient(135deg, #ff8124, #ff5722);
+}
+.btn-game-start:active {
+  transform: translateY(0);
+}
+.btn-game-start svg {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
 .store-links {
   display: flex;
   gap: 0.5rem;
@@ -1130,6 +1159,92 @@ tbody tr:last-child td { border-bottom: none; }
 
 .spec-item .spec-label { color: var(--text-dim); }
 .spec-item .spec-value { color: var(--accent); font-weight: 600; }
+
+/* Squad Showcase */
+.squad-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+  align-items: start;
+}
+.squad-img-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #111;
+}
+.squad-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 55%;
+  aspect-ratio: 16/11;
+}
+.squad-info-panel h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+  color: var(--text);
+}
+.squad-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.squad-tip {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: border-color .2s;
+}
+.squad-tip:hover {
+  border-color: var(--accent);
+}
+.squad-tip-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+}
+.squad-tip-content strong {
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+.squad-tip-content p {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.btn-squad-maker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--accent);
+  color: #000;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-squad-maker:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,255,135,0.3);
+}
+@media (max-width: 900px) {
+  .squad-showcase {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Player Card Example */
 .player-card-example {
@@ -1294,6 +1409,7 @@ tbody tr:last-child td { border-bottom: none; }
     <a href="#hero" class="nav-logo">FC ONLINE GUIDE</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#start">시작하기</a></li>
+      <li><a href="#squad">스쿼드</a></li>
       <li><a href="#bp">BP 모으기</a></li>
       <li><a href="#card">선수팩</a></li>
       <li><a href="#play">플레이</a></li>
@@ -1360,10 +1476,10 @@ tbody tr:last-child td { border-bottom: none; }
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
               PC 클라이언트 다운로드
             </a>
-            <a href="https://fconline.nexon.com/" target="_blank" class="btn-secondary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              PC버전 시작하기
-            </a>
+            <button onclick="launchFCOnline()" class="btn-game-start">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+              게임 시작
+            </button>
           </div>
           <div class="spec-grid">
             <div class="spec-item"><span class="spec-label">OS</span><span class="spec-value">Win 7+ 64bit</span></div>
@@ -1459,9 +1575,65 @@ tbody tr:last-child td { border-bottom: none; }
 
   </section>
 
-  <!-- Section 2: BP 모으기 -->
-  <section class="section" id="bp">
+  <!-- Section 2: 스쿼드 짜기 -->
+  <section class="section" id="squad">
     <div class="section-number">02</div>
+    <h2>스쿼드 짜기</h2>
+    <p class="section-desc">오버롤(OVR)과 보유 BP에 맞춰 최적의 스쿼드를 구성하세요. 스쿼드 메이커를 활용하면 더 쉽게 짤 수 있습니다.</p>
+
+    <div class="squad-showcase">
+      <div class="squad-img-wrap">
+        <img src="squad-maker.png" alt="FC Online 스쿼드 메이커 예시" class="squad-img">
+      </div>
+      <div class="squad-info-panel">
+        <h3>스쿼드 구성 핵심 포인트</h3>
+        <div class="squad-tips">
+          <div class="squad-tip">
+            <div class="squad-tip-icon">📋</div>
+            <div class="squad-tip-content">
+              <strong>포메이션 선택</strong>
+              <p>인기 포메이션: 4-2-3-1 (33.6%), 4-2-2-1-1 (29.6%), 4-2-2-2 (17.3%). 자신의 플레이 스타일에 맞는 포메이션을 선택하세요.</p>
+            </div>
+          </div>
+          <div class="squad-tip">
+            <div class="squad-tip-icon">💰</div>
+            <div class="squad-tip-content">
+              <strong>BP 예산에 맞춘 구성</strong>
+              <p>처음에는 저가 고효율 선수 위주로 구성하고, BP가 쌓이면 핵심 포지션부터 업그레이드하세요.</p>
+            </div>
+          </div>
+          <div class="squad-tip">
+            <div class="squad-tip-icon">⚡</div>
+            <div class="squad-tip-content">
+              <strong>급여 관리</strong>
+              <p>총 급여 상한(300)을 초과하지 않도록 밸런스를 맞추세요. 높은 OVR 선수는 급여가 높습니다.</p>
+            </div>
+          </div>
+          <div class="squad-tip">
+            <div class="squad-tip-icon">🎨</div>
+            <div class="squad-tip-content">
+              <strong>팀컬러 활용</strong>
+              <p>같은 팀컬러 선수를 모으면 추가 능력치 부스트를 받을 수 있어 전력이 크게 상승합니다.</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://fconline.nexon.com/datacenter/squadmaker" target="_blank" class="btn-squad-maker">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          스쿼드 메이커 바로가기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>💡 초보자 팁</strong><br>
+      비주류 팀(에버튼, 아틀란타 등)은 급여 내에서 선수를 맞추기 어렵습니다. 처음에는 메이저 팀(뮌헨, 프랑스, 스페인 등)으로 시작하는 것을 권장합니다.
+    </div>
+  </section>
+
+  <!-- Section 3: BP 모으기 -->
+  <section class="section" id="bp">
+    <div class="section-number">03</div>
     <h2>BP를 모으는 방법</h2>
     <p class="section-desc">이벤트 활용, 이적시장 판매, 수수료 할인까지 — 효율적으로 BP를 불리는 전략을 소개합니다.</p>
 
@@ -1582,7 +1754,7 @@ tbody tr:last-child td { border-bottom: none; }
 
   <!-- Section 3: 선수팩 정보 보는 법 -->
   <section class="section" id="card">
-    <div class="section-number">03</div>
+    <div class="section-number">04</div>
     <h2>선수팩 정보 보기</h2>
     <p class="section-desc">포지션, 오버롤, 강화단계, 클래스 — 선수팩에서 획득한 선수의 핵심 정보를 읽는 방법을 배워보세요.</p>
 
@@ -1617,6 +1789,13 @@ tbody tr:last-child td { border-bottom: none; }
           <div>
             <strong>강화: +1강</strong>
             <p>1강~13강까지 강화 가능. 높을수록 OVR 상승</p>
+          </div>
+        </div>
+        <div class="label-item">
+          <div class="label-dot" style="background:#ff9800;"></div>
+          <div>
+            <strong>급여: 300 중 차지하는 비용</strong>
+            <p>선수마다 급여가 다르며, 팀 전체 급여 상한 300 이내로 구성해야 함</p>
           </div>
         </div>
         <div class="label-item">
@@ -1658,63 +1837,11 @@ tbody tr:last-child td { border-bottom: none; }
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem;font-weight:700;color:#fff;margin:1.5rem 0 1rem;">강화 단계별 성공 확률</h3>
-
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;">
-      <div class="enhance-bar">
-        <span class="enhance-label">1강 → 2강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:100%;background:var(--green);"></div></div>
-        <span class="enhance-pct" style="color:var(--green);">100%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">2강 → 3강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:81%;background:var(--green);"></div></div>
-        <span class="enhance-pct" style="color:var(--green);">81%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">3강 → 4강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:68%;background:var(--accent);"></div></div>
-        <span class="enhance-pct" style="color:var(--accent);">68%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">4강 → 5강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:50%;background:var(--gold);"></div></div>
-        <span class="enhance-pct" style="color:var(--gold);">50%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">5강 → 6강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:30%;background:var(--gold);"></div></div>
-        <span class="enhance-pct" style="color:var(--gold);">30%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">6강 → 7강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:15%;background:#ff9800;"></div></div>
-        <span class="enhance-pct" style="color:#ff9800;">15%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">7강 → 8강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:10%;background:var(--red);"></div></div>
-        <span class="enhance-pct" style="color:var(--red);">10%</span>
-      </div>
-      <div class="enhance-bar">
-        <span class="enhance-label">8강 → 9강</span>
-        <div class="enhance-track"><div class="enhance-fill" style="width:5%;background:var(--red);"></div></div>
-        <span class="enhance-pct" style="color:var(--red);">5%</span>
-      </div>
-    </div>
-
-    <div class="callout warning">
-      <div class="callout-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
-        강화 주의사항
-      </div>
-      <p>강화 부스트 게이지가 100% 미만이면 성공 확률이 비례해서 낮아집니다. 반드시 게이지를 100% 채운 뒤 강화하세요. 6강 이상은 실패 시 하락 위험이 크므로 신중하게 결정하세요.</p>
-    </div>
   </section>
 
   <!-- Section 5: 경기 플레이하기 -->
   <section class="section" id="play">
-    <div class="section-number">04</div>
+    <div class="section-number">05</div>
     <h2>경기 플레이하기</h2>
     <p class="section-desc">PC 키보드 기준 기본 조작법부터 필수 개인기, 추천 설정까지 정리했습니다.</p>
 
@@ -1888,6 +2015,34 @@ tbody tr:last-child td { border-bottom: none; }
 </footer>
 
 <script>
+// FC Online game launch via NGM protocol (same as official site)
+function launchFCOnline() {
+  var launched = false;
+  var btn = event.currentTarget;
+  var origText = btn.innerHTML;
+
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 실행 중...';
+
+  var hiddenFrame = document.createElement('iframe');
+  hiddenFrame.style.display = 'none';
+  document.body.appendChild(hiddenFrame);
+
+  try {
+    hiddenFrame.contentWindow.location.href = 'ngm://launch/10006';
+    launched = true;
+  } catch(e) {}
+
+  setTimeout(function() {
+    document.body.removeChild(hiddenFrame);
+    btn.innerHTML = origText;
+    if (!launched || !document.hidden) {
+      if (confirm('게임이 실행되지 않았나요?\nFC 온라인 공식 사이트로 이동하여 게임을 시작할 수 있습니다.')) {
+        window.open('https://fconline.nexon.com', '_blank');
+      }
+    }
+  }, 3000);
+}
+
 // Mobile menu toggle
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
