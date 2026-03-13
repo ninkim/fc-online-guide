@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>월드컵 사전등록 — FC 온라인</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --primary:#0b1120;--nav-bg:#070d19;--accent:#0078ff;--accent2:#e5243b;
+  --gold:#f5a623;--surface:#111b2e;--surface2:#162236;--text:#eef2f7;
+  --text-dim:#8a9ab5;--green:#00c875;--border:rgba(255,255,255,0.07);
+  --glow:0 4px 24px rgba(0,0,0,0.4);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--primary);color:var(--text);line-height:1.7;overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--primary);}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(7,13,25,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 2rem;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:8px;}
+.nav-logo svg{width:20px;height:20px;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-btn{padding:7px 18px;border-radius:50px;font-size:0.78rem;font-weight:600;color:#fff;background:var(--accent2);border:none;transition:all 0.2s;}
+.nav-btn:hover{opacity:0.85;transform:translateY(-1px);}
+.nav-btn.outline{background:transparent;border:1px solid rgba(255,255,255,0.2);}
+.nav-btn.outline:hover{border-color:#fff;}
+
+/* Hero */
+.hero{position:relative;padding:100px 1.5rem 60px;text-align:center;overflow:hidden;background:linear-gradient(160deg,#070d19 0%,#1a0a1e 30%,#0f1a30 60%,#070d19 100%);}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='38' fill='none' stroke='%23ffffff' stroke-opacity='0.02' stroke-width='0.5'/%3E%3Cpath d='M40 2L40 78M2 40L78 40' stroke='%23ffffff' stroke-opacity='0.015' stroke-width='0.3'/%3E%3C/svg%3E");animation:drift 40s linear infinite;}
+@keyframes drift{to{background-position:80px 80px;}}
+.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;}
+.hero-date{display:inline-block;padding:6px 20px;border:1px solid rgba(255,255,255,0.2);border-radius:50px;font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:0.8rem;}
+.hero h1 span{background:linear-gradient(135deg,var(--accent2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{font-size:1rem;color:rgba(255,255,255,0.55);max-width:480px;margin:0 auto 2rem;}
+.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:var(--accent2);color:#fff;font-weight:600;font-size:0.95rem;border:none;border-radius:50px;transition:transform 0.2s,box-shadow 0.2s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(229,36,59,0.35);}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:rgba(255,255,255,0.08);color:#fff;font-weight:600;font-size:0.95rem;border:1px solid rgba(255,255,255,0.15);border-radius:50px;transition:all 0.2s;}
+.btn-secondary:hover{background:rgba(255,255,255,0.14);transform:translateY(-2px);}
+
+/* Container */
+.container{max-width:960px;margin:0 auto;padding:0 1.5rem;}
+
+/* Section */
+.section{padding:4rem 0;opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.section.visible{opacity:1;transform:translateY(0);}
+.section-label{font-size:0.7rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem;}
+.section-title{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;margin-bottom:0.4rem;}
+.section-desc{color:var(--text-dim);font-size:0.9rem;margin-bottom:2rem;}
+
+/* Match Schedule */
+.match-schedule{padding:3.5rem 0 2rem;border-bottom:1px solid var(--border);}
+.match-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin;}
+.match-scroll::-webkit-scrollbar{height:4px;}
+.match-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+.match-card{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:200px;transition:border-color 0.2s;}
+.match-card:hover{border-color:var(--accent);}
+.match-card.live{border-color:var(--accent2);position:relative;}
+.match-card.live::after{content:'LIVE';position:absolute;top:8px;right:8px;font-size:0.6rem;font-weight:700;color:#fff;background:var(--accent2);padding:2px 6px;border-radius:4px;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.match-date{font-size:0.7rem;color:var(--text-dim);margin-bottom:6px;}
+.match-teams{display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:600;}
+.match-teams .vs{color:var(--text-dim);font-size:0.7rem;font-weight:400;}
+.match-time{font-size:0.7rem;color:var(--gold);margin-top:4px;}
+.match-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:12px;}
+.predict-btn{padding:8px 20px;background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;font-size:0.8rem;font-weight:600;border:none;border-radius:50px;transition:all 0.2s;white-space:nowrap;}
+.predict-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,120,255,0.35);}
+
+/* Squad Section */
+.squad-section{background:linear-gradient(135deg,rgba(229,36,59,0.08),rgba(0,120,255,0.06));border:1px solid rgba(229,36,59,0.15);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
+.squad-section h3{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;line-height:1.5;margin-bottom:1.5rem;color:#fff;}
+.squad-section h3 em{font-style:normal;color:var(--gold);}
+.squad-img-wrap{position:relative;max-width:600px;margin:0 auto 2rem;border-radius:16px;overflow:hidden;background:var(--surface);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
+.squad-img-wrap .placeholder{color:var(--text-dim);font-size:0.9rem;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.squad-img-wrap .placeholder svg{width:48px;height:48px;opacity:0.3;}
+.squad-receive-btn{padding:14px 40px;background:linear-gradient(135deg,var(--accent2),#c41830);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;box-shadow:0 4px 20px rgba(229,36,59,0.3);}
+.squad-receive-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 30px rgba(229,36,59,0.45);}
+
+/* CTA Buttons */
+.cta-buttons{display:flex;flex-direction:column;gap:12px;max-width:500px;margin:3rem auto;align-items:stretch;}
+.cta-big{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border-radius:14px;font-size:0.95rem;font-weight:700;border:none;transition:all 0.2s;text-align:center;}
+.cta-big.red{background:var(--accent2);color:#fff;}
+.cta-big.red:hover{background:#c41830;transform:translateY(-2px);box-shadow:0 6px 24px rgba(229,36,59,0.3);}
+.cta-big.blue{background:var(--accent);color:#fff;}
+.cta-big.blue:hover{background:#0060d0;transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,120,255,0.3);}
+.cta-big svg{width:18px;height:18px;flex-shrink:0;}
+
+/* Shorts */
+.shorts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.short-card{position:relative;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform 0.2s,border-color 0.2s;aspect-ratio:9/16;}
+.short-card:hover{transform:translateY(-4px);border-color:var(--accent2);}
+.short-card iframe{width:100%;height:100%;border:none;}
+.short-card .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.short-card:hover .play-overlay{opacity:1;}
+
+/* Banner */
+.banner-section{margin:3rem 0;}
+.event-banner{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1a0a2e,#0f1a30,#1a0a2e);border:1px solid var(--border);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.event-banner .banner-text h3{font-size:1.3rem;font-weight:800;margin-bottom:0.4rem;}
+.event-banner .banner-text p{color:var(--text-dim);font-size:0.85rem;}
+.event-banner .banner-tag{display:inline-block;padding:4px 12px;border-radius:50px;font-size:0.7rem;font-weight:700;background:var(--accent2);color:#fff;margin-bottom:10px;}
+.event-banner .banner-btn{padding:12px 28px;background:#fff;color:var(--primary);font-weight:700;font-size:0.85rem;border:none;border-radius:50px;transition:all 0.2s;white-space:nowrap;}
+.event-banner .banner-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,255,255,0.2);}
+
+/* Mini Game */
+.minigame-section{margin:3rem 0;text-align:center;}
+.minigame-card{border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#0a1628,#162236);border:1px solid var(--border);padding:2.5rem 2rem;}
+.minigame-card h3{font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;}
+.minigame-card p{color:var(--text-dim);font-size:0.85rem;margin-bottom:2rem;}
+.minigame-img{max-width:100%;border-radius:12px;overflow:hidden;background:var(--surface);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;}
+.minigame-img svg{width:64px;height:64px;opacity:0.5;}
+.minigame-img .goal-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.minigame-img .goal-net{width:60%;height:70%;border:2px solid rgba(255,255,255,0.1);border-bottom:none;border-radius:8px 8px 0 0;position:relative;display:flex;align-items:center;justify-content:center;}
+.minigame-img .goal-net::before{content:'';position:absolute;inset:4px;inset-bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 19px),repeating-linear-gradient(0deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 19px);}
+.minigame-img .ball{width:32px;height:32px;background:radial-gradient(circle at 35% 35%,#fff,#ccc);border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.4);position:relative;z-index:1;animation:ballBounce 2s ease-in-out infinite;}
+@keyframes ballBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.minigame-play-btn{padding:14px 40px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;}
+.minigame-play-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
+
+/* Friend Recommendation */
+.friend-section{margin:3rem 0;padding-bottom:4rem;}
+.friend-register{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;}
+.friend-register h4{font-size:0.95rem;font-weight:700;margin-bottom:1rem;}
+.register-form{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;}
+.register-form input{flex:1;min-width:180px;padding:10px 16px;background:var(--primary);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:0.85rem;outline:none;transition:border-color 0.2s;}
+.register-form input:focus{border-color:var(--accent);}
+.register-form input::placeholder{color:var(--text-dim);}
+.register-btn{padding:10px 24px;background:var(--accent);color:#fff;font-weight:600;font-size:0.85rem;border:none;border-radius:10px;transition:all 0.2s;white-space:nowrap;}
+.register-btn:hover{background:#0060d0;}
+.keyword-select{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0;}
+.keyword-chip{padding:6px 14px;border-radius:50px;font-size:0.75rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;}
+.keyword-chip:hover,.keyword-chip.selected{border-color:var(--accent);color:var(--accent);background:rgba(0,120,255,0.08);}
+
+.tag-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem;}
+.tag-btn{padding:7px 16px;border-radius:50px;font-size:0.78rem;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;}
+.tag-btn:hover,.tag-btn.active{border-color:var(--accent);color:#fff;background:rgba(0,120,255,0.12);}
+
+.friend-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:1.5rem;}
+.friend-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;transition:border-color 0.2s;}
+.friend-card:hover{border-color:var(--accent);}
+.friend-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;}
+.friend-info .friend-name{font-size:0.85rem;font-weight:600;}
+.friend-info .friend-tags{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap;}
+.friend-info .friend-tag{font-size:0.65rem;padding:2px 8px;border-radius:50px;background:rgba(255,255,255,0.06);color:var(--text-dim);}
+
+.pagination{display:flex;justify-content:center;gap:6px;}
+.page-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-dim);font-size:0.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;}
+.page-btn:hover,.page-btn.active{border-color:var(--accent);color:#fff;background:rgba(0,120,255,0.12);}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--border);color:var(--text-dim);font-size:0.75rem;}
+
+/* Responsive */
+@media(max-width:768px){
+  .shorts-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .event-banner{flex-direction:column;text-align:center;padding:2rem 1.5rem;}
+  .friend-list{grid-template-columns:1fr;}
+  .hero h1{font-size:1.8rem;}
+  .squad-section{padding:2rem 1.2rem;}
+  .nav{padding:0 1rem;}
+}
+@media(max-width:480px){
+  .shorts-grid{grid-template-columns:repeat(2,1fr);}
+  .match-card{min-width:170px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+      FC ONLINE — 2026 월드컵
+    </a>
+    <div class="nav-right">
+      <button class="nav-btn outline" onclick="location.href='https://ninkim.github.io/fc-online-guide/#start'">뉴비 가이드</button>
+      <button class="nav-btn">사전등록</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-date">2026 FIFA World Cup ✦ 사전등록</div>
+    <h1>2026 월드컵,<br><span>FC 온라인</span>과 함께</h1>
+    <p>월드컵 사전등록하고 국대 스쿼드와 대량 보상을 받아가세요. 지금 등록하면 경기 시작일부터 바로 플레이!</p>
+    <div class="hero-cta-row">
+      <button class="btn-primary" onclick="document.querySelector('.squad-section').scrollIntoView({behavior:'smooth'})">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        사전등록 하러가기
+      </button>
+      <button class="btn-secondary" onclick="document.querySelector('.match-schedule').scrollIntoView({behavior:'smooth'})">경기 일정 보기</button>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Match Schedule -->
+  <div class="match-schedule section" id="schedule">
+    <div class="match-header">
+      <div>
+        <div class="section-label">Match Schedule</div>
+        <div class="section-title">🏆 2026 월드컵 경기 일정</div>
+      </div>
+      <button class="predict-btn" onclick="alert('승부예측 페이지로 이동합니다!')">⚡ 승부예측 바로가기</button>
+    </div>
+    <div class="match-scroll">
+      <div class="match-card live">
+        <div class="match-date">6월 11일 (수) · 조별리그 A조</div>
+        <div class="match-teams">🇺🇸 미국 <span class="vs">VS</span> 🇧🇷 브라질</div>
+        <div class="match-time">23:00 KST · 메트라이프 스타디움</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 12일 (목) · 조별리그 B조</div>
+        <div class="match-teams">🇰🇷 대한민국 <span class="vs">VS</span> 🇫🇷 프랑스</div>
+        <div class="match-time">04:00 KST · 소파이 스타디움</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 12일 (목) · 조별리그 C조</div>
+        <div class="match-teams">🇩🇪 독일 <span class="vs">VS</span> 🇦🇷 아르헨티나</div>
+        <div class="match-time">07:00 KST · AT&T 스타디움</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 13일 (금) · 조별리그 A조</div>
+        <div class="match-teams">🇬🇧 잉글랜드 <span class="vs">VS</span> 🇪🇸 스페인</div>
+        <div class="match-time">02:00 KST · 메르세데스-벤츠 스타디움</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 13일 (금) · 조별리그 D조</div>
+        <div class="match-teams">🇯🇵 일본 <span class="vs">VS</span> 🇳🇱 네덜란드</div>
+        <div class="match-time">05:00 KST · 링컨 파이낸셜 필드</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 14일 (토) · 조별리그 B조</div>
+        <div class="match-teams">🇵🇹 포르투갈 <span class="vs">VS</span> 🇲🇽 멕시코</div>
+        <div class="match-time">10:00 KST · 로즈 볼</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 15일 (일) · 조별리그 C조</div>
+        <div class="match-teams">🇮🇹 이탈리아 <span class="vs">VS</span> 🇺🇾 우루과이</div>
+        <div class="match-time">07:00 KST · 하드록 스타디움</div>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 16일 (월) · 조별리그 D조</div>
+        <div class="match-teams">🇧🇪 벨기에 <span class="vs">VS</span> 🇭🇷 크로아티아</div>
+        <div class="match-time">04:00 KST · 시티 파크</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Squad Giveaway -->
+  <div class="squad-section section" id="squad">
+    <h3>신규 · 복귀 구단주님!<br><em>월드컵 국대 스쿼드</em>로<br>FC 온라인을 다시 즐겨보세요!</h3>
+    <div class="squad-img-wrap">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="18" rx="3"/>
+          <circle cx="8" cy="10" r="2"/>
+          <path d="M22 21l-6-6-4 4-3-3-7 7"/>
+        </svg>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:80%;max-width:400px;margin-top:12px;">
+          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
+            <div style="font-size:0.6rem;color:var(--text-dim);">GK</div>
+            <div style="font-size:0.75rem;font-weight:700;">조현우</div>
+            <div style="font-size:0.6rem;color:var(--gold);">OVR 108</div>
+          </div>
+          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
+            <div style="font-size:0.6rem;color:var(--text-dim);">CB</div>
+            <div style="font-size:0.75rem;font-weight:700;">김민재</div>
+            <div style="font-size:0.6rem;color:var(--gold);">OVR 118</div>
+          </div>
+          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
+            <div style="font-size:0.6rem;color:var(--text-dim);">CM</div>
+            <div style="font-size:0.75rem;font-weight:700;">이강인</div>
+            <div style="font-size:0.6rem;color:var(--gold);">OVR 114</div>
+          </div>
+          <div style="background:rgba(229,36,59,0.15);border:1px solid rgba(229,36,59,0.2);border-radius:8px;padding:12px 4px;text-align:center;">
+            <div style="font-size:0.6rem;color:var(--text-dim);">LW</div>
+            <div style="font-size:0.75rem;font-weight:700;">손흥민</div>
+            <div style="font-size:0.6rem;color:var(--gold);">OVR 126</div>
+          </div>
+        </div>
+        <span style="font-size:0.75rem;margin-top:6px;">26WC 대한민국 국대 스쿼드</span>
+      </div>
+    </div>
+    <button class="squad-receive-btn" onclick="alert('스쿼드가 지급되었습니다! 게임에서 확인하세요.')">🎁 월드컵 국대 스쿼드 받기</button>
+  </div>
+
+  <!-- CTA Buttons -->
+  <div class="cta-buttons section">
+    <a class="cta-big red" href="#" onclick="alert('FC 온라인을 시작합니다!')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      FC 온라인 바로 시작하기
+    </a>
+    <a class="cta-big blue" href="https://ninkim.github.io/fc-online-guide/#start" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      지금 바로 이해 가능한 FC 온라인 뉴비 가이드
+    </a>
+  </div>
+
+  <!-- YouTube Shorts -->
+  <div class="section" id="shorts">
+    <div class="section-label">Featured Shorts</div>
+    <div class="section-title">🎬 FC 온라인 플레이 영상</div>
+    <div class="section-desc">월드컵 시즌, 이렇게 플레이하세요!</div>
+    <div class="shorts-grid">
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/2hzP7JJAkjs" title="FC Online Short 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/TgwPXDfVAJM" title="FC Online Short 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/m7HELgJkv3Q" title="FC Online Short 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/5uNstuowJrc" title="FC Online Short 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Web Event Banner -->
+  <div class="banner-section section">
+    <div class="event-banner">
+      <div class="banner-text">
+        <div class="banner-tag">EVENT</div>
+        <h3>월드컵 기념 웹이벤트 진행 중!</h3>
+        <p>매일 출석체크하고 26WC 선수팩 & 대량 BP를 획득하세요. 6.11 ~ 7.19</p>
+      </div>
+      <button class="banner-btn" onclick="alert('웹이벤트 페이지로 이동합니다!')">이벤트 참여하기 →</button>
+    </div>
+  </div>
+
+  <!-- Mini Web Game -->
+  <div class="minigame-section section" id="minigame">
+    <div class="minigame-card">
+      <div class="section-label">Mini Game</div>
+      <h3>⚽ 프리킥 챌린지</h3>
+      <p>골대를 향해 프리킥을 차세요! 최고 기록으로 26WC 선수팩을 획득하세요.</p>
+      <div class="minigame-img">
+        <div class="goal-scene">
+          <div class="goal-net">
+            <div class="ball"></div>
+          </div>
+          <span style="font-size:0.7rem;color:var(--text-dim);margin-top:8px;">프리킥 미니게임 — 터치하여 시작</span>
+        </div>
+      </div>
+      <button class="minigame-play-btn" onclick="alert('프리킥 챌린지를 시작합니다!')">🎯 게임 시작하기</button>
+    </div>
+  </div>
+
+  <!-- Friend Recommendation -->
+  <div class="friend-section section" id="friends">
+    <div class="section-label">Friend Connect</div>
+    <div class="section-title">🤝 FC 온라인 친구 추천 리스트</div>
+    <div class="section-desc">내 구단주명을 등록하고, 함께 플레이할 친구를 찾아보세요!</div>
+
+    <div class="friend-register">
+      <h4>내 구단주명 등록하기</h4>
+      <div class="register-form">
+        <input type="text" id="clubNameInput" placeholder="구단주명을 입력하세요" maxlength="20">
+        <div class="keyword-select" id="keywordSelect">
+          <button class="keyword-chip" data-keyword="10대 구단주">10대 구단주</button>
+          <button class="keyword-chip" data-keyword="직장인 구단주">직장인 구단주</button>
+          <button class="keyword-chip" data-keyword="뉴비">뉴비</button>
+          <button class="keyword-chip" data-keyword="고수">고수</button>
+          <button class="keyword-chip" data-keyword="수비형">수비형</button>
+          <button class="keyword-chip" data-keyword="공격형">공격형</button>
+          <button class="keyword-chip" data-keyword="감독모드">감독모드</button>
+          <button class="keyword-chip" data-keyword="월드컵 팬">월드컵 팬</button>
+        </div>
+      </div>
+      <button class="register-btn" id="registerBtn">등록하기</button>
+    </div>
+
+    <div class="tag-filters" id="tagFilters">
+      <button class="tag-btn active" data-filter="all">전체</button>
+      <button class="tag-btn" data-filter="10대 구단주">10대 구단주</button>
+      <button class="tag-btn" data-filter="직장인 구단주">직장인 구단주</button>
+      <button class="tag-btn" data-filter="뉴비">뉴비</button>
+      <button class="tag-btn" data-filter="고수">고수</button>
+      <button class="tag-btn" data-filter="수비형">수비형</button>
+      <button class="tag-btn" data-filter="공격형">공격형</button>
+      <button class="tag-btn" data-filter="감독모드">감독모드</button>
+      <button class="tag-btn" data-filter="월드컵 팬">월드컵 팬</button>
+    </div>
+
+    <div class="friend-list" id="friendList"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  FC 온라인 월드컵 이벤트 — 2026년 6월 기준 정보<br>
+  본 페이지는 비공식 팬 제작 콘텐츠입니다. EA SPORTS FC Online © NEXON / EA
+</footer>
+
+<script>
+const DUMMY_FRIENDS = [
+  {name:'축구왕김민수',tags:['10대 구단주','공격형']},
+  {name:'직장인골잡이',tags:['직장인 구단주','고수']},
+  {name:'뉴비입니다ㅠ',tags:['뉴비','월드컵 팬']},
+  {name:'수비는예술',tags:['직장인 구단주','수비형']},
+  {name:'월드컵가자!!',tags:['10대 구단주','월드컵 팬']},
+  {name:'FCOnline매니아',tags:['고수','공격형']},
+  {name:'감독모드장인',tags:['직장인 구단주','감독모드']},
+  {name:'태극전사응원',tags:['뉴비','월드컵 팬']},
+  {name:'골키퍼지망생',tags:['10대 구단주','수비형']},
+  {name:'공격이최선의수비',tags:['고수','공격형']},
+  {name:'주말축구러',tags:['직장인 구단주','월드컵 팬']},
+  {name:'민재형화이팅',tags:['뉴비','수비형']},
+  {name:'프리킥장인',tags:['고수','공격형']},
+  {name:'캡틴손흥민',tags:['10대 구단주','월드컵 팬']},
+  {name:'감독님출근',tags:['직장인 구단주','감독모드']},
+  {name:'벤치워머탈출',tags:['뉴비','월드컵 팬']},
+  {name:'패스마스터',tags:['고수','수비형']},
+  {name:'월급날BP충전',tags:['직장인 구단주','공격형']},
+  {name:'10대레전드',tags:['10대 구단주','고수']},
+  {name:'첫시작화이팅',tags:['뉴비','감독모드']},
+  {name:'축구는역시공격',tags:['10대 구단주','공격형']},
+  {name:'야근후한판',tags:['직장인 구단주','수비형']},
+  {name:'뉴비탈출기',tags:['뉴비','공격형']},
+  {name:'수비왕김철수',tags:['고수','수비형']},
+  {name:'월드컵드림팀',tags:['10대 구단주','월드컵 팬']},
+  {name:'점심시간축구',tags:['직장인 구단주','감독모드']},
+  {name:'이제시작이야',tags:['뉴비','월드컵 팬']},
+  {name:'스쿼드장인',tags:['고수','공격형']},
+  {name:'열공중인구단주',tags:['10대 구단주','뉴비']},
+  {name:'퇴근하면FC',tags:['직장인 구단주','월드컵 팬']},
+  {name:'국대사랑해',tags:['뉴비','수비형']},
+  {name:'풀강의민족',tags:['고수','공격형']},
+  {name:'감독모드만해',tags:['직장인 구단주','감독모드']},
+  {name:'중학생구단주',tags:['10대 구단주','뉴비']},
+  {name:'손흥민찐팬',tags:['월드컵 팬','공격형']},
+  {name:'수비만잘하면됨',tags:['직장인 구단주','수비형']},
+  {name:'뉴비인데재밌다',tags:['뉴비','감독모드']},
+  {name:'전술의신',tags:['고수','감독모드']},
+  {name:'고딩축구부',tags:['10대 구단주','공격형']},
+  {name:'BP부자',tags:['직장인 구단주','고수']},
+];
+
+const PER_PAGE = 8;
+let currentFilter = 'all';
+let currentPage = 1;
+let allFriends = [...DUMMY_FRIENDS];
+
+function getFiltered() {
+  if (currentFilter === 'all') return allFriends;
+  return allFriends.filter(f => f.tags.includes(currentFilter));
+}
+
+function getInitials(name) {
+  return name.substring(0, 2);
+}
+
+function renderFriends() {
+  const filtered = getFiltered();
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  if (currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage - 1) * PER_PAGE;
+  const pageItems = filtered.slice(start, start + PER_PAGE);
+
+  const list = document.getElementById('friendList');
+  list.innerHTML = pageItems.map(f => `
+    <div class="friend-card">
+      <div class="friend-avatar">${getInitials(f.name)}</div>
+      <div class="friend-info">
+        <div class="friend-name">${f.name}</div>
+        <div class="friend-tags">
+          ${f.tags.map(t => `<span class="friend-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  const pag = document.getElementById('pagination');
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
+  let btns = '';
+  for (let i = 1; i <= totalPages; i++) {
+    btns += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+  }
+  pag.innerHTML = btns;
+}
+
+document.getElementById('tagFilters').addEventListener('click', e => {
+  const btn = e.target.closest('.tag-btn');
+  if (!btn) return;
+  document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  currentPage = 1;
+  renderFriends();
+});
+
+document.getElementById('pagination').addEventListener('click', e => {
+  const btn = e.target.closest('.page-btn');
+  if (!btn) return;
+  currentPage = parseInt(btn.dataset.page);
+  renderFriends();
+});
+
+document.querySelectorAll('.keyword-chip').forEach(chip => {
+  chip.addEventListener('click', () => chip.classList.toggle('selected'));
+});
+
+document.getElementById('registerBtn').addEventListener('click', () => {
+  const name = document.getElementById('clubNameInput').value.trim();
+  if (!name) { alert('구단주명을 입력해주세요!'); return; }
+  const selectedKeywords = [...document.querySelectorAll('.keyword-chip.selected')].map(c => c.dataset.keyword);
+  if (selectedKeywords.length === 0) { alert('키워드를 1개 이상 선택해주세요!'); return; }
+  allFriends.unshift({ name, tags: selectedKeywords });
+  document.getElementById('clubNameInput').value = '';
+  document.querySelectorAll('.keyword-chip').forEach(c => c.classList.remove('selected'));
+  currentFilter = 'all';
+  document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.tag-btn[data-filter="all"]').classList.add('active');
+  currentPage = 1;
+  renderFriends();
+  alert(`"${name}" 구단주님이 등록되었습니다!`);
+});
+
+renderFriends();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
