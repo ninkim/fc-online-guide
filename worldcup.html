@@ -24,6 +24,14 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--primar
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;}
 
+/* Tabs */
+.tab-bar{display:flex;justify-content:center;gap:0;background:rgba(7,13,25,0.95);border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:999;backdrop-filter:blur(20px);}
+.tab-btn{flex:1;max-width:280px;padding:14px 20px;font-size:0.85rem;font-weight:700;color:var(--text-dim);background:transparent;border:none;border-bottom:3px solid transparent;transition:all 0.2s;cursor:pointer;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:#fff;border-bottom-color:var(--accent2);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
 /* Nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(7,13,25,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 2rem;}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
@@ -220,6 +228,14 @@ button{font-family:inherit;cursor:pointer;}
   </div>
 </section>
 
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="new">신규 복귀 유저 화면</button>
+  <button class="tab-btn" data-tab="existing">기존 유저 화면</button>
+</div>
+
+<!-- TAB: 신규 복귀 유저 -->
+<div class="tab-content active" id="tab-new">
 <div class="container">
 
   <!-- Match Schedule -->
@@ -449,6 +465,216 @@ button{font-family:inherit;cursor:pointer;}
   </div>
 
 </div>
+</div><!-- /tab-new -->
+
+<!-- TAB: 기존 유저 -->
+<div class="tab-content" id="tab-existing">
+<div class="container">
+
+  <!-- Match Schedule (existing) -->
+  <div class="match-schedule section">
+    <div class="match-header">
+      <div>
+        <div class="section-label">Match Schedule</div>
+        <div class="section-title">🏆 2026 월드컵 경기 일정</div>
+      </div>
+      <button class="predict-btn" onclick="alert('승부예측 페이지로 이동합니다!')">⚡ 승부예측 바로가기</button>
+    </div>
+    <div class="match-scroll">
+      <div class="match-card live">
+        <div class="match-date">6월 11일 (수) · 조별리그 A조</div>
+        <div class="match-teams">🇺🇸 미국 <span class="vs">VS</span> 🇧🇷 브라질</div>
+        <div class="match-time">23:00 KST · 메트라이프 스타디움</div>
+        <button class="match-predict" onclick="alert('미국 vs 브라질 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 12일 (목) · 조별리그 B조</div>
+        <div class="match-teams">🇰🇷 대한민국 <span class="vs">VS</span> 🇫🇷 프랑스</div>
+        <div class="match-time">04:00 KST · 소파이 스타디움</div>
+        <button class="match-predict" onclick="alert('대한민국 vs 프랑스 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 12일 (목) · 조별리그 C조</div>
+        <div class="match-teams">🇩🇪 독일 <span class="vs">VS</span> 🇦🇷 아르헨티나</div>
+        <div class="match-time">07:00 KST · AT&T 스타디움</div>
+        <button class="match-predict" onclick="alert('독일 vs 아르헨티나 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 13일 (금) · 조별리그 A조</div>
+        <div class="match-teams">🇬🇧 잉글랜드 <span class="vs">VS</span> 🇪🇸 스페인</div>
+        <div class="match-time">02:00 KST · 메르세데스-벤츠 스타디움</div>
+        <button class="match-predict" onclick="alert('잉글랜드 vs 스페인 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 13일 (금) · 조별리그 D조</div>
+        <div class="match-teams">🇯🇵 일본 <span class="vs">VS</span> 🇳🇱 네덜란드</div>
+        <div class="match-time">05:00 KST · 링컨 파이낸셜 필드</div>
+        <button class="match-predict" onclick="alert('일본 vs 네덜란드 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 14일 (토) · 조별리그 B조</div>
+        <div class="match-teams">🇵🇹 포르투갈 <span class="vs">VS</span> 🇲🇽 멕시코</div>
+        <div class="match-time">10:00 KST · 로즈 볼</div>
+        <button class="match-predict" onclick="alert('포르투갈 vs 멕시코 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 15일 (일) · 조별리그 C조</div>
+        <div class="match-teams">🇮🇹 이탈리아 <span class="vs">VS</span> 🇺🇾 우루과이</div>
+        <div class="match-time">07:00 KST · 하드록 스타디움</div>
+        <button class="match-predict" onclick="alert('이탈리아 vs 우루과이 승부예측!')">⚡ 승부예측</button>
+      </div>
+      <div class="match-card">
+        <div class="match-date">6월 16일 (월) · 조별리그 D조</div>
+        <div class="match-teams">🇧🇪 벨기에 <span class="vs">VS</span> 🇭🇷 크로아티아</div>
+        <div class="match-time">04:00 KST · 시티 파크</div>
+        <button class="match-predict" onclick="alert('벨기에 vs 크로아티아 승부예측!')">⚡ 승부예측</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Squad (existing - no guide button, no 신규/복귀) -->
+  <div class="squad-section section" style="padding-top:1.5rem;">
+    <h3><em>월드컵 국대 스쿼드</em>로<br>FC 온라인을 즐겨보세요!</h3>
+    <div class="squad-img-wrap">
+      <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드 — 4-1-2-3 포메이션, 총급여 254/275, 평균 OVR 132">
+    </div>
+    <button class="squad-receive-btn" onclick="alert('스쿼드가 지급되었습니다! 게임에서 확인하세요.')">🎁 월드컵 국대 스쿼드 받기</button>
+  </div>
+
+  <!-- Web Event Banners (existing - no 신규/복귀 tags) -->
+  <div class="banner-section section">
+    <div class="section-label">Web Events</div>
+    <div class="section-title">FC 온라인 웹이벤트 참여하세요!</div>
+    <div class="section-desc">추천 이벤트를 확인해보세요.</div>
+    <div class="banner-grid">
+      <a class="banner-card" href="https://events.fconline.nexon.com/260312/play?utm_source=pc&utm_medium=evGnbSub&utm_campaign=260312_play" target="_blank">
+        <div class="ev-tag red">🔥 추천 이벤트</div>
+        <div class="banner-card-img" style="background:linear-gradient(160deg,#1a0520,#22103a);">
+          <div class="ev-deco"></div>
+          <div style="text-align:center;position:relative;z-index:1;padding:1rem;">
+            <div class="ev-icon">📅</div>
+            <div style="font-size:0.85rem;font-weight:800;margin-top:8px;color:#fff;">출석 + 플레이 5판</div>
+            <div style="margin-top:10px;padding:5px 14px;background:var(--accent2);border-radius:50px;font-size:0.65rem;font-weight:700;display:inline-block;">부스팅 위크 2배</div>
+          </div>
+        </div>
+        <div class="banner-card-body">
+          <div class="ev-title">출석 + 플레이 5판 이벤트</div>
+          <div class="ev-period">2026.3.12 ~ 4.29</div>
+          <div class="ev-go">이벤트 참여하기 →</div>
+        </div>
+      </a>
+      <a class="banner-card" href="https://events.fconline.nexon.com/251204/Zlatan?utm_source=pc&utm_medium=evGnbSub&utm_campaign=251204_Zlatan" target="_blank">
+        <div class="ev-tag red">🔥 추천 이벤트</div>
+        <div class="banner-card-img" style="background:linear-gradient(160deg,#1a1005,#2a1a08);">
+          <div class="ev-deco"></div>
+          <div style="text-align:center;position:relative;z-index:1;padding:1rem;">
+            <div class="ev-icon">🦁</div>
+            <div style="font-size:0.85rem;font-weight:800;margin-top:8px;color:#fff;">I am Zlatan</div>
+            <div style="margin-top:10px;padding:5px 14px;background:var(--gold);color:#000;border-radius:50px;font-size:0.65rem;font-weight:700;display:inline-block;">미션 클리어 보상</div>
+          </div>
+        </div>
+        <div class="banner-card-body">
+          <div class="ev-title">I am Zlatan 이벤트</div>
+          <div class="ev-period">~ 2026.3.11 종료</div>
+          <div class="ev-go">이벤트 참여하기 →</div>
+        </div>
+      </a>
+      <a class="banner-card" href="https://events.fconline.nexon.com/playerloan?utm_source=pc&utm_medium=evGnbSub&utm_campaign=250925_playerloan" target="_blank">
+        <div class="ev-tag green">✨ 추천 이벤트</div>
+        <div class="banner-card-img" style="background:linear-gradient(160deg,#051a10,#082a1a);">
+          <div class="ev-deco"></div>
+          <div style="text-align:center;position:relative;z-index:1;padding:1rem;">
+            <div class="ev-icon">🏟️</div>
+            <div style="font-size:0.85rem;font-weight:800;margin-top:8px;color:#fff;">용병 마켓</div>
+            <div style="margin-top:10px;padding:5px 14px;background:var(--green);color:#000;border-radius:50px;font-size:0.65rem;font-weight:700;display:inline-block;">영구 임대 선수</div>
+          </div>
+        </div>
+        <div class="banner-card-body">
+          <div class="ev-title">용병 마켓 — 영구 임대 선수</div>
+          <div class="ev-period">~ 2026.4.22</div>
+          <div class="ev-go">이벤트 참여하기 →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FC Online Start CTA -->
+  <div class="section" style="padding-top:0;padding-bottom:0;margin-bottom:0;">
+    <a class="cta-big red" href="#" onclick="alert('FC 온라인을 시작합니다!')" style="width:100%;max-width:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      FC 온라인 바로 시작하기
+    </a>
+  </div>
+
+  <!-- Mini Web Game -->
+  <div class="minigame-section section" id="minigame-ex" style="padding-top:1.5rem;">
+    <div class="minigame-card">
+      <div class="section-label">Mini Game</div>
+      <h3>게임 시작 전, 프리킥 챌린지로 손 한번 풀어볼까요?</h3>
+      <p>골대를 향해 프리킥을 차세요! 최고 기록으로 26WC 선수팩을 획득하세요.</p>
+      <div class="minigame-img">
+        <div class="goal-scene">
+          <div class="goal-net">
+            <div class="ball"></div>
+          </div>
+          <span style="font-size:0.7rem;color:var(--text-dim);margin-top:8px;">프리킥 미니게임 — 터치하여 시작</span>
+        </div>
+      </div>
+      <button class="minigame-play-btn" onclick="alert('프리킥 챌린지를 시작합니다!')">🎯 게임 시작하기</button>
+    </div>
+  </div>
+
+  <!-- Friend Recommendation (existing) -->
+  <div class="friend-section section" id="friends-ex">
+    <div class="section-label">Friend Connect</div>
+    <div class="section-title">🤝 FC 온라인 친구 추천 리스트</div>
+    <div class="section-desc">내 구단주명을 등록하고, 함께 플레이할 친구를 찾아보세요!</div>
+
+    <div class="friend-register">
+      <h4>내 구단주명 등록하기</h4>
+      <p class="register-desc">다른 구단주님들이 친구 추가 할 수 있도록, 구단주명을 등록해보세요!</p>
+      <div class="register-row">
+        <div class="my-club-name">
+          <span class="club-icon">김엪</span>
+          김엪온
+        </div>
+      </div>
+      <div class="keyword-select" id="keywordSelectEx" style="margin-bottom:1rem;">
+        <button class="keyword-chip" data-keyword="10대 구단주">10대 구단주</button>
+        <button class="keyword-chip" data-keyword="직장인 구단주">직장인 구단주</button>
+        <button class="keyword-chip" data-keyword="뉴비">뉴비</button>
+        <button class="keyword-chip" data-keyword="고수">고수</button>
+        <button class="keyword-chip" data-keyword="수비형">수비형</button>
+        <button class="keyword-chip" data-keyword="공격형">공격형</button>
+        <button class="keyword-chip" data-keyword="감독모드">감독모드</button>
+        <button class="keyword-chip" data-keyword="월드컵 팬">월드컵 팬</button>
+      </div>
+      <button class="register-btn" id="registerBtnEx">등록하기</button>
+    </div>
+
+    <div class="friend-list-header">
+      <h4>친구 추가를 기다리는 구단주님들이에요</h4>
+      <p>함께 FC 온라인을 플레이해보세요</p>
+    </div>
+
+    <div class="tag-filters" id="tagFiltersEx">
+      <button class="tag-btn active" data-filter="all">전체</button>
+      <button class="tag-btn" data-filter="10대 구단주">10대 구단주</button>
+      <button class="tag-btn" data-filter="직장인 구단주">직장인 구단주</button>
+      <button class="tag-btn" data-filter="뉴비">뉴비</button>
+      <button class="tag-btn" data-filter="고수">고수</button>
+      <button class="tag-btn" data-filter="수비형">수비형</button>
+      <button class="tag-btn" data-filter="공격형">공격형</button>
+      <button class="tag-btn" data-filter="감독모드">감독모드</button>
+      <button class="tag-btn" data-filter="월드컵 팬">월드컵 팬</button>
+    </div>
+
+    <div class="friend-list" id="friendListEx"></div>
+    <div class="pagination" id="paginationEx"></div>
+  </div>
+
+</div>
+</div><!-- /tab-existing -->
 
 <footer class="footer">
   FC 온라인 월드컵 이벤트 — 2026년 6월 기준 정보<br>
@@ -500,91 +726,106 @@ const DUMMY_FRIENDS = [
 ];
 
 const PER_PAGE = 8;
-let currentFilter = 'all';
-let currentPage = 1;
 let allFriends = [...DUMMY_FRIENDS];
 
-function getFiltered() {
-  if (currentFilter === 'all') return allFriends;
-  return allFriends.filter(f => f.tags.includes(currentFilter));
-}
-
-function getInitials(name) {
-  return name.substring(0, 2);
-}
-
-function renderFriends() {
-  const filtered = getFiltered();
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-  if (currentPage > totalPages) currentPage = totalPages;
-  const start = (currentPage - 1) * PER_PAGE;
-  const pageItems = filtered.slice(start, start + PER_PAGE);
-
-  const list = document.getElementById('friendList');
-  list.innerHTML = pageItems.map(f => `
-    <div class="friend-card${f.isMe ? ' is-me' : ''}">
-      <div class="friend-avatar">${getInitials(f.name)}</div>
-      <div class="friend-info">
-        <div class="friend-name">${f.name}${f.isMe ? ' <span class="me-badge">[나]</span>' : ''}</div>
-        <div class="friend-tags">
-          ${f.tags.map(t => `<span class="friend-tag">${t}</span>`).join('')}
+function createFriendManager(listId, pagId, filterContainerId, chipContainerId, registerBtnId) {
+  let filter = 'all', page = 1;
+  function getFiltered() {
+    if (filter === 'all') return allFriends;
+    return allFriends.filter(f => f.tags.includes(filter));
+  }
+  function render() {
+    const filtered = getFiltered();
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    if (page > totalPages) page = totalPages;
+    const start = (page - 1) * PER_PAGE;
+    const items = filtered.slice(start, start + PER_PAGE);
+    const list = document.getElementById(listId);
+    if (!list) return;
+    list.innerHTML = items.map(f => `
+      <div class="friend-card${f.isMe ? ' is-me' : ''}">
+        <div class="friend-avatar">${f.name.substring(0, 2)}</div>
+        <div class="friend-info">
+          <div class="friend-name">${f.name}${f.isMe ? ' <span class="me-badge">[나]</span>' : ''}</div>
+          <div class="friend-tags">${f.tags.map(t => `<span class="friend-tag">${t}</span>`).join('')}</div>
         </div>
       </div>
-    </div>
-  `).join('');
-
-  const pag = document.getElementById('pagination');
-  if (totalPages <= 1) { pag.innerHTML = ''; return; }
-  let btns = '';
-  for (let i = 1; i <= totalPages; i++) {
-    btns += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    `).join('');
+    const pag = document.getElementById(pagId);
+    if (!pag) return;
+    if (totalPages <= 1) { pag.innerHTML = ''; return; }
+    let btns = '';
+    for (let i = 1; i <= totalPages; i++) btns += `<button class="page-btn ${i === page ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    pag.innerHTML = btns;
   }
-  pag.innerHTML = btns;
+  const fc = document.getElementById(filterContainerId);
+  if (fc) fc.addEventListener('click', e => {
+    const btn = e.target.closest('.tag-btn');
+    if (!btn) return;
+    fc.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filter = btn.dataset.filter;
+    page = 1;
+    render();
+  });
+  const pg = document.getElementById(pagId);
+  if (pg) pg.addEventListener('click', e => {
+    const btn = e.target.closest('.page-btn');
+    if (!btn) return;
+    page = parseInt(btn.dataset.page);
+    render();
+  });
+  if (chipContainerId) {
+    document.querySelectorAll(`#${chipContainerId} .keyword-chip`).forEach(chip => {
+      chip.addEventListener('click', () => chip.classList.toggle('selected'));
+    });
+  }
+  if (registerBtnId) {
+    const rb = document.getElementById(registerBtnId);
+    if (rb) rb.addEventListener('click', () => {
+      const container = chipContainerId ? document.getElementById(chipContainerId) : null;
+      const sel = container ? [...container.querySelectorAll('.keyword-chip.selected')].map(c => c.dataset.keyword) : [];
+      if (sel.length === 0) { alert('키워드를 1개 이상 선택해주세요!'); return; }
+      allFriends.unshift({ name: '김엪온', tags: sel, isMe: true });
+      if (container) container.querySelectorAll('.keyword-chip').forEach(c => c.classList.remove('selected'));
+      filter = 'all';
+      if (fc) { fc.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active')); fc.querySelector('.tag-btn[data-filter="all"]').classList.add('active'); }
+      page = 1;
+      render();
+      renderAll();
+      alert('"김엪온" 구단주님이 등록되었습니다!');
+    });
+  }
+  render();
+  return render;
 }
 
-document.getElementById('tagFilters').addEventListener('click', e => {
-  const btn = e.target.closest('.tag-btn');
-  if (!btn) return;
-  document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  currentFilter = btn.dataset.filter;
-  currentPage = 1;
-  renderFriends();
-});
+const renders = [];
+renders.push(createFriendManager('friendList', 'pagination', 'tagFilters', 'keywordSelect', 'registerBtn'));
+renders.push(createFriendManager('friendListEx', 'paginationEx', 'tagFiltersEx', 'keywordSelectEx', 'registerBtnEx'));
+function renderAll() { renders.forEach(r => r()); }
 
-document.getElementById('pagination').addEventListener('click', e => {
-  const btn = e.target.closest('.page-btn');
-  if (!btn) return;
-  currentPage = parseInt(btn.dataset.page);
-  renderFriends();
-});
-
-document.querySelectorAll('.keyword-chip').forEach(chip => {
-  chip.addEventListener('click', () => chip.classList.toggle('selected'));
-});
-
-document.getElementById('registerBtn').addEventListener('click', () => {
-  const name = '김엪온';
-  const selectedKeywords = [...document.querySelectorAll('.keyword-chip.selected')].map(c => c.dataset.keyword);
-  if (selectedKeywords.length === 0) { alert('키워드를 1개 이상 선택해주세요!'); return; }
-  allFriends.unshift({ name, tags: selectedKeywords, isMe: true });
-  document.querySelectorAll('.keyword-chip').forEach(c => c.classList.remove('selected'));
-  currentFilter = 'all';
-  document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('.tag-btn[data-filter="all"]').classList.add('active');
-  currentPage = 1;
-  renderFriends();
-  alert(`"${name}" 구단주님이 등록되었습니다!`);
-});
-
-renderFriends();
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    initObserver();
   });
-}, { threshold: 0.08 });
-document.querySelectorAll('.section').forEach(s => observer.observe(s));
+});
+
+function initObserver() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.tab-content.active .section').forEach(s => {
+    s.classList.remove('visible');
+    observer.observe(s);
+  });
+}
+initObserver();
 </script>
 
 </body>
