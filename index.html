@@ -1175,17 +1175,13 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* Squad Showcase */
 .squad-showcase {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
   margin: 2rem 0;
-  align-items: start;
 }
 .squad-img-wrap {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border);
-  background: var(--surface2);
+  background: #1b1e2b;
 }
 .squad-img {
   width: 100%;
@@ -1194,16 +1190,19 @@ tbody tr:last-child td { border-bottom: none; }
   object-position: center 55%;
   aspect-ratio: 16/11;
 }
-.squad-info-panel h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1.2rem;
+.squad-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--text);
+  margin: 1.5rem 0 1rem;
 }
-.squad-tips {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.squad-tips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+@media (max-width: 600px) {
+  .squad-tips-grid { grid-template-columns: 1fr; }
 }
 .squad-tip {
   display: flex;
@@ -1213,10 +1212,11 @@ tbody tr:last-child td { border-bottom: none; }
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
-  transition: border-color .2s;
+  transition: border-color .2s, box-shadow .2s;
 }
 .squad-tip:hover {
   border-color: var(--accent);
+  box-shadow: var(--glow);
 }
 .squad-tip-icon {
   font-size: 1.3rem;
@@ -1228,11 +1228,11 @@ tbody tr:last-child td { border-bottom: none; }
   color: var(--text);
   display: block;
   margin-bottom: 0.3rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 .squad-tip-content p {
   color: var(--text-dim);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   line-height: 1.5;
   margin: 0;
 }
@@ -1252,11 +1252,6 @@ tbody tr:last-child td { border-bottom: none; }
 .btn-squad-maker:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,120,255,0.3);
-}
-@media (max-width: 900px) {
-  .squad-showcase {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Player Card Example */
@@ -1601,46 +1596,46 @@ tbody tr:last-child td { border-bottom: none; }
     <p class="section-desc">오버롤(OVR)과 보유 BP에 맞춰 최적의 스쿼드를 구성하세요. 스쿼드 메이커를 활용하면 더 쉽게 짤 수 있습니다.</p>
 
     <div class="squad-showcase">
-      <div class="squad-img-wrap">
-        <img src="squad-maker.png" alt="FC Online 스쿼드 메이커 예시" class="squad-img">
-      </div>
-      <div class="squad-info-panel">
-        <h3>스쿼드 구성 핵심 포인트</h3>
-        <div class="squad-tips">
-          <div class="squad-tip">
-            <div class="squad-tip-icon">📋</div>
-            <div class="squad-tip-content">
-              <strong>포메이션 선택</strong>
-              <p>인기 포메이션: 4-2-3-1 (33.6%), 4-2-2-1-1 (29.6%), 4-2-2-2 (17.3%). 자신의 플레이 스타일에 맞는 포메이션을 선택하세요.</p>
-            </div>
-          </div>
-          <div class="squad-tip">
-            <div class="squad-tip-icon">💰</div>
-            <div class="squad-tip-content">
-              <strong>BP 예산에 맞춘 구성</strong>
-              <p>처음에는 저가 고효율 선수 위주로 구성하고, BP가 쌓이면 핵심 포지션부터 업그레이드하세요.</p>
-            </div>
-          </div>
-          <div class="squad-tip">
-            <div class="squad-tip-icon">⚡</div>
-            <div class="squad-tip-content">
-              <strong>급여 관리</strong>
-              <p>총 급여 상한(300)을 초과하지 않도록 밸런스를 맞추세요. 높은 OVR 선수는 급여가 높습니다.</p>
-            </div>
-          </div>
-          <div class="squad-tip">
-            <div class="squad-tip-icon">🎨</div>
-            <div class="squad-tip-content">
-              <strong>팀컬러 활용</strong>
-              <p>같은 팀컬러 선수를 모으면 추가 능력치 부스트를 받을 수 있어 전력이 크게 상승합니다.</p>
-            </div>
-          </div>
-        </div>
+      <div style="text-align:center;margin-bottom:1rem;">
         <a href="https://fconline.nexon.com/datacenter/squadmaker" target="_blank" class="btn-squad-maker">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           스쿼드 메이커 바로가기
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
+      </div>
+      <div class="squad-img-wrap">
+        <img src="squad-maker.png" alt="FC Online 스쿼드 메이커 예시" class="squad-img">
+      </div>
+      <h3 class="squad-section-title">스쿼드 구성 핵심 포인트</h3>
+      <div class="squad-tips-grid">
+        <div class="squad-tip">
+          <div class="squad-tip-icon">📋</div>
+          <div class="squad-tip-content">
+            <strong>포메이션 선택</strong>
+            <p>인기 포메이션: 4-2-3-1 (33.6%), 4-2-2-1-1 (29.6%), 4-2-2-2 (17.3%). 자신의 플레이 스타일에 맞는 포메이션을 선택하세요.</p>
+          </div>
+        </div>
+        <div class="squad-tip">
+          <div class="squad-tip-icon">💰</div>
+          <div class="squad-tip-content">
+            <strong>BP 예산에 맞춘 구성</strong>
+            <p>처음에는 저가 고효율 선수 위주로 구성하고, BP가 쌓이면 핵심 포지션부터 업그레이드하세요.</p>
+          </div>
+        </div>
+        <div class="squad-tip">
+          <div class="squad-tip-icon">⚡</div>
+          <div class="squad-tip-content">
+            <strong>급여 관리</strong>
+            <p>총 급여 상한(300)을 초과하지 않도록 밸런스를 맞추세요. 높은 OVR 선수는 급여가 높습니다.</p>
+          </div>
+        </div>
+        <div class="squad-tip">
+          <div class="squad-tip-icon">🎨</div>
+          <div class="squad-tip-content">
+            <strong>팀컬러 활용</strong>
+            <p>같은 팀컬러 선수를 모으면 추가 능력치 부스트를 받을 수 있어 전력이 크게 상승합니다.</p>
+          </div>
+        </div>
       </div>
     </div>
 
