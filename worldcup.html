@@ -181,6 +181,27 @@ button{font-family:inherit;cursor:pointer;}
 .page-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-dim);font-size:0.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;}
 .page-btn:hover,.page-btn.active{border-color:var(--accent);color:#fff;background:rgba(0,120,255,0.12);}
 
+/* Data Chart */
+.datachart{margin:2rem 0;}
+.datachart-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.datachart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;}
+.datachart-card h4{font-size:0.85rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:6px;}
+.chart-bar-list{display:flex;flex-direction:column;gap:8px;}
+.chart-bar-item{display:flex;align-items:center;gap:10px;font-size:0.78rem;}
+.chart-bar-item .bar-label{min-width:80px;font-weight:600;white-space:nowrap;}
+.chart-bar-item .bar-wrap{flex:1;height:22px;background:rgba(255,255,255,0.04);border-radius:6px;overflow:hidden;position:relative;}
+.chart-bar-item .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:0.68rem;font-weight:600;color:#fff;white-space:nowrap;transition:width 0.8s ease;}
+.chart-bar-item .bar-pct{min-width:40px;text-align:right;color:var(--text-dim);font-size:0.72rem;}
+.class-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.class-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;font-weight:600;}
+.class-chip .chip-bar{width:40px;height:6px;border-radius:3px;background:rgba(255,255,255,0.1);}
+.class-chip .chip-fill{height:100%;border-radius:3px;}
+.class-chip .chip-pct{color:var(--text-dim);font-size:0.68rem;}
+.datachart-link{display:flex;justify-content:center;margin-top:1.5rem;}
+.datachart-link a{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:50px;font-size:0.82rem;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);transition:all 0.2s;}
+.datachart-link a:hover{background:rgba(255,255,255,0.1);border-color:var(--accent);color:var(--accent);}
+@media(max-width:768px){.datachart-grid{grid-template-columns:1fr;}}
+
 /* Footer */
 .footer{text-align:center;padding:2rem 1.5rem;border-top:1px solid var(--border);color:var(--text-dim);font-size:0.75rem;}
 
@@ -389,6 +410,42 @@ button{font-family:inherit;cursor:pointer;}
     </div>
   </div>
 
+  <!-- Data Chart -->
+  <div class="datachart section">
+    <div class="section-label">Daily Chart</div>
+    <div class="section-title">📊 지금 랭커들은 이렇게 플레이해요</div>
+    <div class="section-desc">데이터센터 데일리 차트 기준 · 공식 경기 1 ON 1 Top 랭커</div>
+    <div class="datachart-grid">
+      <div class="datachart-card">
+        <h4>🏗️ 포메이션 이용률</h4>
+        <div class="chart-bar-list">
+          <div class="chart-bar-item"><span class="bar-label">4-2-3-1</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent2),#ff6b6b);"></div></div><span class="bar-pct">30.9%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-2-2-1-1</span><div class="bar-wrap"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,var(--accent),#4da6ff);"></div></div><span class="bar-pct">27.8%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-2-2-2</span><div class="bar-wrap"><div class="bar-fill" style="width:53%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div><span class="bar-pct">16.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-1-2-3</span><div class="bar-wrap"><div class="bar-fill" style="width:17%;background:linear-gradient(90deg,var(--green),#40e89a);"></div></div><span class="bar-pct">5.1%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-2-4</span><div class="bar-wrap"><div class="bar-fill" style="width:11%;background:linear-gradient(90deg,#9b59b6,#c39bd3);"></div></div><span class="bar-pct">3.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-1-4-1</span><div class="bar-wrap"><div class="bar-fill" style="width:11%;background:linear-gradient(90deg,#e67e22,#f0b27a);"></div></div><span class="bar-pct">3.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-4-2</span><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:linear-gradient(90deg,#1abc9c,#76d7c4);"></div></div><span class="bar-pct">2.6%</span></div>
+        </div>
+      </div>
+      <div class="datachart-card">
+        <h4>💎 클래스 이용 비중</h4>
+        <div class="chart-bar-list">
+          <div class="chart-bar-item"><span class="bar-label">CU</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#8e44ad,#bb8fce);"></div></div><span class="bar-pct">4.5%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">GRU</span><div class="bar-wrap"><div class="bar-fill" style="width:91%;background:linear-gradient(90deg,var(--accent2),#ff6b6b);"></div></div><span class="bar-pct">4.1%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">LE</span><div class="bar-wrap"><div class="bar-fill" style="width:84%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div><span class="bar-pct">3.8%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">UT</span><div class="bar-wrap"><div class="bar-fill" style="width:76%;background:linear-gradient(90deg,var(--accent),#4da6ff);"></div></div><span class="bar-pct">3.4%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">BDO</span><div class="bar-wrap"><div class="bar-fill" style="width:76%;background:linear-gradient(90deg,var(--green),#40e89a);"></div></div><span class="bar-pct">3.4%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">WB</span><div class="bar-wrap"><div class="bar-fill" style="width:73%;background:linear-gradient(90deg,#e67e22,#f0b27a);"></div></div><span class="bar-pct">3.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">TB</span><div class="bar-wrap"><div class="bar-fill" style="width:71%;background:linear-gradient(90deg,#1abc9c,#76d7c4);"></div></div><span class="bar-pct">3.2%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="datachart-link">
+      <a href="https://fconline.nexon.com/datacenter/dailysquad" target="_blank">📈 데일리차트 바로가기 →</a>
+    </div>
+  </div>
+
   <!-- FC Online Start CTA -->
   <div class="section" style="padding-top:0;padding-bottom:0;margin-bottom:0;">
     <a class="cta-big red" href="#" onclick="alert('FC 온라인을 시작합니다!')" style="width:100%;max-width:none;">
@@ -529,6 +586,42 @@ button{font-family:inherit;cursor:pointer;}
         <div class="match-time">04:00 KST · 시티 파크</div>
         <button class="match-predict" onclick="alert('벨기에 vs 크로아티아 승부예측!')">⚡ 승부예측</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Data Chart (existing) -->
+  <div class="datachart section">
+    <div class="section-label">Daily Chart</div>
+    <div class="section-title">📊 지금 랭커들은 이렇게 플레이해요</div>
+    <div class="section-desc">데이터센터 데일리 차트 기준 · 공식 경기 1 ON 1 Top 랭커</div>
+    <div class="datachart-grid">
+      <div class="datachart-card">
+        <h4>🏗️ 포메이션 이용률</h4>
+        <div class="chart-bar-list">
+          <div class="chart-bar-item"><span class="bar-label">4-2-3-1</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent2),#ff6b6b);"></div></div><span class="bar-pct">30.9%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-2-2-1-1</span><div class="bar-wrap"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,var(--accent),#4da6ff);"></div></div><span class="bar-pct">27.8%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-2-2-2</span><div class="bar-wrap"><div class="bar-fill" style="width:53%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div><span class="bar-pct">16.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-1-2-3</span><div class="bar-wrap"><div class="bar-fill" style="width:17%;background:linear-gradient(90deg,var(--green),#40e89a);"></div></div><span class="bar-pct">5.1%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-2-4</span><div class="bar-wrap"><div class="bar-fill" style="width:11%;background:linear-gradient(90deg,#9b59b6,#c39bd3);"></div></div><span class="bar-pct">3.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-1-4-1</span><div class="bar-wrap"><div class="bar-fill" style="width:11%;background:linear-gradient(90deg,#e67e22,#f0b27a);"></div></div><span class="bar-pct">3.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">4-4-2</span><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:linear-gradient(90deg,#1abc9c,#76d7c4);"></div></div><span class="bar-pct">2.6%</span></div>
+        </div>
+      </div>
+      <div class="datachart-card">
+        <h4>💎 클래스 이용 비중</h4>
+        <div class="chart-bar-list">
+          <div class="chart-bar-item"><span class="bar-label">CU</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#8e44ad,#bb8fce);"></div></div><span class="bar-pct">4.5%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">GRU</span><div class="bar-wrap"><div class="bar-fill" style="width:91%;background:linear-gradient(90deg,var(--accent2),#ff6b6b);"></div></div><span class="bar-pct">4.1%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">LE</span><div class="bar-wrap"><div class="bar-fill" style="width:84%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div><span class="bar-pct">3.8%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">UT</span><div class="bar-wrap"><div class="bar-fill" style="width:76%;background:linear-gradient(90deg,var(--accent),#4da6ff);"></div></div><span class="bar-pct">3.4%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">BDO</span><div class="bar-wrap"><div class="bar-fill" style="width:76%;background:linear-gradient(90deg,var(--green),#40e89a);"></div></div><span class="bar-pct">3.4%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">WB</span><div class="bar-wrap"><div class="bar-fill" style="width:73%;background:linear-gradient(90deg,#e67e22,#f0b27a);"></div></div><span class="bar-pct">3.3%</span></div>
+          <div class="chart-bar-item"><span class="bar-label">TB</span><div class="bar-wrap"><div class="bar-fill" style="width:71%;background:linear-gradient(90deg,#1abc9c,#76d7c4);"></div></div><span class="bar-pct">3.2%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="datachart-link">
+      <a href="https://fconline.nexon.com/datacenter/dailysquad" target="_blank">📈 데일리차트 바로가기 →</a>
     </div>
   </div>
 
