@@ -127,6 +127,14 @@ button{font-family:inherit;cursor:pointer;}
 .banner-card-body .ev-title{font-size:0.82rem;font-weight:700;line-height:1.4;}
 .banner-card-body .ev-period{font-size:0.68rem;color:var(--text-dim);}
 .banner-card-body .ev-go{font-size:0.72rem;color:var(--accent);font-weight:600;margin-top:auto;padding-top:4px;}
+.ev-progress{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
+.ev-progress .prog-row{display:flex;align-items:center;justify-content:space-between;font-size:0.65rem;margin-bottom:4px;}
+.ev-progress .prog-row .prog-label{color:var(--text-dim);}
+.ev-progress .prog-row .prog-val{font-weight:700;}
+.ev-progress .prog-row .prog-val.done{color:var(--green);}
+.ev-progress .prog-row .prog-val.ongoing{color:var(--gold);}
+.ev-progress .prog-bar{height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-top:2px;}
+.ev-progress .prog-bar .prog-fill{height:100%;border-radius:3px;transition:width 0.6s ease;}
 @media(max-width:768px){.banner-grid{grid-template-columns:1fr;max-width:320px;margin:0 auto;}}
 
 /* Mini Game Banner */
@@ -375,6 +383,13 @@ button{font-family:inherit;cursor:pointer;}
         <div class="banner-card-body">
           <div class="ev-title">출석 + 플레이 5판 이벤트</div>
           <div class="ev-period">2026.3.12 ~ 4.29</div>
+          <div class="ev-progress">
+            <div class="prog-row"><span class="prog-label">출석 달성</span><span class="prog-val ongoing">2 / 7일</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:28%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">플레이 미션</span><span class="prog-val ongoing">3 / 5판</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:60%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">참여 구단주</span><span class="prog-val" style="color:var(--accent);">12.4만명</span></div>
+          </div>
           <div class="ev-go">이벤트 참여하기 →</div>
         </div>
       </a>
@@ -391,6 +406,12 @@ button{font-family:inherit;cursor:pointer;}
         <div class="banner-card-body">
           <div class="ev-title">I am Zlatan 이벤트</div>
           <div class="ev-period">~ 2026.3.11 종료</div>
+          <div class="ev-progress">
+            <div class="prog-row"><span class="prog-label">미션 달성률</span><span class="prog-val done">100%</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,var(--green),#40e89a);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">보상 수령</span><span class="prog-val done">완료 ✓</span></div>
+            <div class="prog-row"><span class="prog-label">참여 구단주</span><span class="prog-val" style="color:var(--accent);">28.7만명</span></div>
+          </div>
           <div class="ev-go">이벤트 참여하기 →</div>
         </div>
       </a>
@@ -407,6 +428,12 @@ button{font-family:inherit;cursor:pointer;}
         <div class="banner-card-body">
           <div class="ev-title">용병 마켓 — 영구 임대 선수</div>
           <div class="ev-period">~ 2026.4.22</div>
+          <div class="ev-progress">
+            <div class="prog-row"><span class="prog-label">임대 선수 수령</span><span class="prog-val ongoing">1 / 3명</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:33%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">마켓 이용률</span><span class="prog-val" style="color:var(--accent);">67%</span></div>
+            <div class="prog-row"><span class="prog-label">참여 구단주</span><span class="prog-val" style="color:var(--accent);">9.1만명</span></div>
+          </div>
           <div class="ev-go">이벤트 참여하기 →</div>
         </div>
       </a>
@@ -627,6 +654,13 @@ button{font-family:inherit;cursor:pointer;}
         <div class="banner-card-body">
           <div class="ev-title">출석 + 플레이 5판 이벤트</div>
           <div class="ev-period">2026.3.12 ~ 4.29</div>
+          <div class="ev-progress">
+            <div class="prog-row"><span class="prog-label">출석 달성</span><span class="prog-val ongoing">2 / 7일</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:28%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">플레이 미션</span><span class="prog-val ongoing">3 / 5판</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:60%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">참여 구단주</span><span class="prog-val" style="color:var(--accent);">12.4만명</span></div>
+          </div>
           <div class="ev-go">이벤트 참여하기 →</div>
         </div>
       </a>
@@ -643,6 +677,12 @@ button{font-family:inherit;cursor:pointer;}
         <div class="banner-card-body">
           <div class="ev-title">I am Zlatan 이벤트</div>
           <div class="ev-period">~ 2026.3.11 종료</div>
+          <div class="ev-progress">
+            <div class="prog-row"><span class="prog-label">미션 달성률</span><span class="prog-val done">100%</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,var(--green),#40e89a);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">보상 수령</span><span class="prog-val done">완료 ✓</span></div>
+            <div class="prog-row"><span class="prog-label">참여 구단주</span><span class="prog-val" style="color:var(--accent);">28.7만명</span></div>
+          </div>
           <div class="ev-go">이벤트 참여하기 →</div>
         </div>
       </a>
@@ -659,6 +699,12 @@ button{font-family:inherit;cursor:pointer;}
         <div class="banner-card-body">
           <div class="ev-title">용병 마켓 — 영구 임대 선수</div>
           <div class="ev-period">~ 2026.4.22</div>
+          <div class="ev-progress">
+            <div class="prog-row"><span class="prog-label">임대 선수 수령</span><span class="prog-val ongoing">1 / 3명</span></div>
+            <div class="prog-bar"><div class="prog-fill" style="width:33%;background:linear-gradient(90deg,var(--gold),#ffc960);"></div></div>
+            <div class="prog-row" style="margin-top:4px;"><span class="prog-label">마켓 이용률</span><span class="prog-val" style="color:var(--accent);">67%</span></div>
+            <div class="prog-row"><span class="prog-label">참여 구단주</span><span class="prog-val" style="color:var(--accent);">9.1만명</span></div>
+          </div>
           <div class="ev-go">이벤트 참여하기 →</div>
         </div>
       </a>
