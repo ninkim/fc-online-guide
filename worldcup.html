@@ -1003,7 +1003,7 @@ button{font-family:inherit;cursor:pointer;}
     <div class="squad-img-wrap">
       <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드 — 4-1-2-3 포메이션, 총급여 254/275, 평균 OVR 132">
     </div>
-    <button class="squad-receive-btn" onclick="alert('스쿼드가 지급되었습니다! 게임에서 확인하세요.')">🎁 월드컵 국대 스쿼드 받기</button>
+    <button class="squad-receive-btn" onclick="showSquadLayer()">🎁 월드컵 국대 스쿼드 받기</button>
   </div>
 
   <!-- Friend Recommendation (existing) -->
@@ -1145,16 +1145,28 @@ function receiveSquad(){
   btn.textContent='✅ 스쿼드 지급 완료!';
   btn.style.background='rgba(255,255,255,0.08)';
   btn.style.cursor='default';
+  document.getElementById('squad-layer').classList.add('show');
   setTimeout(()=>{
     orig.style.transition='opacity 0.4s ease';
     orig.style.opacity='0';
     setTimeout(()=>{
       orig.style.display='none';
       received.style.display='';
-      received.scrollIntoView({behavior:'smooth',block:'center'});
     },400);
   },600);
 }
+function showSquadLayer(){
+  document.getElementById('squad-layer').classList.add('show');
+}
+(function(){
+  var sl=document.getElementById('squad-layer');
+  document.getElementById('squad-layer-close').onclick=function(){sl.classList.remove('show');};
+  document.getElementById('squad-layer-play').onclick=function(){
+    sl.classList.remove('show');
+    window.open('https://fconline.nexon.com','_blank');
+  };
+  sl.onclick=function(e){if(e.target===sl)sl.classList.remove('show');};
+})();
 
 const DUMMY_FRIENDS = [
   {name:'축구왕김민수',tags:['10대 구단주','공격형']},
@@ -1361,6 +1373,20 @@ initObserver();
     </div>
   </div>
 </div>
+
+<!-- Squad Receive Layer Popup -->
+<div class="mg-dl-layer" id="squad-layer">
+  <div class="mg-login-layer-inner">
+    <div class="ll-icon">🎁</div>
+    <div class="ll-msg">스쿼드가 지급되었습니다.</div>
+    <div class="ll-sub">지금 바로 게임 플레이를 해 보세요!</div>
+    <div class="ll-btns">
+      <button class="ll-btn skip" id="squad-layer-close">닫기</button>
+      <button class="ll-btn login" id="squad-layer-play">게임 플레이하기</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   const overlay=document.getElementById('minigame-popup');
