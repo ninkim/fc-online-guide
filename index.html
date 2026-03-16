@@ -1901,7 +1901,7 @@ tbody tr:last-child td { border-bottom: none; }
         <span style="color:#fff;font-size:0.85rem;font-weight:700;">스쿼드 추천</span>
         <span style="font-size:0.78rem;color:var(--text-dim);">랭커들의 실제 스쿼드 조합을 참고해서 나만의 스쿼드를 구성할 수 있어요.</span>
         <a href="https://fconline.nexon.com/datacenter/squadmaker" target="_blank" style="color:var(--accent);font-size:0.75rem;font-weight:600;text-decoration:none;white-space:nowrap;">스쿼드 메이커 바로가기 →</a>
-        <span style="width:1px;height:24px;background:var(--border);margin:0 4px;"></span>
+        <div style="flex-basis:100%;height:1px;background:var(--border);margin:4px 0;"></div>
         <span style="font-size:1.5rem;">⚡</span>
         <span style="color:#fff;font-size:0.85rem;font-weight:700;">퀵 스쿼드</span>
         <span style="font-size:0.78rem;color:var(--text-dim);">신규 복귀 구단주님 전용 스쿼드로 플레이해보세요!</span>
@@ -2066,6 +2066,89 @@ tbody tr:last-child td { border-bottom: none; }
     <div style="margin-top:1.2rem;">
       <img src="transfer-market.png" alt="FC 온라인 이적시장 화면" style="width:100%;border-radius:12px;border:1px solid var(--border);">
     </div>
+
+    <h3 style="font-size:1.05rem;font-weight:700;margin:1.8rem 0 1rem;display:flex;align-items:center;gap:8px;">📊 상한가 · 하한가 개념</h3>
+    <div class="guide-grid">
+      <div class="concept-box">
+        <dt>📈 상한가 (Price Ceiling)</dt>
+        <dd>넥슨이 설정한 해당 선수의 <strong style="color:#fff;">최대 거래 가격</strong>입니다. 이 가격 이상으로 등록할 수 없습니다.</dd>
+        <dd><span class="price-tip up">시세가 상한가에 도달하면?</span></dd>
+        <dd>매물이 없는 <strong style="color:#ff6b6b;">품절 상태</strong>가 됩니다. 인기 선수일수록 상한가에 자주 도달하며, 넥슨이 상한가를 올려줄 때까지 기다려야 합니다.</dd>
+      </div>
+      <div class="concept-box">
+        <dt>📉 하한가 (Price Floor)</dt>
+        <dd>넥슨이 설정한 해당 선수의 <strong style="color:#fff;">최소 거래 가격</strong>입니다. 이 가격 이하로 등록할 수 없습니다.</dd>
+        <dd><span class="price-tip down">시세가 하한가에 도달하면?</span></dd>
+        <dd>해당 선수가 매우 <strong style="color:#00c875;">저렴한 상태</strong>입니다. 저자본 구단주에게 영입 찬스! 다만 하한가 선수는 되팔 때 손해가 클 수 있어요.</dd>
+      </div>
+    </div>
+    <div class="market-tip-bar">
+      💡 <strong style="color:var(--gold);">시세 확인 팁</strong> — <a href="https://fconline.nexon.com/datacenter" target="_blank" style="color:var(--accent);">데이터센터</a>에서 선수별 시세 그래프를 확인할 수 있습니다. 구매 전 최근 7일 시세 추이를 꼭 확인하세요.
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:700;margin:1.8rem 0 0.4rem;display:flex;align-items:center;gap:8px;">💸 이적시장 수수료 구조</h3>
+    <p style="font-size:0.82rem;color:var(--text-dim);margin-bottom:1rem;">이적시장 판매 시 기본 수수료 40%가 부과됩니다. 수수료 할인 쿠폰을 활용하면 순수익을 크게 늘릴 수 있습니다.</p>
+
+    <div class="fee-visual" style="margin-bottom:1rem;">
+      <div class="fee-block origin">
+        <div class="label">기본 수수료</div>
+        <div class="value">40%</div>
+      </div>
+      <div class="fee-arrow">→</div>
+      <div class="fee-block discount">
+        <div class="label">할인 적용 시</div>
+        <div class="value">최소 10%</div>
+      </div>
+      <div class="fee-arrow">→</div>
+      <div class="fee-block result">
+        <div class="label">최대 절약</div>
+        <div class="value">+30%p</div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-bottom:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>할인 방법</th>
+            <th>할인율</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PC방 이용</td>
+            <td><span class="highlight">30%</span></td>
+            <td>제휴 PC방에서 접속 시 자동 적용</td>
+          </tr>
+          <tr>
+            <td>TOP 등급</td>
+            <td><span class="highlight">20%</span></td>
+            <td>넥슨 TOP 등급 달성 시</td>
+          </tr>
+          <tr>
+            <td>할인 쿠폰</td>
+            <td><span class="highlight-gold">10~50%</span></td>
+            <td>이벤트 보상으로 획득, 중복 적용 가능</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align:center;margin:1rem 0;">
+      <a href="https://fconline.nexon.com/common/calculator" target="_blank" class="btn-primary blue" style="display:inline-flex;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+        수수료 계산기 바로가기
+      </a>
+    </div>
+
+    <div class="tip-box" style="margin-bottom:0;">
+      <div class="tip-icon">&#128161;</div>
+      <div>
+        <h4>수수료 절약 꿀팁</h4>
+        <p>할인 쿠폰은 중복 적용이 가능합니다. PC방 할인(30%) + 쿠폰(50%)을 함께 사용하면 수수료를 대폭 줄일 수 있어 고가 선수 판매 시 반드시 할인이 최대인 시점을 노려보세요.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Section 3: BP 모으기 -->
@@ -2121,76 +2204,6 @@ tbody tr:last-child td { border-bottom: none; }
         <div class="step-content">
           <h3>선수팩을 이적시장에 판매하기</h3>
           <p>이벤트로 얻은 선수팩에서 나온 불필요한 선수를 이적시장에 등록하여 BP로 전환하세요. 시세를 확인하고 적정 가격에 판매하는 것이 중요합니다.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h3>수수료 할인 쿠폰 최대한 활용하기</h3>
-          <p>이적시장 판매 시 기본 수수료 40%가 부과됩니다. 수수료 할인 쿠폰을 활용하면 순수익을 크게 늘릴 수 있습니다.</p>
-
-          <h4 style="font-size:0.95rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.8rem;">이적시장 수수료 구조</h4>
-
-          <div class="fee-visual" style="margin-bottom:1rem;">
-            <div class="fee-block origin">
-              <div class="label">기본 수수료</div>
-              <div class="value">40%</div>
-            </div>
-            <div class="fee-arrow">→</div>
-            <div class="fee-block discount">
-              <div class="label">할인 적용 시</div>
-              <div class="value">최소 10%</div>
-            </div>
-            <div class="fee-arrow">→</div>
-            <div class="fee-block result">
-              <div class="label">최대 절약</div>
-              <div class="value">+30%p</div>
-            </div>
-          </div>
-
-          <div class="table-wrap" style="margin-bottom:1rem;">
-            <table>
-              <thead>
-                <tr>
-                  <th>할인 방법</th>
-                  <th>할인율</th>
-                  <th>비고</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>PC방 이용</td>
-                  <td><span class="highlight">30%</span></td>
-                  <td>제휴 PC방에서 접속 시 자동 적용</td>
-                </tr>
-                <tr>
-                  <td>TOP 등급</td>
-                  <td><span class="highlight">20%</span></td>
-                  <td>넥슨 TOP 등급 달성 시</td>
-                </tr>
-                <tr>
-                  <td>할인 쿠폰</td>
-                  <td><span class="highlight-gold">10~50%</span></td>
-                  <td>이벤트 보상으로 획득, 중복 적용 가능</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div style="text-align:center;margin:1rem 0;">
-            <a href="https://fconline.nexon.com/common/calculator" target="_blank" class="btn-primary blue" style="display:inline-flex;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
-              수수료 계산기 바로가기
-            </a>
-          </div>
-
-          <div class="tip-box" style="margin-bottom:0;">
-            <div class="tip-icon">&#128161;</div>
-            <div>
-              <h4>수수료 절약 꿀팁</h4>
-              <p>할인 쿠폰은 중복 적용이 가능합니다. PC방 할인(30%) + 쿠폰(50%)을 함께 사용하면 수수료를 대폭 줄일 수 있어 고가 선수 판매 시 반드시 할인이 최대인 시점을 노려보세요.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
