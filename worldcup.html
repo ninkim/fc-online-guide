@@ -204,7 +204,6 @@ button{font-family:inherit;cursor:pointer;}
 .minigame-banner .mg-text p{font-size:0.68rem;color:var(--text-dim);margin:0;}
 .minigame-banner .mg-play{flex:0 0 auto;padding:8px 18px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.72rem;font-weight:700;border:none;border-radius:50px;pointer-events:none;animation:glowPulse 2s ease-in-out infinite;}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 8px rgba(0,200,117,0.3);}50%{box-shadow:0 0 20px rgba(0,200,117,0.6);}}
-@keyframes hintPulse{0%,100%{transform:scale(1);box-shadow:0 0 12px rgba(0,200,117,0.3);}50%{transform:scale(1.08);box-shadow:0 0 28px rgba(0,200,117,0.6);}}
 .minigame-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;}
 .minigame-popup-overlay.active{display:flex;}
 .minigame-popup{background:#0d1520;border:1px solid var(--border);border-radius:20px;width:90%;max-width:520px;overflow:hidden;position:relative;animation:popIn 0.3s ease;}
@@ -484,6 +483,19 @@ button{font-family:inherit;cursor:pointer;}
       </div>
       <button class="match-filter-btn" id="korea-filter-new" onclick="toggleKoreaFilter('new')">🇰🇷 대한민국 경기만</button>
     </div>
+    <!-- News Ticker -->
+    <div class="wc-news-ticker">
+      <div class="ticker-track">
+        <div class="ticker-item"><span class="t-badge">속보</span> 손흥민, 2026 월드컵 최종 엔트리 확정 — 3회 연속 월드컵 출전</div>
+        <div class="ticker-item"><span class="t-badge">일정</span> 대한민국 조별리그 B조 배정 — 프랑스·포르투갈·멕시코와 격돌</div>
+        <div class="ticker-item"><span class="t-badge">이슈</span> FIFA, 48개국 확대 월드컵 첫 개최 — 미국·캐나다·멕시코 3국 공동 개최</div>
+        <div class="ticker-item"><span class="t-badge">FC온라인</span> 월드컵 기념 26WC 선수 카드 업데이트 예정</div>
+        <div class="ticker-item"><span class="t-badge">속보</span> 손흥민, 2026 월드컵 최종 엔트리 확정 — 3회 연속 월드컵 출전</div>
+        <div class="ticker-item"><span class="t-badge">일정</span> 대한민국 조별리그 B조 배정 — 프랑스·포르투갈·멕시코와 격돌</div>
+        <div class="ticker-item"><span class="t-badge">이슈</span> FIFA, 48개국 확대 월드컵 첫 개최 — 미국·캐나다·멕시코 3국 공동 개최</div>
+        <div class="ticker-item"><span class="t-badge">FC온라인</span> 월드컵 기념 26WC 선수 카드 업데이트 예정</div>
+      </div>
+    </div>
     <!-- World Cup Progress -->
     <div class="wc-progress" id="wc-progress-new">
       <div class="wc-prog-header">
@@ -498,19 +510,6 @@ button{font-family:inherit;cursor:pointer;}
       </div>
       <div class="wc-prog-phases">
         <span>조별리그</span><span>32강</span><span>16강</span><span>8강</span><span>4강</span><span>결승</span>
-      </div>
-    </div>
-    <!-- News Ticker -->
-    <div class="wc-news-ticker">
-      <div class="ticker-track">
-        <div class="ticker-item"><span class="t-badge">속보</span> 손흥민, 2026 월드컵 최종 엔트리 확정 — 3회 연속 월드컵 출전</div>
-        <div class="ticker-item"><span class="t-badge">일정</span> 대한민국 조별리그 B조 배정 — 프랑스·포르투갈·멕시코와 격돌</div>
-        <div class="ticker-item"><span class="t-badge">이슈</span> FIFA, 48개국 확대 월드컵 첫 개최 — 미국·캐나다·멕시코 3국 공동 개최</div>
-        <div class="ticker-item"><span class="t-badge">FC온라인</span> 월드컵 기념 26WC 선수 카드 업데이트 예정</div>
-        <div class="ticker-item"><span class="t-badge">속보</span> 손흥민, 2026 월드컵 최종 엔트리 확정 — 3회 연속 월드컵 출전</div>
-        <div class="ticker-item"><span class="t-badge">일정</span> 대한민국 조별리그 B조 배정 — 프랑스·포르투갈·멕시코와 격돌</div>
-        <div class="ticker-item"><span class="t-badge">이슈</span> FIFA, 48개국 확대 월드컵 첫 개최 — 미국·캐나다·멕시코 3국 공동 개최</div>
-        <div class="ticker-item"><span class="t-badge">FC온라인</span> 월드컵 기념 26WC 선수 카드 업데이트 예정</div>
       </div>
     </div>
     <div class="match-scroll" id="match-scroll-new">
@@ -1340,18 +1339,19 @@ initObserver();
     </div>
     <div class="popup-body">
       <div class="mg-hook">🎁 프리킥 성공하면<br>스타터 패키지 100% 지급!</div>
+      <div class="mg-login-notice">⚠️ 로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.</div>
+      <div class="mg-auth-row" id="mg-auth-row">
+        <button class="mg-auth-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하기</button>
+        <button class="mg-auth-btn signup" onclick="alert('회원가입 페이지로 이동합니다.')">회원가입하기</button>
+      </div>
       <div class="mg-status" id="mg-status">골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!</div>
       <div class="mg-game-field" id="mg-field">
         <div class="goal-net"></div>
         <div class="mg-ball-kick" id="mg-ball"></div>
         <div class="mg-score-display" id="mg-score" style="display:none;">⚽ 0 / 1</div>
-        <span class="mg-hint" id="mg-hint" style="font-size:1rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--green),#00a060);padding:8px 24px;border-radius:50px;cursor:pointer;animation:hintPulse 1.5s ease-in-out infinite;box-shadow:0 0 20px rgba(0,200,117,0.4);">👆 터치하여 슛!</span>
+        <span class="mg-hint" id="mg-hint">터치하여 슛!</span>
       </div>
-      <div class="mg-login-notice" style="margin-top:0.8rem;">⚠️ 로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.</div>
-      <div class="mg-auth-row" id="mg-auth-row">
-        <button class="mg-auth-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하기</button>
-        <button class="mg-auth-btn signup" onclick="alert('회원가입 페이지로 이동합니다.')">회원가입하기</button>
-      </div>
+      <button class="mg-start-btn" id="mg-start-btn" onclick="startFreekick()">⚡ 프리킥 도전하기</button>
       <div class="mg-result" id="mg-result">
         <div class="result-icon">🏆</div>
         <div class="result-msg" id="mg-result-msg">프리킥 성공!</div>
@@ -1397,10 +1397,16 @@ initObserver();
 
   skipBtn.onclick=closePopup;
 
-  playing=true;
-  scoreEl.style.display='';
-  scoreEl.classList.add('show');
-  scoreEl.textContent='⚽ 0 / 1';
+  window.startFreekick=function(){
+    if(done)return;
+    playing=true;
+    startBtn.style.display='none';
+    scoreEl.style.display='';
+    scoreEl.classList.add('show');
+    hint.textContent='터치하여 슛!';
+    status.innerHTML='골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!';
+    scoreEl.textContent='⚽ 0 / 1';
+  };
 
   field.onclick=function(){
     if(!playing||done)return;
