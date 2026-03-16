@@ -235,6 +235,18 @@ button{font-family:inherit;cursor:pointer;}
 .mg-start-btn{padding:12px 36px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.9rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;}
 .mg-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
 .mg-hook{font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:6px;line-height:1.4;}
+.mg-login-layer{display:none;position:absolute;inset:0;z-index:20;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);border-radius:12px;align-items:center;justify-content:center;}
+.mg-login-layer.show{display:flex;}
+.mg-login-layer-inner{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.8rem 1.5rem;text-align:center;max-width:320px;width:90%;animation:popIn 0.25s ease;}
+.mg-login-layer-inner .ll-icon{font-size:1.8rem;margin-bottom:8px;}
+.mg-login-layer-inner .ll-msg{font-size:0.85rem;color:#fff;font-weight:700;line-height:1.5;margin-bottom:6px;}
+.mg-login-layer-inner .ll-sub{font-size:0.72rem;color:var(--text-dim);margin-bottom:1.2rem;}
+.mg-login-layer-inner .ll-btns{display:flex;gap:10px;justify-content:center;}
+.mg-login-layer-inner .ll-btn{flex:1;padding:10px 0;border-radius:50px;font-size:0.8rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;}
+.mg-login-layer-inner .ll-btn.login{background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;}
+.mg-login-layer-inner .ll-btn.login:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,120,255,0.3);}
+.mg-login-layer-inner .ll-btn.skip{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);}
+.mg-login-layer-inner .ll-btn.skip:hover{background:rgba(255,255,255,0.14);}
 .mg-login-notice{font-size:0.7rem;color:var(--accent2);font-weight:600;margin-bottom:12px;padding:6px 12px;background:rgba(229,36,59,0.08);border:1px solid rgba(229,36,59,0.15);border-radius:8px;display:inline-block;}
 .mg-auth-row{display:flex;gap:8px;justify-content:center;margin-bottom:1rem;}
 .mg-auth-btn{padding:8px 20px;border-radius:50px;font-size:0.75rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;}
@@ -1298,12 +1310,23 @@ initObserver();
     <div class="popup-body">
       <div class="mg-hook">🎁 프리킥 성공하면<br>스타터 패키지 100% 지급!</div>
       <div class="mg-status" id="mg-status">골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!</div>
-      <div class="mg-game-field" id="mg-field">
+      <div class="mg-game-field" id="mg-field" style="position:relative;">
         <div class="goal-net"></div>
         <div class="mg-ball-kick" id="mg-ball"></div>
         <div class="mg-ball-glow"></div>
         <div class="mg-score-display" id="mg-score">⚽ 0 / 1</div>
         <span class="mg-hint" id="mg-hint">👆 공을 터치하여 슛!</span>
+        <div class="mg-login-layer" id="mg-login-layer">
+          <div class="mg-login-layer-inner">
+            <div class="ll-icon">⚠️</div>
+            <div class="ll-msg">로그인 후 게임을 진행하셔야<br>보상 수령이 가능합니다.</div>
+            <div class="ll-sub">로그인 없이도 게임 플레이는 가능해요.</div>
+            <div class="ll-btns">
+              <button class="ll-btn login" id="ll-login-btn">로그인하기</button>
+              <button class="ll-btn skip" id="ll-skip-btn">그냥 진행하기</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="mg-result" id="mg-result">
         <div class="result-icon">🏆</div>
@@ -1356,14 +1379,25 @@ initObserver();
     },500);
   }
 
+  var loginLayer=document.getElementById('mg-login-layer');
+  var llLoginBtn=document.getElementById('ll-login-btn');
+  var llSkipBtn=document.getElementById('ll-skip-btn');
+
+  llLoginBtn.onclick=function(e){
+    e.stopPropagation();
+    alert('로그인 페이지로 이동합니다.');
+  };
+  llSkipBtn.onclick=function(e){
+    e.stopPropagation();
+    loginConfirmed=true;
+    loginLayer.classList.remove('show');
+  };
+
   field.onclick=function(){
     if(!playing||done)return;
     if(!loginConfirmed){
-      if(confirm('로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.\n\n[확인] 로그인하기\n[취소] 그냥 진행하기')){
-        alert('로그인 페이지로 이동합니다.');
-        return;
-      }
-      loginConfirmed=true;
+      loginLayer.classList.add('show');
+      return;
     }
     doKick();
   };
