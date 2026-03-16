@@ -198,6 +198,15 @@ button{font-family:inherit;cursor:pointer;}
 .mg-enter-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,120,255,0.35);}
 .mg-start-btn{padding:12px 36px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.9rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;}
 .mg-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
+
+/* Floating Start Banner */
+.floating-start{position:fixed;right:16px;bottom:24px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;cursor:pointer;animation:floatIn 0.5s ease;}
+@keyframes floatIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.floating-start .float-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#e5243b,#c0292e);border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(229,36,59,0.4);transition:transform 0.2s,box-shadow 0.2s;}
+.floating-start:hover .float-btn{transform:scale(1.1);box-shadow:0 6px 28px rgba(229,36,59,0.55);}
+.floating-start .float-btn svg{width:24px;height:24px;color:#fff;}
+.floating-start .float-label{font-size:0.6rem;font-weight:700;color:#fff;background:rgba(0,0,0,0.7);padding:3px 10px;border-radius:50px;white-space:nowrap;backdrop-filter:blur(4px);}
+@media(max-width:640px){.floating-start{right:12px;bottom:16px;}.floating-start .float-btn{width:48px;height:48px;}.floating-start .float-label{font-size:0.55rem;}}
 .mg-result{display:none;padding:1.5rem 0 0.5rem;text-align:center;}
 .mg-result.show{display:block;animation:popIn 0.3s ease;}
 .mg-result .result-icon{font-size:2.5rem;margin-bottom:8px;}
@@ -560,14 +569,6 @@ button{font-family:inherit;cursor:pointer;}
     </div>
   </div>
 
-  <!-- FC Online Start CTA -->
-  <div class="section" style="padding-top:0;padding-bottom:0;margin-bottom:0;">
-    <a class="cta-big red" href="#" onclick="alert('FC 온라인을 시작합니다!')" style="width:100%;max-width:none;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      FC 온라인 바로 시작하기
-    </a>
-  </div>
-
   <!-- Friend Recommendation -->
   <div class="friend-section section" id="friends">
     <div class="section-label">Friend Connect</div>
@@ -767,14 +768,6 @@ button{font-family:inherit;cursor:pointer;}
       <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드 — 4-1-2-3 포메이션, 총급여 254/275, 평균 OVR 132">
     </div>
     <button class="squad-receive-btn" onclick="alert('스쿼드가 지급되었습니다! 게임에서 확인하세요.')">🎁 월드컵 국대 스쿼드 받기</button>
-  </div>
-
-  <!-- FC Online Start CTA -->
-  <div class="section" style="padding-top:0;padding-bottom:0;margin-bottom:0;">
-    <a class="cta-big red" href="#" onclick="alert('FC 온라인을 시작합니다!')" style="width:100%;max-width:none;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      FC 온라인 바로 시작하기
-    </a>
   </div>
 
   <!-- Friend Recommendation (existing) -->
@@ -1110,6 +1103,14 @@ initObserver();
   enterBtn.onclick=closePopup;
 })();
 </script>
+
+<!-- Floating Start Banner -->
+<a class="floating-start" href="#" onclick="alert('FC 온라인을 시작합니다!')">
+  <div class="float-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/></svg>
+  </div>
+  <span class="float-label">FC 온라인 시작</span>
+</a>
 
 </body>
 </html>
