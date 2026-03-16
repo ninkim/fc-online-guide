@@ -126,11 +126,22 @@ button{font-family:inherit;cursor:pointer;}
 .wc-progress .wc-prog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
 .wc-progress .wc-prog-title{font-size:0.72rem;font-weight:700;color:#fff;}
 .wc-progress .wc-prog-date{font-size:0.6rem;color:var(--text-dim);}
-.wc-progress .wc-prog-bar{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;position:relative;}
+.wc-progress .wc-prog-bar{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:visible;position:relative;}
 .wc-progress .wc-prog-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent2),var(--gold));transition:width 0.5s ease;}
 .wc-progress .wc-prog-phases{display:flex;justify-content:space-between;margin-top:6px;}
 .wc-progress .wc-prog-phases span{font-size:0.55rem;color:var(--text-dim);}
 .wc-progress .wc-prog-phases span.current{color:var(--gold);font-weight:700;}
+.kr-match-dot{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:var(--accent2);border:2px solid #fff;transform:translate(-50%,-50%);cursor:pointer;z-index:2;box-shadow:0 0 6px rgba(229,36,59,0.5);transition:transform 0.2s;}
+.kr-match-dot:hover{transform:translate(-50%,-50%) scale(1.4);}
+.kr-match-dot .kr-flag{font-size:0.5rem;line-height:14px;text-align:center;}
+.kr-match-dot .kr-tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a2030;border:1px solid var(--border);border-radius:8px;padding:6px 10px;white-space:nowrap;font-size:0.6rem;color:#fff;opacity:0;pointer-events:none;transition:opacity 0.2s;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+.kr-match-dot .kr-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a2030;}
+.kr-match-dot:hover .kr-tooltip{opacity:1;}
+.kr-match-dot .kr-tooltip .tt-date{color:var(--gold);font-weight:700;margin-bottom:2px;}
+.kr-match-dot .kr-tooltip .tt-match{font-weight:600;}
+.kr-match-legend{display:flex;align-items:center;gap:4px;margin-top:2px;}
+.kr-match-legend .legend-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);border:1.5px solid #fff;}
+.kr-match-legend span{font-size:0.5rem;color:var(--text-dim);}
 
 /* Squad Section */
 .squad-section{background:linear-gradient(135deg,rgba(229,36,59,0.08),rgba(0,120,255,0.06));border:1px solid rgba(229,36,59,0.15);border-radius:20px;padding:3rem 2rem;text-align:center;margin:1rem 0 3rem;}
@@ -478,10 +489,16 @@ button{font-family:inherit;cursor:pointer;}
         <span class="wc-prog-title">🏟️ 2026 FIFA World Cup</span>
         <span class="wc-prog-date">6.11 (수) ~ 7.19 (토)</span>
       </div>
-      <div class="wc-prog-bar"><div class="wc-prog-fill" id="wc-prog-fill-new"></div></div>
+      <div class="wc-prog-bar">
+        <div class="wc-prog-fill" id="wc-prog-fill-new"></div>
+        <div class="kr-match-dot" style="left:2.6%;" title="6/12 vs 프랑스"><span class="kr-flag">🇰🇷</span><div class="kr-tooltip"><div class="tt-date">6월 12일 (목) 04:00</div><div class="tt-match">🇰🇷 대한민국 vs 🇫🇷 프랑스</div></div></div>
+        <div class="kr-match-dot" style="left:15.8%;" title="6/17 vs 포르투갈"><span class="kr-flag">🇰🇷</span><div class="kr-tooltip"><div class="tt-date">6월 17일 (화) 04:00</div><div class="tt-match">🇰🇷 대한민국 vs 🇵🇹 포르투갈</div></div></div>
+        <div class="kr-match-dot" style="left:28.9%;" title="6/22 vs 멕시코"><span class="kr-flag">🇰🇷</span><div class="kr-tooltip"><div class="tt-date">6월 22일 (일) 10:00</div><div class="tt-match">🇰🇷 대한민국 vs 🇲🇽 멕시코</div></div></div>
+      </div>
       <div class="wc-prog-phases">
         <span>조별리그</span><span>32강</span><span>16강</span><span>8강</span><span>4강</span><span>결승</span>
       </div>
+      <div class="kr-match-legend"><div class="legend-dot"></div><span>대한민국 경기</span></div>
     </div>
     <!-- News Ticker -->
     <div class="wc-news-ticker">
@@ -1017,10 +1034,16 @@ button{font-family:inherit;cursor:pointer;}
         <span class="wc-prog-title">🏟️ 2026 FIFA World Cup</span>
         <span class="wc-prog-date">6.11 (수) ~ 7.19 (토)</span>
       </div>
-      <div class="wc-prog-bar"><div class="wc-prog-fill" id="wc-prog-fill-ex"></div></div>
+      <div class="wc-prog-bar">
+        <div class="wc-prog-fill" id="wc-prog-fill-ex"></div>
+        <div class="kr-match-dot" style="left:2.6%;" title="6/12 vs 프랑스"><span class="kr-flag">🇰🇷</span><div class="kr-tooltip"><div class="tt-date">6월 12일 (목) 04:00</div><div class="tt-match">🇰🇷 대한민국 vs 🇫🇷 프랑스</div></div></div>
+        <div class="kr-match-dot" style="left:15.8%;" title="6/17 vs 포르투갈"><span class="kr-flag">🇰🇷</span><div class="kr-tooltip"><div class="tt-date">6월 17일 (화) 04:00</div><div class="tt-match">🇰🇷 대한민국 vs 🇵🇹 포르투갈</div></div></div>
+        <div class="kr-match-dot" style="left:28.9%;" title="6/22 vs 멕시코"><span class="kr-flag">🇰🇷</span><div class="kr-tooltip"><div class="tt-date">6월 22일 (일) 10:00</div><div class="tt-match">🇰🇷 대한민국 vs 🇲🇽 멕시코</div></div></div>
+      </div>
       <div class="wc-prog-phases">
         <span>조별리그</span><span>32강</span><span>16강</span><span>8강</span><span>4강</span><span>결승</span>
       </div>
+      <div class="kr-match-legend"><div class="legend-dot"></div><span>대한민국 경기</span></div>
     </div>
     <div class="wc-news-ticker">
       <div class="ticker-track">
