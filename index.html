@@ -1691,6 +1691,19 @@ tbody tr:last-child td { border-bottom: none; }
 .ctrl-key{padding:4px 10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:5px;font-size:0.8rem;font-weight:600;font-family:'Noto Sans KR',monospace;}
 .ctrl-key.pad{background:rgba(0,120,255,0.1);border-color:rgba(0,120,255,0.2);color:var(--accent);}
 .ctrl-tip-bar{margin-top:1rem;padding:10px 14px;background:rgba(0,120,255,0.06);border:1px solid rgba(0,120,255,0.12);border-radius:10px;font-size:0.8rem;color:var(--text-dim);}
+
+/* Player Scroll */
+.player-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin;}
+.player-scroll::-webkit-scrollbar{height:4px;}
+.player-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+.player-chip{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 10px 10px;background:var(--surface);border:1px solid var(--border);border-radius:12px;min-width:82px;transition:border-color 0.2s;position:relative;overflow:hidden;}
+.player-chip:hover{border-color:var(--accent);}
+.player-chip .p-img{width:60px;height:60px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,0.03);display:flex;align-items:flex-end;justify-content:center;}
+.player-chip .p-img img{width:100%;height:auto;object-fit:cover;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4));}
+.player-chip .p-img .p-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0.3;}
+.player-chip .p-ovr{font-size:0.8rem;font-weight:800;background:linear-gradient(135deg,var(--gold),#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:3px;}
+.player-chip .p-name{font-size:0.65rem;font-weight:600;text-align:center;white-space:nowrap;}
+.player-chip .p-pos{font-size:0.55rem;color:var(--text-dim);}
 </style>
 </head>
 <body>
@@ -1987,60 +2000,14 @@ tbody tr:last-child td { border-bottom: none; }
       </div>
     </div>
 
-    <h3 class="popular-section-title">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      최근 인기 선수 TOP 6
-    </h3>
-    <div class="popular-player-grid">
-      <div class="popular-player-card">
-        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p831200104.png" alt="손흥민">
-        <div class="pp-rank">#1</div>
-        <div class="pp-ovr tier-gold">126</div>
-        <div class="pp-name">손흥민</div>
-        <div class="pp-class">25TOTY</div>
-        <div class="pp-pos">LW</div>
-      </div>
-      <div class="popular-player-card">
-        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p831231747.png" alt="음바페">
-        <div class="pp-rank">#2</div>
-        <div class="pp-ovr tier-gold">128</div>
-        <div class="pp-name">음바페</div>
-        <div class="pp-class">25TOTY</div>
-        <div class="pp-pos">ST</div>
-      </div>
-      <div class="popular-player-card">
-        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p234001397.png" alt="지단">
-        <div class="pp-rank">#3</div>
-        <div class="pp-ovr tier-purple">125</div>
-        <div class="pp-name">지단</div>
-        <div class="pp-class">LH</div>
-        <div class="pp-pos">CAM</div>
-      </div>
-      <div class="popular-player-card">
-        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p831215914.png" alt="칸테">
-        <div class="pp-rank">#4</div>
-        <div class="pp-ovr tier-blue">124</div>
-        <div class="pp-name">칸테</div>
-        <div class="pp-class">25TOTY</div>
-        <div class="pp-pos">CDM</div>
-      </div>
-      <div class="popular-player-card">
-        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p832277643.png" alt="야말">
-        <div class="pp-rank">#5</div>
-        <div class="pp-ovr tier-blue">123</div>
-        <div class="pp-name">야말</div>
-        <div class="pp-class">25TY</div>
-        <div class="pp-pos">RW</div>
-      </div>
-      <div class="popular-player-card">
-        <img class="pp-img" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p234168473.png" alt="베켄바워">
-        <div class="pp-rank">#6</div>
-        <div class="pp-ovr tier-purple">126</div>
-        <div class="pp-name">베켄바워</div>
-        <div class="pp-class">LH</div>
-        <div class="pp-pos">CB</div>
-      </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem;flex-wrap:wrap;gap:8px;">
+      <h3 class="popular-section-title" style="margin-bottom:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        🔥 인기 선수 TOP 20
+      </h3>
+      <a href="https://fconline.nexon.com/datacenter/squadmaker" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:50px;font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);text-decoration:none;transition:all 0.2s;">🧩 스쿼드 메이커 →</a>
     </div>
+    <div class="player-scroll" id="popular-player-scroll"></div>
 
     <h3 class="shorts-section-title">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
@@ -2540,6 +2507,39 @@ tbody tr:last-child td { border-bottom: none; }
 
 <script>
 // FC Online game launch via NGM protocol (same as official site)
+const PP_CDN='https://fco.dn.nexoncdn.co.kr/live/externalAssets/common';
+const TOP20=[
+  {n:'루시우',ovr:115,pos:'CB',spid:'825107715'},
+  {n:'카르바할',ovr:115,pos:'RB',spid:'825204963'},
+  {n:'A.로버트슨',ovr:113,pos:'LB',spid:'825216267'},
+  {n:'호베르투 카를루스',ovr:115,pos:'LB',spid:'825001040'},
+  {n:'야야 투레',ovr:114,pos:'CDM',spid:'825020289'},
+  {n:'리스 제임스',ovr:112,pos:'RWB',spid:'825238074'},
+  {n:'주앙 칸셀루',ovr:111,pos:'RB',spid:'260210514'},
+  {n:'페를랑 멘디',ovr:112,pos:'LB',spid:'825228618'},
+  {n:'F.레이카르트',ovr:115,pos:'CDM',spid:'825214098'},
+  {n:'H.사네티',ovr:114,pos:'LB',spid:'825001041'},
+  {n:'에데르 밀리탕',ovr:113,pos:'CB',spid:'825240130'},
+  {n:'A.뤼디거',ovr:113,pos:'CB',spid:'825205452'},
+  {n:'아놀드',ovr:113,pos:'RB',spid:'825231281'},
+  {n:'B.파바르',ovr:112,pos:'RB',spid:'260226851'},
+  {n:'F.리베리',ovr:114,pos:'LW',spid:'825156616'},
+  {n:'조르디 알바',ovr:113,pos:'LB',spid:'825189332'},
+  {n:'로드리',ovr:114,pos:'CDM',spid:'825231866'},
+  {n:'R.카르발류',ovr:114,pos:'CB',spid:'825003622'},
+  {n:'펠레',ovr:114,pos:'CF',spid:'802190043'},
+  {n:'L.마테우스',ovr:117,pos:'CM',spid:'829191189'}
+];
+(function(){
+  const el=document.getElementById('popular-player-scroll');
+  if(!el)return;
+  el.innerHTML=TOP20.map(p=>{
+    const action=`${PP_CDN}/playersAction/p${p.spid}.png`;
+    const face=`${PP_CDN}/players/p${p.spid}.png`;
+    return `<div class="player-chip"><div class="p-img"><img src="${action}" alt="${p.n}" loading="lazy" onerror="this.onerror=()=>{this.parentElement.innerHTML='<div class=p-placeholder>⚽</div>'};this.src='${face}'"></div><span class="p-ovr">${p.ovr}</span><span class="p-name">${p.n}</span><span class="p-pos">${p.pos}</span></div>`;
+  }).join('');
+})();
+
 function switchCtrlMain(type){
   document.querySelectorAll('.ctrl-tab').forEach(t=>t.classList.toggle('active',t.dataset.ctrl===type));
   document.getElementById('ctrl-kb').style.display=type==='kb'?'':'none';
