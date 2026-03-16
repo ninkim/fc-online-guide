@@ -147,21 +147,38 @@ button{font-family:inherit;cursor:pointer;}
 .minigame-banner .mg-text p{font-size:0.68rem;color:var(--text-dim);margin:0;}
 .minigame-banner .mg-play{flex:0 0 auto;padding:8px 18px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.72rem;font-weight:700;border:none;border-radius:50px;pointer-events:none;animation:glowPulse 2s ease-in-out infinite;}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 8px rgba(0,200,117,0.3);}50%{box-shadow:0 0 20px rgba(0,200,117,0.6);}}
-.minigame-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;}
+.minigame-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;}
 .minigame-popup-overlay.active{display:flex;}
-.minigame-popup{background:#0d1520;border:1px solid var(--border);border-radius:20px;width:90%;max-width:600px;max-height:80vh;overflow:hidden;position:relative;animation:popIn 0.25s ease;}
+.minigame-popup{background:#0d1520;border:1px solid var(--border);border-radius:20px;width:90%;max-width:520px;overflow:hidden;position:relative;animation:popIn 0.3s ease;}
 @keyframes popIn{from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}
-.minigame-popup .popup-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);}
+.minigame-popup .popup-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);}
 .minigame-popup .popup-header h3{font-size:0.95rem;font-weight:700;}
 .minigame-popup .popup-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:transparent;color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;}
 .minigame-popup .popup-close:hover{background:rgba(255,255,255,0.1);}
-.minigame-popup .popup-body{padding:2rem;text-align:center;}
-.minigame-popup .popup-body .game-area{aspect-ratio:16/9;background:linear-gradient(180deg,#0a1628,#162236);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;margin-bottom:1.5rem;position:relative;overflow:hidden;}
-.minigame-popup .popup-body .game-area .goal-net{width:50%;height:60%;border:2px solid rgba(255,255,255,0.1);border-bottom:none;border-radius:8px 8px 0 0;position:relative;}
-.minigame-popup .popup-body .game-area .goal-net::before{content:'';position:absolute;inset:4px;inset-bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 19px),repeating-linear-gradient(0deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 19px);}
-.minigame-popup .popup-body .game-area .ball{width:28px;height:28px;background:radial-gradient(circle at 35% 35%,#fff,#ccc);border-radius:50%;box-shadow:0 3px 10px rgba(0,0,0,0.4);animation:ballPulse 1.8s ease-in-out infinite;}
-.minigame-popup .popup-body .game-start-btn{padding:12px 36px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.9rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;}
-.minigame-popup .popup-body .game-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
+.minigame-popup .popup-body{padding:1.5rem;text-align:center;}
+.mg-game-field{aspect-ratio:16/9;background:linear-gradient(180deg,#0a1628,#162236);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;margin-bottom:1.2rem;position:relative;overflow:hidden;cursor:pointer;user-select:none;}
+.mg-game-field .goal-net{width:50%;height:55%;border:2px solid rgba(255,255,255,0.1);border-bottom:none;border-radius:8px 8px 0 0;position:relative;}
+.mg-game-field .goal-net::before{content:'';position:absolute;inset:4px;inset-bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 19px),repeating-linear-gradient(0deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 19px);}
+.mg-game-field .mg-ball-kick{width:30px;height:30px;background:radial-gradient(circle at 35% 35%,#fff,#ccc);border-radius:50%;box-shadow:0 3px 10px rgba(0,0,0,0.4);position:absolute;bottom:10%;left:50%;transform:translateX(-50%);transition:all 0.4s ease;}
+.mg-game-field .mg-ball-kick.kicked{bottom:55%;animation:kickGoal 0.5s ease forwards;}
+@keyframes kickGoal{0%{bottom:10%;transform:translateX(-50%) scale(1);}60%{bottom:55%;transform:translateX(-50%) scale(0.85);}100%{bottom:52%;transform:translateX(-50%) scale(0.8);}}
+.mg-game-field .mg-score-display{position:absolute;top:10px;right:14px;font-size:0.72rem;font-weight:700;color:var(--gold);opacity:0;transition:opacity 0.3s;}
+.mg-game-field .mg-score-display.show{opacity:1;}
+.mg-game-field .mg-hint{font-size:0.7rem;color:var(--text-dim);position:absolute;bottom:8px;}
+.mg-progress-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-bottom:1rem;}
+.mg-progress-bar .mg-prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),#40e89a);transition:width 0.3s ease;width:0%;}
+.mg-status{font-size:0.78rem;color:var(--text-dim);margin-bottom:1rem;}
+.mg-status strong{color:#fff;}
+.mg-enter-btn{padding:12px 36px;background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;font-size:0.9rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;display:none;}
+.mg-enter-btn.show{display:inline-block;animation:popIn 0.3s ease;}
+.mg-enter-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,120,255,0.35);}
+.mg-start-btn{padding:12px 36px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.9rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;}
+.mg-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
+.mg-result{display:none;padding:1.5rem 0 0.5rem;text-align:center;}
+.mg-result.show{display:block;animation:popIn 0.3s ease;}
+.mg-result .result-icon{font-size:2.5rem;margin-bottom:8px;}
+.mg-result .result-msg{font-size:1rem;font-weight:800;margin-bottom:4px;}
+.mg-result .result-sub{font-size:0.75rem;color:var(--text-dim);margin-bottom:1rem;}
 
 /* Friend Recommendation */
 .friend-section{margin:3rem 0;padding-bottom:4rem;}
@@ -976,22 +993,101 @@ initObserver();
 </script>
 
 <!-- Minigame Popup -->
-<div class="minigame-popup-overlay" id="minigame-popup" onclick="if(event.target===this)this.classList.remove('active')">
+<div class="minigame-popup-overlay" id="minigame-popup">
   <div class="minigame-popup">
     <div class="popup-header">
       <h3>🎯 프리킥 챌린지</h3>
-      <button class="popup-close" onclick="document.getElementById('minigame-popup').classList.remove('active')">✕</button>
+      <button class="popup-close" id="mg-skip-btn" style="font-size:0.65rem;width:auto;padding:0 12px;border-radius:50px;height:28px;">건너뛰기</button>
     </div>
     <div class="popup-body">
-      <div class="game-area">
+      <div class="mg-status" id="mg-status">골대를 향해 <strong>5번</strong> 프리킥을 차세요!</div>
+      <div class="mg-game-field" id="mg-field">
         <div class="goal-net"></div>
-        <div class="ball"></div>
-        <span style="font-size:0.72rem;color:var(--text-dim);margin-top:6px;">골대를 향해 프리킥을 차세요!</span>
+        <div class="mg-ball-kick" id="mg-ball"></div>
+        <div class="mg-score-display" id="mg-score">⚽ 0 / 5</div>
+        <span class="mg-hint" id="mg-hint">터치하여 슛!</span>
       </div>
-      <button class="game-start-btn" onclick="alert('프리킥 챌린지를 시작합니다!')">⚡ 게임 시작하기</button>
+      <div class="mg-progress-bar"><div class="mg-prog-fill" id="mg-prog"></div></div>
+      <button class="mg-start-btn" id="mg-start-btn" onclick="startFreekick()">⚡ 게임 시작하기</button>
+      <div class="mg-result" id="mg-result">
+        <div class="result-icon">🏆</div>
+        <div class="result-msg" id="mg-result-msg">챌린지 완료!</div>
+        <div class="result-sub">26WC 선수팩이 지급되었습니다!</div>
+      </div>
+      <button class="mg-enter-btn" id="mg-enter-btn">🎉 이벤트 페이지 입장하기</button>
     </div>
   </div>
 </div>
+<script>
+(function(){
+  const overlay=document.getElementById('minigame-popup');
+  const field=document.getElementById('mg-field');
+  const ball=document.getElementById('mg-ball');
+  const scoreEl=document.getElementById('mg-score');
+  const prog=document.getElementById('mg-prog');
+  const hint=document.getElementById('mg-hint');
+  const status=document.getElementById('mg-status');
+  const startBtn=document.getElementById('mg-start-btn');
+  const result=document.getElementById('mg-result');
+  const enterBtn=document.getElementById('mg-enter-btn');
+  const skipBtn=document.getElementById('mg-skip-btn');
+  const resultMsg=document.getElementById('mg-result-msg');
+  const GOAL=5;
+  let score=0,playing=false;
+
+  if(!sessionStorage.getItem('mg_done')){
+    overlay.classList.add('active');
+    document.body.style.overflow='hidden';
+  }
+
+  function closePopup(){
+    overlay.classList.remove('active');
+    document.body.style.overflow='';
+    sessionStorage.setItem('mg_done','1');
+  }
+
+  skipBtn.onclick=closePopup;
+
+  window.startFreekick=function(){
+    score=0;playing=true;
+    startBtn.style.display='none';
+    scoreEl.classList.add('show');
+    hint.textContent='터치하여 슛!';
+    status.innerHTML='골대를 향해 <strong>'+GOAL+'번</strong> 프리킥을 차세요!';
+    updateUI();
+  };
+
+  function updateUI(){
+    scoreEl.textContent='⚽ '+score+' / '+GOAL;
+    prog.style.width=(score/GOAL*100)+'%';
+  }
+
+  field.onclick=function(){
+    if(!playing)return;
+    ball.classList.add('kicked');
+    hint.textContent='';
+    setTimeout(()=>{
+      score++;
+      updateUI();
+      ball.classList.remove('kicked');
+      if(score>=GOAL){
+        playing=false;
+        field.style.pointerEvents='none';
+        hint.textContent='';
+        status.innerHTML='<strong style="color:var(--green);">챌린지 완료! 🎉</strong>';
+        result.classList.add('show');
+        enterBtn.classList.add('show');
+        const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
+        resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
+      } else {
+        hint.textContent='다시 터치!';
+      }
+    },500);
+  };
+
+  enterBtn.onclick=closePopup;
+})();
+</script>
 
 </body>
 </html>
