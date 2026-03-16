@@ -200,13 +200,21 @@ button{font-family:inherit;cursor:pointer;}
 .mg-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
 
 /* Floating Start Banner */
-.floating-start{position:fixed;right:16px;top:80px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;cursor:pointer;animation:floatIn 0.5s ease;}
+.floating-right-panel{position:fixed;right:16px;top:80px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:12px;animation:floatIn 0.5s ease;}
+.floating-start{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;cursor:pointer;}
 @keyframes floatIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .floating-start .float-btn{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#e5243b,#c0292e);border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(229,36,59,0.4);transition:transform 0.2s,box-shadow 0.2s;}
 .floating-start:hover .float-btn{transform:scale(1.1);box-shadow:0 6px 28px rgba(229,36,59,0.55);}
 .floating-start .float-btn svg{width:36px;height:36px;color:#fff;}
 .floating-start .float-label{font-size:0.8rem;font-weight:700;color:#fff;background:rgba(0,0,0,0.7);padding:5px 14px;border-radius:50px;white-space:nowrap;backdrop-filter:blur(4px);}
-@media(max-width:640px){.floating-start{right:12px;top:72px;}.floating-start .float-btn{width:72px;height:72px;}.floating-start .float-label{font-size:0.72rem;}}
+.floating-mg{cursor:pointer;}
+.floating-mg .hero-mg-card{width:84px;aspect-ratio:2/3;}
+.floating-mg .mg-card-scene{height:44px;}
+.floating-mg .kicker-body{transform:scale(0.65);transform-origin:bottom center;}
+.floating-mg .mg-card-ball-anim{width:12px;height:12px;}
+.floating-mg .mg-card-title{font-size:0.5rem;}
+.floating-mg .mg-card-play{padding:3px 8px;font-size:0.45rem;}
+@media(max-width:640px){.floating-right-panel{right:12px;top:72px;}.floating-start .float-btn{width:72px;height:72px;}.floating-start .float-label{font-size:0.72rem;}.floating-mg .hero-mg-card{width:70px;}.floating-mg .mg-card-scene{height:36px;}}
 .floating-top{position:fixed;right:16px;bottom:24px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .floating-top.show{opacity:1;pointer-events:auto;}
 .floating-top .top-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:background 0.2s,transform 0.2s;}
@@ -342,22 +350,6 @@ button{font-family:inherit;cursor:pointer;}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           월드컵 국가 대표 스쿼드 받으러 가기
         </button>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-mg-card" onclick="document.getElementById('minigame-popup').classList.add('active')">
-        <div class="mg-card-scene">
-          <div class="mg-kicker"><div class="kicker-body">
-            <div class="kicker-head"></div>
-            <div class="kicker-torso"></div>
-            <div class="kicker-arm-l"></div><div class="kicker-arm-r"></div>
-            <div class="kicker-leg-l"><div class="kicker-foot-l"></div></div>
-            <div class="kicker-leg-r"><div class="kicker-foot-r"></div></div>
-          </div></div>
-          <div class="mg-card-ball-anim"></div>
-        </div>
-        <div class="mg-card-title">🎯 프리킥 챌린지</div>
-        <span class="mg-card-play">PLAY →</span>
       </div>
     </div>
   </div>
@@ -1152,13 +1144,31 @@ initObserver();
   <span class="top-label">TOP</span>
 </div>
 
-<!-- Floating Start Banner -->
-<a class="floating-start" href="#" onclick="alert('FC 온라인을 시작합니다!')">
-  <div class="float-btn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/></svg>
+<!-- Floating Right Panel -->
+<div class="floating-right-panel">
+  <a class="floating-start" href="#" onclick="alert('FC 온라인을 시작합니다!')">
+    <div class="float-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/></svg>
+    </div>
+    <span class="float-label">FC 온라인 시작</span>
+  </a>
+  <div class="floating-mg" onclick="document.getElementById('minigame-popup').classList.add('active')">
+    <div class="hero-mg-card">
+      <div class="mg-card-scene">
+        <div class="mg-kicker"><div class="kicker-body">
+          <div class="kicker-head"></div>
+          <div class="kicker-torso"></div>
+          <div class="kicker-arm-l"></div><div class="kicker-arm-r"></div>
+          <div class="kicker-leg-l"><div class="kicker-foot-l"></div></div>
+          <div class="kicker-leg-r"><div class="kicker-foot-r"></div></div>
+        </div></div>
+        <div class="mg-card-ball-anim"></div>
+      </div>
+      <div class="mg-card-title">🎯 프리킥</div>
+      <span class="mg-card-play">PLAY</span>
+    </div>
   </div>
-  <span class="float-label">FC 온라인 시작</span>
-</a>
+</div>
 <script>
 window.addEventListener('scroll',()=>{
   document.getElementById('floating-top').classList.toggle('show',window.scrollY>400);
