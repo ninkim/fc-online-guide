@@ -50,27 +50,27 @@ button{font-family:inherit;cursor:pointer;}
 .hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:2rem;}
 .hero-left{flex:1;text-align:center;}
 .hero-right{flex:0 0 auto;}
-.hero-mg-card{width:180px;aspect-ratio:2/3;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#0a1628 0%,#162236 50%,#1a3a20 100%);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:border-color 0.2s,transform 0.15s;text-decoration:none;position:relative;}
+.hero-mg-card{width:120px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#0a1628 0%,#162236 50%,#1a3a20 100%);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;transition:border-color 0.2s,transform 0.15s;text-decoration:none;position:relative;}
 .hero-mg-card:hover{border-color:var(--green);transform:translateY(-3px);}
-.hero-mg-card .mg-card-scene{position:relative;width:100%;height:100px;display:flex;align-items:flex-end;justify-content:center;}
+.hero-mg-card .mg-card-scene{position:relative;width:100%;height:66px;display:flex;align-items:flex-end;justify-content:center;}
 .mg-kicker{position:absolute;bottom:8px;left:50%;transform:translateX(-70%);font-size:0;line-height:1;}
-.mg-kicker .kicker-body{display:block;position:relative;width:48px;height:68px;}
-.mg-kicker .kicker-head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:18px;background:radial-gradient(circle at 40% 35%,#fdd,#d99);border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.3);}
-.mg-kicker .kicker-torso{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:20px;height:22px;background:linear-gradient(180deg,#e53c3c,#c0292e);border-radius:4px 4px 2px 2px;}
-.mg-kicker .kicker-arm-l,.mg-kicker .kicker-arm-r{position:absolute;top:18px;width:6px;height:18px;background:#c0292e;border-radius:3px;}
-.mg-kicker .kicker-arm-l{left:5px;transform:rotate(15deg);}
-.mg-kicker .kicker-arm-r{right:5px;transform:rotate(-15deg);}
-.mg-kicker .kicker-leg-l{position:absolute;bottom:0;left:12px;width:7px;height:22px;background:#1a2744;border-radius:3px;transform-origin:top center;}
-.mg-kicker .kicker-leg-r{position:absolute;bottom:0;right:12px;width:7px;height:22px;background:#1a2744;border-radius:3px;transform-origin:top center;animation:kickLeg 1.6s ease-in-out infinite;}
+.mg-kicker .kicker-body{display:block;position:relative;width:32px;height:46px;}
+.mg-kicker .kicker-head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:12px;height:12px;background:radial-gradient(circle at 40% 35%,#fdd,#d99);border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.3);}
+.mg-kicker .kicker-torso{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:14px;height:15px;background:linear-gradient(180deg,#e53c3c,#c0292e);border-radius:4px 4px 2px 2px;}
+.mg-kicker .kicker-arm-l,.mg-kicker .kicker-arm-r{position:absolute;top:12px;width:4px;height:12px;background:#c0292e;border-radius:3px;}
+.mg-kicker .kicker-arm-l{left:3px;transform:rotate(15deg);}
+.mg-kicker .kicker-arm-r{right:3px;transform:rotate(-15deg);}
+.mg-kicker .kicker-leg-l{position:absolute;bottom:0;left:8px;width:5px;height:15px;background:#1a2744;border-radius:3px;transform-origin:top center;}
+.mg-kicker .kicker-leg-r{position:absolute;bottom:0;right:8px;width:5px;height:15px;background:#1a2744;border-radius:3px;transform-origin:top center;animation:kickLeg 1.6s ease-in-out infinite;}
 @keyframes kickLeg{0%,100%{transform:rotate(0deg);}40%{transform:rotate(-35deg);}55%{transform:rotate(30deg);}70%{transform:rotate(0deg);}}
-.mg-kicker .kicker-foot-l,.mg-kicker .kicker-foot-r{position:absolute;bottom:-2px;width:10px;height:5px;background:#222;border-radius:2px;}
-.mg-kicker .kicker-foot-l{left:10px;}
-.mg-kicker .kicker-foot-r{right:9px;}
-.mg-card-ball-anim{position:absolute;bottom:12px;right:22%;width:22px;height:22px;background:radial-gradient(circle at 35% 35%,#fff,#ccc);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4);animation:ballFloat 1.6s ease-in-out infinite;}
+.mg-kicker .kicker-foot-l,.mg-kicker .kicker-foot-r{position:absolute;bottom:-2px;width:7px;height:4px;background:#222;border-radius:2px;}
+.mg-kicker .kicker-foot-l{left:6px;}
+.mg-kicker .kicker-foot-r{right:6px;}
+.mg-card-ball-anim{position:absolute;bottom:8px;right:22%;width:15px;height:15px;background:radial-gradient(circle at 35% 35%,#fff,#ccc);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4);animation:ballFloat 1.6s ease-in-out infinite;}
 @keyframes ballFloat{0%,100%{transform:translateY(0) scale(1);}40%{transform:translateY(-18px) scale(0.9);}55%{transform:translateY(-30px) scale(0.85);}70%{transform:translateY(-10px) scale(0.95);}}
-.hero-mg-card .mg-card-title{font-size:0.88rem;font-weight:800;color:#fff;text-align:center;line-height:1.3;}
-.hero-mg-card .mg-card-play{padding:7px 18px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.75rem;font-weight:700;border:none;border-radius:50px;pointer-events:none;animation:glowPulse 2s ease-in-out infinite;}
-@media(max-width:640px){.hero-content{flex-direction:column;gap:1rem;}.hero-right{order:-1;}.hero-mg-card{width:150px;}}
+.hero-mg-card .mg-card-title{font-size:0.62rem;font-weight:800;color:#fff;text-align:center;line-height:1.3;}
+.hero-mg-card .mg-card-play{padding:5px 12px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.55rem;font-weight:700;border:none;border-radius:50px;pointer-events:none;animation:glowPulse 2s ease-in-out infinite;}
+@media(max-width:640px){.hero-content{flex-direction:column;gap:1rem;}.hero-right{order:-1;}.hero-mg-card{width:100px;}}
 
 .hero-date{display:inline-block;padding:5px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:50px;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;}
 .hero h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:0.5rem;}
