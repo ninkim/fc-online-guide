@@ -291,6 +291,7 @@ button{font-family:inherit;cursor:pointer;}
 .mg-result .result-icon{font-size:2.5rem;margin-bottom:8px;}
 .mg-result .result-msg{font-size:1rem;font-weight:800;margin-bottom:4px;}
 .mg-result .result-sub{font-size:0.75rem;color:var(--text-dim);margin-bottom:1rem;}
+.mg-result-btns{display:flex;gap:10px;justify-content:center;margin-top:0.5rem;}
 
 /* Friend Recommendation */
 .friend-section{margin:3rem 0;padding-bottom:4rem;}
@@ -1331,7 +1332,11 @@ initObserver();
       <div class="mg-result" id="mg-result">
         <div class="result-icon">🏆</div>
         <div class="result-msg" id="mg-result-msg">프리킥 성공!</div>
-        <div class="result-sub">스타터 패키지가 지급 예정입니다!</div>
+        <div class="result-sub">로그인 후 구단주를 생성하면 스타터 패키지 바로 지급!</div>
+        <div class="mg-result-btns">
+          <button class="ll-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하고 보상 받기</button>
+          <button class="ll-btn skip" id="mg-download-btn2">게임 다운로드하기</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1375,9 +1380,15 @@ initObserver();
       result.classList.add('show');
       const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
       resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
-      setTimeout(closePopup,2000);
     },500);
   }
+
+  document.getElementById('mg-download-btn2').onclick=function(){
+    if(confirm('클라이언트를 다운로드합니다.\n플레이 방법을 확인해보세요!')){
+      window.open('https://ninkim.github.io/fc-online-guide/#play','_blank');
+    }
+    closePopup();
+  };
 
   var loginLayer=document.getElementById('mg-login-layer');
   var llLoginBtn=document.getElementById('ll-login-btn');
