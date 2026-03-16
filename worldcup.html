@@ -1305,11 +1305,6 @@ initObserver();
         <div class="mg-score-display" id="mg-score">⚽ 0 / 1</div>
         <span class="mg-hint" id="mg-hint">👆 공을 터치하여 슛!</span>
       </div>
-      <div class="mg-login-notice">⚠️ 로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.</div>
-      <div class="mg-auth-row" id="mg-auth-row">
-        <button class="mg-auth-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하기</button>
-        <button class="mg-auth-btn signup" onclick="alert('회원가입 페이지로 이동합니다.')">회원가입하기</button>
-      </div>
       <div class="mg-result" id="mg-result">
         <div class="result-icon">🏆</div>
         <div class="result-msg" id="mg-result-msg">프리킥 성공!</div>
@@ -1339,7 +1334,7 @@ initObserver();
   const resultMsg=document.getElementById('mg-result-msg');
   const rewardBtns=document.getElementById('mg-reward-btns');
   const downloadBtn=document.getElementById('mg-download-btn');
-  let playing=true,done=false;
+  let playing=true,done=false,loginConfirmed=false;
 
   if(!sessionStorage.getItem('mg_done')){
     overlay.classList.add('active');
@@ -1354,8 +1349,7 @@ initObserver();
 
   skipBtn.onclick=closePopup;
 
-  field.onclick=function(){
-    if(!playing||done)return;
+  function doKick(){
     ball.classList.add('kicked');
     var glow=document.querySelector('.mg-ball-glow');if(glow)glow.style.display='none';
     hint.textContent='';
@@ -1370,6 +1364,18 @@ initObserver();
       const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
       resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
     },500);
+  }
+
+  field.onclick=function(){
+    if(!playing||done)return;
+    if(!loginConfirmed){
+      if(confirm('로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.\n\n[확인] 로그인하기\n[취소] 그냥 진행하기')){
+        alert('로그인 페이지로 이동합니다.');
+        return;
+      }
+      loginConfirmed=true;
+    }
+    doKick();
   };
 
   downloadBtn.onclick=function(){
