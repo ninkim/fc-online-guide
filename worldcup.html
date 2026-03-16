@@ -93,11 +93,11 @@ button{font-family:inherit;cursor:pointer;}
 .section-desc{color:var(--text-dim);font-size:0.9rem;margin-bottom:2rem;}
 
 /* Match Schedule */
-.match-schedule{padding:2rem 0 1rem;border-bottom:1px solid var(--border);}
-.match-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin;}
+.match-schedule{padding:1rem 0 0.5rem;border-bottom:1px solid var(--border);}
+.match-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;}
 .match-scroll::-webkit-scrollbar{height:4px;}
 .match-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
-.match-card{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;min-width:180px;transition:border-color 0.2s;display:flex;flex-direction:column;gap:5px;}
+.match-card{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 12px;min-width:170px;transition:border-color 0.2s;display:flex;flex-direction:column;gap:3px;}
 .match-card:hover{border-color:var(--accent);}
 .match-card.live{border-color:var(--accent2);position:relative;}
 .match-card.live::after{content:'LIVE';position:absolute;top:8px;right:8px;font-size:0.6rem;font-weight:700;color:#fff;background:var(--accent2);padding:2px 6px;border-radius:4px;animation:pulse 1.5s infinite;}
@@ -108,7 +108,7 @@ button{font-family:inherit;cursor:pointer;}
 .match-time{font-size:0.65rem;color:var(--gold);}
 .match-predict{padding:4px 12px;background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;font-size:0.65rem;font-weight:600;border:none;border-radius:50px;transition:all 0.2s;align-self:flex-start;margin-top:auto;}
 .match-predict:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,120,255,0.35);}
-.match-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem;flex-wrap:wrap;gap:8px;}
+.match-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem;flex-wrap:wrap;gap:6px;}
 .match-card.korea{border-color:var(--accent2);background:linear-gradient(135deg,rgba(229,36,59,0.08),var(--surface));}
 .match-card.korea .match-teams{color:var(--gold);}
 .match-card.korea::before{content:'🇰🇷';position:absolute;top:8px;right:8px;font-size:0.7rem;}
@@ -117,12 +117,12 @@ button{font-family:inherit;cursor:pointer;}
 .match-filter-btn.active{background:var(--accent2);border-color:var(--accent2);color:#fff;}
 .match-filter-btn:hover{background:rgba(255,255,255,0.1);}
 .match-filter-btn.active:hover{background:#c0292e;}
-.wc-news-ticker{margin-top:10px;padding:8px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;height:28px;}
+.wc-news-ticker{margin-top:6px;padding:6px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;height:24px;}
 .wc-news-ticker .ticker-track{display:flex;gap:60px;animation:tickerScroll 30s linear infinite;white-space:nowrap;position:absolute;top:50%;transform:translateY(-50%);}
 .wc-news-ticker .ticker-item{font-size:0.68rem;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
 .wc-news-ticker .ticker-item .t-badge{padding:2px 6px;background:var(--accent2);color:#fff;font-size:0.55rem;font-weight:700;border-radius:4px;flex-shrink:0;}
 @keyframes tickerScroll{0%{transform:translateY(-50%) translateX(0);}100%{transform:translateY(-50%) translateX(-50%);}}
-.wc-progress{margin:1.5rem 0 0.5rem;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px;}
+.wc-progress{margin:0.8rem 0 0.4rem;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;}
 .wc-progress .wc-prog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
 .wc-progress .wc-prog-title{font-size:0.72rem;font-weight:700;color:#fff;}
 .wc-progress .wc-prog-date{font-size:0.6rem;color:var(--text-dim);}
@@ -486,7 +486,7 @@ button{font-family:inherit;cursor:pointer;}
     <!-- World Cup Progress -->
     <div class="wc-progress" id="wc-progress-new">
       <div class="wc-prog-header">
-        <div><span class="wc-prog-title">🏟️ 2026 FIFA World Cup</span><br><span class="wc-prog-date">6.11 (수) ~ 7.19 (토)</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="wc-prog-title">🏟️ 2026 FIFA World Cup</span><span class="wc-prog-date">6.11 (수) ~ 7.19 (토)</span></div>
         <div class="kr-match-legend"><div class="legend-dot"></div><span>🇰🇷 대한민국 경기</span></div>
       </div>
       <div class="wc-prog-bar">
@@ -854,7 +854,7 @@ button{font-family:inherit;cursor:pointer;}
     </div>
     <div class="wc-progress" id="wc-progress-ex">
       <div class="wc-prog-header">
-        <div><span class="wc-prog-title">🏟️ 2026 FIFA World Cup</span><br><span class="wc-prog-date">6.11 (수) ~ 7.19 (토)</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="wc-prog-title">🏟️ 2026 FIFA World Cup</span><span class="wc-prog-date">6.11 (수) ~ 7.19 (토)</span></div>
         <div class="kr-match-legend"><div class="legend-dot"></div><span>🇰🇷 대한민국 경기</span></div>
       </div>
       <div class="wc-prog-bar">
