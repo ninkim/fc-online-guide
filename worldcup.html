@@ -282,6 +282,8 @@ button{font-family:inherit;cursor:pointer;}
 .datachart-link{display:flex;justify-content:center;margin-top:1.5rem;}
 .datachart-link a{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:50px;font-size:0.82rem;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);transition:all 0.2s;}
 .datachart-link a:hover{background:rgba(255,255,255,0.1);border-color:var(--accent);color:var(--accent);}
+.datachart-title-link{display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:50px;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);text-decoration:none;transition:all 0.2s;white-space:nowrap;}
+.datachart-title-link:hover{background:rgba(255,255,255,0.1);border-color:var(--accent);color:var(--accent);}
 @media(max-width:768px){.datachart-grid{grid-template-columns:1fr;}}
 
 /* Footer */
@@ -531,7 +533,10 @@ button{font-family:inherit;cursor:pointer;}
   <!-- Data Chart -->
   <div class="datachart section" style="padding-top:1rem;">
     <div class="section-label">Daily Chart</div>
-    <div class="section-title">📊 지금 FC 온라인 트렌드는?</div>
+    <div class="section-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>📊 지금 FC 온라인 트렌드는?</span>
+      <a href="https://fconline.nexon.com/datacenter/dailysquad" target="_blank" class="datachart-title-link">📈 데일리차트 바로가기 →</a>
+    </div>
     <div class="section-desc">데이터센터 데일리 차트 기준 · 공식 경기 1 ON 1 Top 랭커</div>
     <div class="datachart-grid">
       <div class="datachart-card">
@@ -563,9 +568,6 @@ button{font-family:inherit;cursor:pointer;}
     <div class="popular-players">
       <h4>🔥 인기 선수 TOP 20</h4>
       <div class="player-scroll" id="player-scroll-new"></div>
-    </div>
-    <div class="datachart-link">
-      <a href="https://fconline.nexon.com/datacenter/dailysquad" target="_blank">📈 데일리차트 바로가기 →</a>
     </div>
   </div>
 
