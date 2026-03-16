@@ -667,82 +667,96 @@ tbody tr:last-child td { border-bottom: none; }
   gap: 8px;
 }
 .squad-combo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 .squad-combo-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 1.2rem;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  padding: 1rem 1.2rem;
+  transition: border-color 0.2s;
 }
 .squad-combo-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--glow);
   border-color: var(--accent);
 }
-.combo-header {
+.combo-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.8rem;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
 }
 .combo-name {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--text);
 }
 .combo-formation {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 6px;
   background: rgba(0,120,255,0.15);
   color: #5eaaff;
 }
-.combo-faces {
+.combo-meta-inline {
+  margin-left: auto;
   display: flex;
-  gap: 0.3rem;
-  margin-bottom: 0.7rem;
+  gap: 1rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
 }
-.combo-face {
-  width: 40px;
-  height: 40px;
+.combo-meta-inline .val { color: var(--accent); font-weight: 600; }
+.combo-meta-inline .val.gold { color: var(--gold); }
+.combo-11 {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.combo-11::-webkit-scrollbar{height:3px;}
+.combo-11::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+.combo-11-player {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 58px;
+}
+.combo-11-player .c11-face {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
   border: 2px solid var(--border);
   background: var(--surface2);
 }
-.combo-players {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.8rem;
-}
-.combo-player {
-  font-size: 0.72rem;
-  padding: 3px 8px;
-  border-radius: 6px;
-  background: var(--surface2);
-  color: var(--text-dim);
+.combo-11-player .c11-name {
+  font-size: 0.58rem;
+  font-weight: 600;
   white-space: nowrap;
+  color: var(--text);
+  text-align: center;
 }
-.combo-meta {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.72rem;
+.combo-11-player .c11-pos {
+  font-size: 0.5rem;
   color: var(--text-dim);
 }
-.combo-meta span {
+.combo-title-row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 8px;
 }
-.combo-meta .val { color: var(--accent); font-weight: 600; }
-.combo-meta .val.gold { color: var(--gold); }
+.combo-title-row h3 { margin-bottom: 0; }
+@media(max-width:640px){.combo-meta-inline{margin-left:0;margin-top:4px;}}
 
 .popular-player-grid {
   display: grid;
@@ -1921,81 +1935,81 @@ tbody tr:last-child td { border-bottom: none; }
       </div>
     </div>
 
-    <h3 class="popular-section-title">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      최근 인기 스쿼드 조합
-    </h3>
+    <div class="combo-title-row">
+      <h3 class="popular-section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        인기 스쿼드 조합
+      </h3>
+      <a href="https://fconline.nexon.com/datacenter/squadmaker" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 18px;border-radius:50px;font-size:0.78rem;font-weight:600;color:#fff;border:1px solid rgba(0,120,255,0.3);background:rgba(0,120,255,0.1);text-decoration:none;transition:all 0.2s;">🧩 스쿼드 메이커 바로가기</a>
+    </div>
     <div class="squad-combo-grid">
       <div class="squad-combo-card">
-        <div class="combo-header">
-          <div class="combo-name">프랑스 올금 스쿼드</div>
+        <div class="combo-top">
+          <div class="combo-name">🇫🇷 프랑스 올금</div>
           <div class="combo-formation">4-2-3-1</div>
+          <div class="combo-meta-inline">
+            <span>비용 <span class="val gold">~450억</span></span>
+            <span>급여 <span class="val">296/300</span></span>
+          </div>
         </div>
-        <div class="combo-faces">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831231747.png" alt="음바페">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831194765.png" alt="그리즈만">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p234001397.png" alt="지단">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831215914.png" alt="칸테">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p101214587.png" alt="데샹">
-        </div>
-        <div class="combo-players">
-          <span class="combo-player">25TOTY 음바페</span>
-          <span class="combo-player">25TY 그리즈만</span>
-          <span class="combo-player">LH 지단</span>
-          <span class="combo-player">25TOTY 칸테</span>
-          <span class="combo-player">ICON 데샹</span>
-        </div>
-        <div class="combo-meta">
-          <span>예상 비용 <span class="val gold">~450억 BP</span></span>
-          <span>급여 <span class="val">296/300</span></span>
+        <div class="combo-11">
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831231747.png" alt="음바페"><span class="c11-name">음바페</span><span class="c11-pos">ST</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831194765.png" alt="그리즈만"><span class="c11-name">그리즈만</span><span class="c11-pos">CAM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831248157.png" alt="뎀벨레"><span class="c11-name">뎀벨레</span><span class="c11-pos">RW</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p234001397.png" alt="지단"><span class="c11-name">지단</span><span class="c11-pos">LW</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831215914.png" alt="칸테"><span class="c11-name">칸테</span><span class="c11-pos">CDM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p101214587.png" alt="데샹"><span class="c11-name">데샹</span><span class="c11-pos">CDM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831209599.png" alt="에르난데스"><span class="c11-name">에르난데스</span><span class="c11-pos">LB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831201624.png" alt="바란"><span class="c11-name">바란</span><span class="c11-pos">CB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831200871.png" alt="움티티"><span class="c11-name">움티티</span><span class="c11-pos">CB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831228817.png" alt="파바르"><span class="c11-name">파바르</span><span class="c11-pos">RB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831189628.png" alt="로리스"><span class="c11-name">로리스</span><span class="c11-pos">GK</span></div>
         </div>
       </div>
       <div class="squad-combo-card">
-        <div class="combo-header">
-          <div class="combo-name">뮌헨 하이브리드</div>
+        <div class="combo-top">
+          <div class="combo-name">🇩🇪 뮌헨 하이브리드</div>
           <div class="combo-formation">4-2-2-2</div>
+          <div class="combo-meta-inline">
+            <span>비용 <span class="val gold">~320억</span></span>
+            <span>급여 <span class="val">289/300</span></span>
+          </div>
         </div>
-        <div class="combo-faces">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831189596.png" alt="뮐러">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p856222492.png" alt="사네">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831212622.png" alt="킴미히">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p234168473.png" alt="베켄바워">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p101167495.png" alt="노이어">
-        </div>
-        <div class="combo-players">
-          <span class="combo-player">25TY 뮐러</span>
-          <span class="combo-player">25UCL 사네</span>
-          <span class="combo-player">25TOTY 킴미히</span>
-          <span class="combo-player">LH 베켄바워</span>
-          <span class="combo-player">ICON 노이어</span>
-        </div>
-        <div class="combo-meta">
-          <span>예상 비용 <span class="val gold">~320억 BP</span></span>
-          <span>급여 <span class="val">289/300</span></span>
+        <div class="combo-11">
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831189596.png" alt="뮐러"><span class="c11-name">뮐러</span><span class="c11-pos">ST</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p856222492.png" alt="사네"><span class="c11-name">사네</span><span class="c11-pos">ST</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p825156616.png" alt="리베리"><span class="c11-name">리베리</span><span class="c11-pos">LM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831212622.png" alt="킴미히"><span class="c11-name">킴미히</span><span class="c11-pos">RM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p825020289.png" alt="야야 투레"><span class="c11-name">야야 투레</span><span class="c11-pos">CDM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p825231866.png" alt="로드리"><span class="c11-name">로드리</span><span class="c11-pos">CDM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831210291.png" alt="알라바"><span class="c11-name">알라바</span><span class="c11-pos">LB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p234168473.png" alt="베켄바워"><span class="c11-name">베켄바워</span><span class="c11-pos">CB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831200871.png" alt="움티티"><span class="c11-name">움티티</span><span class="c11-pos">CB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831212501.png" alt="킨텔"><span class="c11-name">킨텔</span><span class="c11-pos">RB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p101167495.png" alt="노이어"><span class="c11-name">노이어</span><span class="c11-pos">GK</span></div>
         </div>
       </div>
       <div class="squad-combo-card">
-        <div class="combo-header">
-          <div class="combo-name">스페인 가성비 스쿼드</div>
+        <div class="combo-top">
+          <div class="combo-name">🇪🇸 스페인 가성비</div>
           <div class="combo-formation">4-2-3-1</div>
+          <div class="combo-meta-inline">
+            <span>비용 <span class="val gold">~80억</span></span>
+            <span>급여 <span class="val">274/300</span></span>
+          </div>
         </div>
-        <div class="combo-faces">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831251854.png" alt="페드리">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p289264240.png" alt="가비">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p832277643.png" alt="야말">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p825231866.png" alt="로드리">
-          <img class="combo-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831239231.png" alt="쿠쿠렐라">
-        </div>
-        <div class="combo-players">
-          <span class="combo-player">25TY 페드리</span>
-          <span class="combo-player">CC 가비</span>
-          <span class="combo-player">25TY 야말</span>
-          <span class="combo-player">CU 로드리</span>
-          <span class="combo-player">25TY 쿠쿠렐라</span>
-        </div>
-        <div class="combo-meta">
-          <span>예상 비용 <span class="val gold">~80억 BP</span></span>
-          <span>급여 <span class="val">274/300</span></span>
+        <div class="combo-11">
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p832277643.png" alt="야말"><span class="c11-name">야말</span><span class="c11-pos">ST</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831251854.png" alt="페드리"><span class="c11-name">페드리</span><span class="c11-pos">CAM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831240124.png" alt="올모"><span class="c11-name">올모</span><span class="c11-pos">LW</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p289264240.png" alt="가비"><span class="c11-name">가비</span><span class="c11-pos">RW</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p825231866.png" alt="로드리"><span class="c11-name">로드리</span><span class="c11-pos">CDM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831189838.png" alt="부스케츠"><span class="c11-name">부스케츠</span><span class="c11-pos">CDM</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831239231.png" alt="쿠쿠렐라"><span class="c11-name">쿠쿠렐라</span><span class="c11-pos">LB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831210037.png" alt="라포르트"><span class="c11-name">라포르트</span><span class="c11-pos">CB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831209733.png" alt="나초"><span class="c11-name">나초</span><span class="c11-pos">CB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831204963.png" alt="카르바할"><span class="c11-name">카르바할</span><span class="c11-pos">RB</span></div>
+          <div class="combo-11-player"><img class="c11-face" src="https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p831199478.png" alt="우나이 시몬"><span class="c11-name">우나이 시몬</span><span class="c11-pos">GK</span></div>
         </div>
       </div>
     </div>
