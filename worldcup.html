@@ -1294,19 +1294,19 @@ initObserver();
     </div>
     <div class="popup-body">
       <div class="mg-hook">🎁 프리킥 성공하면<br>스타터 패키지 100% 지급!</div>
+      <div class="mg-status" id="mg-status">골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!</div>
+      <div class="mg-game-field" id="mg-field">
+        <div class="goal-net"></div>
+        <div class="mg-ball-kick" id="mg-ball"></div>
+        <div class="mg-ball-glow"></div>
+        <div class="mg-score-display" id="mg-score">⚽ 0 / 1</div>
+        <span class="mg-hint" id="mg-hint">👆 공을 터치하여 슛!</span>
+      </div>
       <div class="mg-login-notice">⚠️ 로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.</div>
       <div class="mg-auth-row" id="mg-auth-row">
         <button class="mg-auth-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하기</button>
         <button class="mg-auth-btn signup" onclick="alert('회원가입 페이지로 이동합니다.')">회원가입하기</button>
       </div>
-      <div class="mg-status" id="mg-status">골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!</div>
-      <div class="mg-game-field" id="mg-field">
-        <div class="goal-net"></div>
-        <div class="mg-ball-kick" id="mg-ball"></div>
-        <div class="mg-score-display" id="mg-score" style="display:none;">⚽ 0 / 1</div>
-        <span class="mg-hint" id="mg-hint">터치하여 슛!</span>
-      </div>
-      <button class="mg-start-btn" id="mg-start-btn" onclick="startFreekick()">⚡ 프리킥 도전하기</button>
       <div class="mg-result" id="mg-result">
         <div class="result-icon">🏆</div>
         <div class="result-msg" id="mg-result-msg">프리킥 성공!</div>
