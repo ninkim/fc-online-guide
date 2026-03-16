@@ -228,12 +228,15 @@ button{font-family:inherit;cursor:pointer;}
 .mg-auth-btn.login:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,120,255,0.3);}
 .mg-auth-btn.signup{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);}
 .mg-auth-btn.signup:hover{background:rgba(255,255,255,0.14);}
-.mg-reward-btns{display:flex;flex-direction:column;gap:8px;align-items:center;display:none;}
+.mg-reward-btns{display:none;flex-direction:column;gap:8px;align-items:center;}
 .mg-reward-btns.show{display:flex;animation:popIn 0.3s ease;}
-.mg-reward-btn{padding:12px 32px;border-radius:50px;font-size:0.85rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;width:100%;max-width:320px;}
+.mg-reward-row{display:flex;gap:8px;width:100%;max-width:360px;}
+.mg-reward-row .mg-reward-btn{flex:1;}
+.mg-reward-btn{padding:12px 16px;border-radius:50px;font-size:0.8rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;text-align:center;}
 .mg-reward-btn:hover{transform:translateY(-2px);}
 .mg-reward-btn.primary{background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;box-shadow:0 4px 16px rgba(0,120,255,0.25);}
-.mg-reward-btn.secondary{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);}
+.mg-reward-btn.close-btn{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);}
+.mg-reward-btn.secondary{background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.12);width:100%;max-width:360px;}
 
 /* Floating Start Banner */
 .floating-right-panel{position:fixed;right:16px;top:160px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:12px;animation:floatIn 0.5s ease;}
@@ -804,6 +807,26 @@ button{font-family:inherit;cursor:pointer;}
     </div>
   </div>
 
+  <!-- YouTube Shorts -->
+  <div class="section" id="shorts" style="padding-bottom:1rem;">
+    <div class="section-label">Featured Shorts</div>
+    <div class="section-title">🎬 요즘 FC 온라인? 이렇게 플레이하세요!</div>
+    <div class="shorts-grid">
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/s0cVnKRJYrY" title="FC Online Short 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/TgwPXDfVAJM" title="FC Online Short 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/Rc5MyECZOm0" title="FC Online Short 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="short-card">
+        <iframe src="https://www.youtube.com/embed/bpxXW0EsQ70" title="FC Online Short 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- 조작법 가이드 (키보드 + 게임패드) -->
   <div class="section" id="controls-guide">
     <div class="section-label">Controls Guide</div>
@@ -866,26 +889,6 @@ button{font-family:inherit;cursor:pointer;}
       </div>
       <div style="margin-top:0.8rem;padding:8px 12px;background:rgba(0,120,255,0.06);border:1px solid rgba(0,120,255,0.12);border-radius:8px;font-size:0.7rem;color:var(--text-dim);">
         💡 <strong style="color:var(--accent);">패드 팁</strong> — Xbox / PS 게임패드 모두 지원됩니다. <strong>A/×</strong> = Xbox/PS 표기입니다. 설정 > 조작 설정에서 커스텀 키 배치도 가능해요.
-      </div>
-    </div>
-  </div>
-
-  <!-- YouTube Shorts -->
-  <div class="section" id="shorts" style="padding-bottom:1rem;">
-    <div class="section-label">Featured Shorts</div>
-    <div class="section-title">🎬 요즘 FC 온라인? 이렇게 플레이하세요!</div>
-    <div class="shorts-grid">
-      <div class="short-card">
-        <iframe src="https://www.youtube.com/embed/s0cVnKRJYrY" title="FC Online Short 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="short-card">
-        <iframe src="https://www.youtube.com/embed/TgwPXDfVAJM" title="FC Online Short 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="short-card">
-        <iframe src="https://www.youtube.com/embed/Rc5MyECZOm0" title="FC Online Short 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="short-card">
-        <iframe src="https://www.youtube.com/embed/bpxXW0EsQ70" title="FC Online Short 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -1510,10 +1513,12 @@ initObserver();
         <div class="result-sub">스타터 패키지가 지급 예정입니다!</div>
       </div>
       <div class="mg-reward-btns" id="mg-reward-btns">
-        <button class="mg-reward-btn primary" onclick="alert('로그인 페이지로 이동합니다.')">🔑 로그인하고 보상 수령하기</button>
+        <div class="mg-reward-row">
+          <button class="mg-reward-btn close-btn" id="mg-enter-btn">닫기</button>
+          <button class="mg-reward-btn primary" onclick="alert('로그인 페이지로 이동합니다.')">🔑 로그인하고 보상 수령하기</button>
+        </div>
         <button class="mg-reward-btn secondary" id="mg-download-btn">💾 게임 다운로드하러 가기</button>
       </div>
-      <button class="mg-enter-btn" id="mg-enter-btn">이벤트 페이지 입장하기</button>
     </div>
   </div>
 </div>
@@ -1570,7 +1575,6 @@ initObserver();
       status.innerHTML='<strong style="color:var(--green);">프리킥 성공! 🎉</strong>';
       result.classList.add('show');
       rewardBtns.classList.add('show');
-      enterBtn.classList.add('show');
       const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
       resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
     },500);
