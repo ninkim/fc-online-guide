@@ -427,8 +427,12 @@ button{font-family:inherit;cursor:pointer;}
     <div class="squad-img-wrap">
       <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드 — 4-1-2-3 포메이션, 총급여 254/275, 평균 OVR 132">
     </div>
-    <button class="squad-receive-btn" onclick="alert('스쿼드가 지급되었습니다! 게임에서 확인하세요.')">🎁 월드컵 국대 스쿼드 받기</button>
-    <a class="cta-big blue newbie-guide-btn" href="https://ninkim.github.io/fc-online-guide/#start" target="_blank" style="width:100%;max-width:none;margin-top:1.2rem;font-size:1.1rem;padding:16px 28px;">
+    <button class="squad-receive-btn" id="squad-receive-btn" onclick="receiveSquad()">🎁 월드컵 국대 스쿼드 받기</button>
+  </div>
+
+  <!-- Newbie Guide (stays above events after squad received) -->
+  <div id="newbie-guide-anchor">
+    <a class="cta-big blue newbie-guide-btn" href="https://ninkim.github.io/fc-online-guide/#start" target="_blank" style="width:100%;max-width:none;margin:0 0 1.5rem;font-size:1.1rem;padding:16px 28px;">
       <span style="font-size:1.5rem;line-height:1;">🐣⚽</span>
       지금 바로 이해 가능한 FC 온라인 뉴비 가이드
     </a>
@@ -621,6 +625,16 @@ button{font-family:inherit;cursor:pointer;}
 
     <div class="friend-list" id="friendList"></div>
     <div class="pagination" id="pagination"></div>
+  </div>
+
+  <!-- Squad Received (shown at bottom after receiving) -->
+  <div class="squad-section section squad-received" id="squad-received" style="display:none;padding-top:1.5rem;opacity:1;transform:none;">
+    <div style="display:inline-block;padding:5px 14px;background:var(--green);border-radius:50px;font-size:0.7rem;font-weight:700;color:#fff;margin-bottom:1rem;">✅ 스쿼드 수령 완료</div>
+    <h3><em>월드컵 국대 스쿼드</em>로<br>FC 온라인을 즐겨보세요!</h3>
+    <div class="squad-img-wrap">
+      <img src="squad-korea.png" alt="26WC 대한민국 국대 스쿼드">
+    </div>
+    <div style="margin-top:1rem;font-size:0.8rem;color:var(--text-dim);">게임에서 스쿼드를 확인하세요! 미등록 선수 리스트에서 수령 가능합니다.</div>
   </div>
 
 </div>
@@ -865,6 +879,25 @@ function renderPlayers(containerId){
   }).join('');
 }
 renderPlayers('player-scroll-new');
+
+function receiveSquad(){
+  const orig=document.getElementById('squad');
+  const received=document.getElementById('squad-received');
+  const btn=document.getElementById('squad-receive-btn');
+  btn.disabled=true;
+  btn.textContent='✅ 스쿼드 지급 완료!';
+  btn.style.background='rgba(255,255,255,0.08)';
+  btn.style.cursor='default';
+  setTimeout(()=>{
+    orig.style.transition='opacity 0.4s ease';
+    orig.style.opacity='0';
+    setTimeout(()=>{
+      orig.style.display='none';
+      received.style.display='';
+      received.scrollIntoView({behavior:'smooth',block:'center'});
+    },400);
+  },600);
+}
 
 const DUMMY_FRIENDS = [
   {name:'축구왕김민수',tags:['10대 구단주','공격형']},
