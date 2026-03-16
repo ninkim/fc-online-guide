@@ -294,6 +294,8 @@ button{font-family:inherit;cursor:pointer;}
 .mg-result .result-msg{font-size:1rem;font-weight:800;margin-bottom:4px;}
 .mg-result .result-sub{font-size:0.75rem;color:var(--text-dim);margin-bottom:1rem;}
 .mg-result-btns{display:flex;gap:10px;justify-content:center;margin-top:0.5rem;}
+.mg-reward-highlight{background:linear-gradient(135deg,var(--gold),#ffc960) !important;color:#000 !important;font-weight:800 !important;box-shadow:0 4px 16px rgba(245,166,35,0.4);}
+.mg-reward-highlight:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(245,166,35,0.5);}
 .mg-dl-link{display:inline-block;margin-top:0.8rem;font-size:0.75rem;color:var(--text-dim);text-decoration:underline;text-underline-offset:3px;transition:color 0.2s;cursor:pointer;}
 .mg-dl-link:hover{color:#fff;}
 
@@ -1339,9 +1341,9 @@ initObserver();
         <div class="result-sub">로그인 후 구단주를 생성하면 스타터 패키지 바로 지급!</div>
         <div class="mg-result-btns">
           <button class="ll-btn skip" onclick="document.getElementById('minigame-popup').classList.remove('active');document.body.style.overflow='';sessionStorage.setItem('mg_done','1');">닫기</button>
-          <button class="ll-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하고 보상 받기</button>
+          <button class="ll-btn login mg-reward-highlight" onclick="alert('로그인 페이지로 이동합니다.')">로그인하고 보상 받기</button>
         </div>
-        <a href="#" id="mg-download-btn2" class="mg-dl-link">게임 다운로드하기</a>
+        <a href="#" id="mg-download-btn2" class="mg-dl-link">⬇️ 게임 다운로드하기</a>
       </div>
       <!-- Download Layer Popup -->
       <div class="mg-dl-layer" id="mg-dl-layer">
