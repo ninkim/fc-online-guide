@@ -262,7 +262,7 @@ button{font-family:inherit;cursor:pointer;}
 .datachart-card .card-footer-link{display:inline-flex;align-items:center;gap:4px;margin-top:0.5rem;padding:4px 12px;font-size:0.68rem;font-weight:600;color:var(--accent);border:1px solid rgba(0,120,255,0.25);border-radius:50px;background:rgba(0,120,255,0.06);transition:all 0.2s;}
 .datachart-card .card-footer-link:hover{background:rgba(0,120,255,0.15);border-color:var(--accent);}
 .popular-players{margin-top:14px;}
-.popular-players h4{font-size:0.78rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.popular-players h4{font-size:0.78rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}.popular-players .pp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}.popular-players .pp-header h4{margin-bottom:0;}
 .player-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;}
 .player-scroll::-webkit-scrollbar{height:4px;}
 .player-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
@@ -566,7 +566,10 @@ button{font-family:inherit;cursor:pointer;}
       </div>
     </div>
     <div class="popular-players">
-      <h4>🔥 인기 선수 TOP 20</h4>
+      <div class="pp-header">
+        <h4>🔥 인기 선수 TOP 20</h4>
+        <a href="https://fconline.nexon.com/datacenter/squadmaker" target="_blank" class="datachart-title-link">🧩 스쿼드 메이커 →</a>
+      </div>
       <div class="player-scroll" id="player-scroll-new"></div>
     </div>
   </div>
