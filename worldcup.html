@@ -207,6 +207,12 @@ button{font-family:inherit;cursor:pointer;}
 .floating-start .float-btn svg{width:36px;height:36px;color:#fff;}
 .floating-start .float-label{font-size:0.8rem;font-weight:700;color:#fff;background:rgba(0,0,0,0.7);padding:5px 14px;border-radius:50px;white-space:nowrap;backdrop-filter:blur(4px);}
 @media(max-width:640px){.floating-start{right:12px;bottom:16px;}.floating-start .float-btn{width:72px;height:72px;}.floating-start .float-label{font-size:0.72rem;}}
+.floating-top{position:fixed;right:16px;bottom:140px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.floating-top.show{opacity:1;pointer-events:auto;}
+.floating-top .top-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:background 0.2s,transform 0.2s;}
+.floating-top:hover .top-btn{background:rgba(255,255,255,0.2);transform:translateY(-2px);}
+.floating-top .top-label{font-size:0.5rem;font-weight:700;color:rgba(255,255,255,0.6);}
+@media(max-width:640px){.floating-top{right:12px;bottom:120px;}}
 .mg-result{display:none;padding:1.5rem 0 0.5rem;text-align:center;}
 .mg-result.show{display:block;animation:popIn 0.3s ease;}
 .mg-result .result-icon{font-size:2.5rem;margin-bottom:8px;}
@@ -1140,6 +1146,12 @@ initObserver();
 })();
 </script>
 
+<!-- Floating Top Button -->
+<div class="floating-top" id="floating-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <div class="top-btn">▲</div>
+  <span class="top-label">TOP</span>
+</div>
+
 <!-- Floating Start Banner -->
 <a class="floating-start" href="#" onclick="alert('FC 온라인을 시작합니다!')">
   <div class="float-btn">
@@ -1147,6 +1159,11 @@ initObserver();
   </div>
   <span class="float-label">FC 온라인 시작</span>
 </a>
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('floating-top').classList.toggle('show',window.scrollY>400);
+});
+</script>
 
 </body>
 </html>
