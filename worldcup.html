@@ -200,19 +200,19 @@ button{font-family:inherit;cursor:pointer;}
 .mg-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
 
 /* Floating Start Banner */
-.floating-start{position:fixed;right:16px;bottom:24px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;cursor:pointer;animation:floatIn 0.5s ease;}
+.floating-start{position:fixed;right:16px;top:80px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;cursor:pointer;animation:floatIn 0.5s ease;}
 @keyframes floatIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .floating-start .float-btn{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#e5243b,#c0292e);border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(229,36,59,0.4);transition:transform 0.2s,box-shadow 0.2s;}
 .floating-start:hover .float-btn{transform:scale(1.1);box-shadow:0 6px 28px rgba(229,36,59,0.55);}
 .floating-start .float-btn svg{width:36px;height:36px;color:#fff;}
 .floating-start .float-label{font-size:0.8rem;font-weight:700;color:#fff;background:rgba(0,0,0,0.7);padding:5px 14px;border-radius:50px;white-space:nowrap;backdrop-filter:blur(4px);}
-@media(max-width:640px){.floating-start{right:12px;bottom:16px;}.floating-start .float-btn{width:72px;height:72px;}.floating-start .float-label{font-size:0.72rem;}}
-.floating-top{position:fixed;right:16px;bottom:140px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+@media(max-width:640px){.floating-start{right:12px;top:72px;}.floating-start .float-btn{width:72px;height:72px;}.floating-start .float-label{font-size:0.72rem;}}
+.floating-top{position:fixed;right:16px;bottom:24px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .floating-top.show{opacity:1;pointer-events:auto;}
 .floating-top .top-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:background 0.2s,transform 0.2s;}
 .floating-top:hover .top-btn{background:rgba(255,255,255,0.2);transform:translateY(-2px);}
 .floating-top .top-label{font-size:0.5rem;font-weight:700;color:rgba(255,255,255,0.6);}
-@media(max-width:640px){.floating-top{right:12px;bottom:120px;}}
+@media(max-width:640px){.floating-top{right:12px;bottom:16px;}}
 .mg-result{display:none;padding:1.5rem 0 0.5rem;text-align:center;}
 .mg-result.show{display:block;animation:popIn 0.3s ease;}
 .mg-result .result-icon{font-size:2.5rem;margin-bottom:8px;}
