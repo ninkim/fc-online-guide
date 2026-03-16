@@ -1310,13 +1310,6 @@ initObserver();
         <div class="result-msg" id="mg-result-msg">프리킥 성공!</div>
         <div class="result-sub">스타터 패키지가 지급 예정입니다!</div>
       </div>
-      <div class="mg-reward-btns" id="mg-reward-btns">
-        <div class="mg-reward-row">
-          <button class="mg-reward-btn close-btn" id="mg-enter-btn">닫기</button>
-          <button class="mg-reward-btn primary" onclick="alert('로그인 페이지로 이동합니다.')">🔑 로그인하고 보상 수령하기</button>
-        </div>
-        <button class="mg-reward-btn secondary" id="mg-download-btn">💾 게임 다운로드하러 가기</button>
-      </div>
     </div>
   </div>
 </div>
@@ -1329,11 +1322,8 @@ initObserver();
   const hint=document.getElementById('mg-hint');
   const status=document.getElementById('mg-status');
   const result=document.getElementById('mg-result');
-  const enterBtn=document.getElementById('mg-enter-btn');
   const skipBtn=document.getElementById('mg-skip-btn');
   const resultMsg=document.getElementById('mg-result-msg');
-  const rewardBtns=document.getElementById('mg-reward-btns');
-  const downloadBtn=document.getElementById('mg-download-btn');
   let playing=true,done=false,loginConfirmed=false;
 
   if(!sessionStorage.getItem('mg_done')){
@@ -1360,9 +1350,9 @@ initObserver();
       field.style.pointerEvents='none';
       status.innerHTML='<strong style="color:var(--green);">프리킥 성공! 🎉</strong>';
       result.classList.add('show');
-      rewardBtns.classList.add('show');
       const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
       resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
+      setTimeout(closePopup,2000);
     },500);
   }
 
@@ -1377,14 +1367,6 @@ initObserver();
     }
     doKick();
   };
-
-  downloadBtn.onclick=function(){
-    if(confirm('클라이언트를 다운로드합니다.\n플레이 방법을 확인해보세요!')){
-      window.open('https://ninkim.github.io/fc-online-guide/#play','_blank');
-    }
-  };
-
-  enterBtn.onclick=closePopup;
 })();
 </script>
 
