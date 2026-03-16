@@ -220,6 +220,20 @@ button{font-family:inherit;cursor:pointer;}
 .mg-enter-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,120,255,0.35);}
 .mg-start-btn{padding:12px 36px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.9rem;font-weight:700;border:none;border-radius:50px;transition:all 0.2s;}
 .mg-start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,200,117,0.35);}
+.mg-hook{font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:6px;line-height:1.4;}
+.mg-login-notice{font-size:0.7rem;color:var(--accent2);font-weight:600;margin-bottom:12px;padding:6px 12px;background:rgba(229,36,59,0.08);border:1px solid rgba(229,36,59,0.15);border-radius:8px;display:inline-block;}
+.mg-auth-row{display:flex;gap:8px;justify-content:center;margin-bottom:1rem;}
+.mg-auth-btn{padding:8px 20px;border-radius:50px;font-size:0.75rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;}
+.mg-auth-btn.login{background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;}
+.mg-auth-btn.login:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,120,255,0.3);}
+.mg-auth-btn.signup{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);}
+.mg-auth-btn.signup:hover{background:rgba(255,255,255,0.14);}
+.mg-reward-btns{display:flex;flex-direction:column;gap:8px;align-items:center;display:none;}
+.mg-reward-btns.show{display:flex;animation:popIn 0.3s ease;}
+.mg-reward-btn{padding:12px 32px;border-radius:50px;font-size:0.85rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;width:100%;max-width:320px;}
+.mg-reward-btn:hover{transform:translateY(-2px);}
+.mg-reward-btn.primary{background:linear-gradient(135deg,var(--accent),#0055cc);color:#fff;box-shadow:0 4px 16px rgba(0,120,255,0.25);}
+.mg-reward-btn.secondary{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);}
 
 /* Floating Start Banner */
 .floating-right-panel{position:fixed;right:16px;top:160px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:12px;animation:floatIn 0.5s ease;}
@@ -1476,21 +1490,30 @@ initObserver();
       <button class="popup-close" id="mg-skip-btn" style="font-size:0.65rem;width:auto;padding:0 12px;border-radius:50px;height:28px;">건너뛰기</button>
     </div>
     <div class="popup-body">
-      <div class="mg-status" id="mg-status">골대를 향해 <strong>5번</strong> 프리킥을 차세요!</div>
+      <div class="mg-hook">🎁 프리킥 성공하면<br>스타터 패키지 100% 지급!</div>
+      <div class="mg-login-notice">⚠️ 로그인 후 게임을 진행하셔야 보상 수령이 가능합니다.</div>
+      <div class="mg-auth-row" id="mg-auth-row">
+        <button class="mg-auth-btn login" onclick="alert('로그인 페이지로 이동합니다.')">로그인하기</button>
+        <button class="mg-auth-btn signup" onclick="alert('회원가입 페이지로 이동합니다.')">회원가입하기</button>
+      </div>
+      <div class="mg-status" id="mg-status">골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!</div>
       <div class="mg-game-field" id="mg-field">
         <div class="goal-net"></div>
         <div class="mg-ball-kick" id="mg-ball"></div>
-        <div class="mg-score-display" id="mg-score">⚽ 0 / 5</div>
+        <div class="mg-score-display" id="mg-score" style="display:none;">⚽ 0 / 1</div>
         <span class="mg-hint" id="mg-hint">터치하여 슛!</span>
       </div>
-      <div class="mg-progress-bar"><div class="mg-prog-fill" id="mg-prog"></div></div>
-      <button class="mg-start-btn" id="mg-start-btn" onclick="startFreekick()">⚡ 게임 시작하기</button>
+      <button class="mg-start-btn" id="mg-start-btn" onclick="startFreekick()">⚡ 프리킥 도전하기</button>
       <div class="mg-result" id="mg-result">
         <div class="result-icon">🏆</div>
-        <div class="result-msg" id="mg-result-msg">챌린지 완료!</div>
-        <div class="result-sub">26WC 선수팩이 지급되었습니다!</div>
+        <div class="result-msg" id="mg-result-msg">프리킥 성공!</div>
+        <div class="result-sub">스타터 패키지가 지급 예정입니다!</div>
       </div>
-      <button class="mg-enter-btn" id="mg-enter-btn">🎉 이벤트 페이지 입장하기</button>
+      <div class="mg-reward-btns" id="mg-reward-btns">
+        <button class="mg-reward-btn primary" onclick="alert('로그인 페이지로 이동합니다.')">🔑 로그인하고 보상 수령하기</button>
+        <button class="mg-reward-btn secondary" id="mg-download-btn">💾 게임 다운로드하러 가기</button>
+      </div>
+      <button class="mg-enter-btn" id="mg-enter-btn">이벤트 페이지 입장하기</button>
     </div>
   </div>
 </div>
@@ -1500,7 +1523,6 @@ initObserver();
   const field=document.getElementById('mg-field');
   const ball=document.getElementById('mg-ball');
   const scoreEl=document.getElementById('mg-score');
-  const prog=document.getElementById('mg-prog');
   const hint=document.getElementById('mg-hint');
   const status=document.getElementById('mg-status');
   const startBtn=document.getElementById('mg-start-btn');
@@ -1508,8 +1530,9 @@ initObserver();
   const enterBtn=document.getElementById('mg-enter-btn');
   const skipBtn=document.getElementById('mg-skip-btn');
   const resultMsg=document.getElementById('mg-result-msg');
-  const GOAL=5;
-  let score=0,playing=false;
+  const rewardBtns=document.getElementById('mg-reward-btns');
+  const downloadBtn=document.getElementById('mg-download-btn');
+  let playing=false,done=false;
 
   if(!sessionStorage.getItem('mg_done')){
     overlay.classList.add('active');
@@ -1525,40 +1548,38 @@ initObserver();
   skipBtn.onclick=closePopup;
 
   window.startFreekick=function(){
-    score=0;playing=true;
+    if(done)return;
+    playing=true;
     startBtn.style.display='none';
+    scoreEl.style.display='';
     scoreEl.classList.add('show');
     hint.textContent='터치하여 슛!';
-    status.innerHTML='골대를 향해 <strong>'+GOAL+'번</strong> 프리킥을 차세요!';
-    updateUI();
+    status.innerHTML='골대를 향해 프리킥 <strong>1골</strong>을 넣으세요!';
+    scoreEl.textContent='⚽ 0 / 1';
   };
 
-  function updateUI(){
-    scoreEl.textContent='⚽ '+score+' / '+GOAL;
-    prog.style.width=(score/GOAL*100)+'%';
-  }
-
   field.onclick=function(){
-    if(!playing)return;
+    if(!playing||done)return;
     ball.classList.add('kicked');
     hint.textContent='';
     setTimeout(()=>{
-      score++;
-      updateUI();
+      done=true;playing=false;
+      scoreEl.textContent='⚽ 1 / 1';
       ball.classList.remove('kicked');
-      if(score>=GOAL){
-        playing=false;
-        field.style.pointerEvents='none';
-        hint.textContent='';
-        status.innerHTML='<strong style="color:var(--green);">챌린지 완료! 🎉</strong>';
-        result.classList.add('show');
-        enterBtn.classList.add('show');
-        const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
-        resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
-      } else {
-        hint.textContent='다시 터치!';
-      }
+      field.style.pointerEvents='none';
+      status.innerHTML='<strong style="color:var(--green);">프리킥 성공! 🎉</strong>';
+      result.classList.add('show');
+      rewardBtns.classList.add('show');
+      enterBtn.classList.add('show');
+      const msgs=['완벽한 프리킥!','멋진 실력이에요!','골~! 대단해요!'];
+      resultMsg.textContent=msgs[Math.floor(Math.random()*msgs.length)];
     },500);
+  };
+
+  downloadBtn.onclick=function(){
+    if(confirm('클라이언트를 다운로드합니다.\n플레이 방법을 확인해보세요!')){
+      window.open('https://ninkim.github.io/fc-online-guide/#play','_blank');
+    }
   };
 
   enterBtn.onclick=closePopup;
