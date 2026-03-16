@@ -47,7 +47,16 @@ button{font-family:inherit;cursor:pointer;}
 .hero{position:relative;padding:60px 1.5rem 36px;text-align:center;overflow:hidden;background:linear-gradient(160deg,#070d19 0%,#1a0a1e 30%,#0f1a30 60%,#070d19 100%);}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='38' fill='none' stroke='%23ffffff' stroke-opacity='0.02' stroke-width='0.5'/%3E%3Cpath d='M40 2L40 78M2 40L78 40' stroke='%23ffffff' stroke-opacity='0.015' stroke-width='0.3'/%3E%3C/svg%3E");animation:drift 40s linear infinite;}
 @keyframes drift{to{background-position:80px 80px;}}
-.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:2rem;}
+.hero-left{flex:1;text-align:center;}
+.hero-right{flex:0 0 auto;}
+.hero-mg-card{width:120px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#0a1628 0%,#162236 50%,#1a3a20 100%);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:border-color 0.2s,transform 0.15s;text-decoration:none;}
+.hero-mg-card:hover{border-color:var(--green);transform:translateY(-2px);}
+.hero-mg-card .mg-card-ball{width:32px;height:32px;background:radial-gradient(circle at 35% 35%,#fff,#ccc);border-radius:50%;box-shadow:0 3px 10px rgba(0,0,0,0.4);animation:ballPulse 1.8s ease-in-out infinite;}
+.hero-mg-card .mg-card-title{font-size:0.6rem;font-weight:700;color:#fff;text-align:center;line-height:1.3;}
+.hero-mg-card .mg-card-play{padding:5px 12px;background:linear-gradient(135deg,var(--green),#00a060);color:#fff;font-size:0.55rem;font-weight:700;border:none;border-radius:50px;pointer-events:none;animation:glowPulse 2s ease-in-out infinite;}
+@media(max-width:640px){.hero-content{flex-direction:column;gap:1rem;}.hero-right{order:-1;}.hero-mg-card{width:100px;}}
+
 .hero-date{display:inline-block;padding:5px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:50px;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;}
 .hero h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:0.5rem;}
 .hero h1 span{background:linear-gradient(135deg,var(--accent2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -292,14 +301,23 @@ button{font-family:inherit;cursor:pointer;}
 <!-- Hero -->
 <section class="hero" style="padding-top:90px;">
   <div class="hero-content">
-    <div class="hero-date">2026 FIFA World Cup ✦ 사전등록</div>
-    <h1>2026 월드컵,<br><span>FC 온라인</span>과 함께</h1>
-    <p>월드컵 사전등록하고 국대 스쿼드와 대량 보상을 받아가세요. 지금 등록하면 경기 시작일부터 바로 플레이!</p>
-    <div class="hero-cta-row">
-      <button class="btn-primary" onclick="document.querySelector('.squad-section').scrollIntoView({behavior:'smooth'})">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        월드컵 국가 대표 스쿼드 받으러 가기
-      </button>
+    <div class="hero-left">
+      <div class="hero-date">2026 FIFA World Cup ✦ 사전등록</div>
+      <h1>2026 월드컵,<br><span>FC 온라인</span>과 함께</h1>
+      <p>월드컵 사전등록하고 국대 스쿼드와 대량 보상을 받아가세요. 지금 등록하면 경기 시작일부터 바로 플레이!</p>
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="document.querySelector('.squad-section').scrollIntoView({behavior:'smooth'})">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          월드컵 국가 대표 스쿼드 받으러 가기
+        </button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mg-card" onclick="document.getElementById('minigame-popup').classList.add('active')">
+        <div class="mg-card-ball"></div>
+        <div class="mg-card-title">🎯 프리킥<br>챌린지</div>
+        <span class="mg-card-play">PLAY →</span>
+      </div>
     </div>
   </div>
 </section>
@@ -526,16 +544,6 @@ button{font-family:inherit;cursor:pointer;}
     </a>
   </div>
 
-  <!-- Mini Game Banner -->
-  <div class="minigame-banner" onclick="document.getElementById('minigame-popup').classList.add('active')">
-    <div class="mg-ball"></div>
-    <div class="mg-text">
-      <h4>🎯 프리킥 챌린지</h4>
-      <p>게임 시작 전, 손 한번 풀어볼까요? 최고 기록으로 선수팩 획득!</p>
-    </div>
-    <span class="mg-play">PLAY →</span>
-  </div>
-
   <!-- Friend Recommendation -->
   <div class="friend-section section" id="friends">
     <div class="section-label">Friend Connect</div>
@@ -743,16 +751,6 @@ button{font-family:inherit;cursor:pointer;}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       FC 온라인 바로 시작하기
     </a>
-  </div>
-
-  <!-- Mini Game Banner (existing) -->
-  <div class="minigame-banner" onclick="document.getElementById('minigame-popup').classList.add('active')">
-    <div class="mg-ball"></div>
-    <div class="mg-text">
-      <h4>🎯 프리킥 챌린지</h4>
-      <p>게임 시작 전, 손 한번 풀어볼까요? 최고 기록으로 선수팩 획득!</p>
-    </div>
-    <span class="mg-play">PLAY →</span>
   </div>
 
   <!-- Friend Recommendation (existing) -->
